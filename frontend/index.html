@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Coring Progress Dashboard</title>
+<title>SVB Coring Progress Dashboard</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 :root{
@@ -545,7 +545,7 @@ main{padding:14px 20px;max-width:1400px;margin:0 auto}
 </div>
 
 <script>
-const API = window.location.hostname==='localhost'?'http://localhost:3002':'https://coring-migr-api.onrender.com';
+const API = window.location.hostname==='localhost'?'http://localhost:3002':'https://svb-coring-api.onrender.com';
 
 // ── Today GMT+7 ────────────────────────────────────────────────────────────────
 const _todayGMT7 = new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Bangkok'}));
