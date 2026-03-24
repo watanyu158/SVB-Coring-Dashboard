@@ -8,32 +8,31 @@
 <style>
 :root{
   --bg:#f0f4f8;--card:#fff;--border:#e2e8f0;--text:#1e293b;--text2:#64748b;--text3:#94a3b8;
-  --primary:#0ea5e9;--primary-l:#e0f2fe;
-  --success:#10b981;--success-l:#d1fae5;
-  --warning:#f59e0b;--warning-l:#fef3c7;
-  --danger:#ef4444;--danger-l:#fee2e2;
   --cab:#0ea5e9;--cab-l:#e0f2fe;
   --cor:#7c3aed;--cor-l:#ede9fe;
+  --success:#10b981;--success-l:#d1fae5;
+  --warning:#f59e0b;--warning-l:#fef3c7;
+  --danger:#ef4444;
   --r:12px;--rsm:8px;--sh:0 1px 3px rgba(0,0,0,.07);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--text);font-size:13px}
+body{font-family:'Segoe UI',sans-serif;background:var(--bg);color:var(--text);font-size:13px}
 
 .topbar{background:linear-gradient(135deg,#1e1b4b,#312e81,#4c1d95);color:#fff;padding:0 20px;
-  height:56px;display:flex;align-items:center;justify-content:space-between;
+  height:52px;display:flex;align-items:center;justify-content:space-between;
   position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(76,29,149,.4)}
-.tb-l{display:flex;align-items:center;gap:12px}
-.tb-logo{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.15);
-  display:flex;align-items:center;justify-content:center;font-size:18px}
-.tb-title{font-size:13px;font-weight:700;letter-spacing:.2px}
+.tb-l{display:flex;align-items:center;gap:10px}
+.tb-logo{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.15);
+  display:flex;align-items:center;justify-content:center;font-size:17px}
+.tb-title{font-size:13px;font-weight:700}
 .tb-hl{background:linear-gradient(90deg,#c4b5fd,#a78bfa);-webkit-background-clip:text;
   -webkit-text-fill-color:transparent;font-weight:800}
 .tb-sub{font-size:10px;opacity:.7;margin-top:1px}
-.tb-stats{display:flex;gap:20px}
-.tb-stat .v{font-size:15px;font-weight:700;color:#c4b5fd;text-align:center}
+.tb-stats{display:flex;gap:18px}
+.tb-stat .v{font-size:14px;font-weight:700;color:#c4b5fd;text-align:center}
 .tb-stat .l{font-size:10px;opacity:.6;text-align:center}
 
-main{max-width:1280px;margin:0 auto;padding:16px 20px}
+main{max-width:1280px;margin:0 auto;padding:14px 20px}
 .card{background:var(--card);border-radius:var(--r);border:1px solid var(--border);padding:14px;box-shadow:var(--sh)}
 .ch{display:flex;align-items:center;gap:8px;font-weight:600;margin-bottom:12px;font-size:13px}
 .chi{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
@@ -45,72 +44,72 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
 .cld{width:18px;height:0;border-top:2px dashed #94a3c4}
 
 /* Insights */
-.ins-box{background:linear-gradient(135deg,#1e1b4b 0%,#312e81 50%,#4c1d95 100%);
-  border-radius:var(--r);padding:16px 20px;margin-bottom:16px;color:#fff}
-.ins-panels{display:grid;grid-template-columns:1fr auto;gap:16px;margin-bottom:14px}
-.ins-alert-card{background:rgba(255,255,255,.08);border-radius:10px;padding:14px}
-.ins-alert-head{display:flex;align-items:center;gap:12px;margin-bottom:10px}
-.ins-icon{width:40px;height:40px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.ins-box{background:linear-gradient(135deg,#1e1b4b,#312e81,#4c1d95);border-radius:var(--r);
+  padding:14px 18px;margin-bottom:14px;color:#fff}
+.ins-actions{display:flex;justify-content:flex-end;gap:8px;margin-bottom:10px}
+.ins-btn{padding:5px 12px;border-radius:6px;font-size:11px;cursor:pointer;font-family:inherit;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff}
+.ins-btn.pdf{border-color:rgba(244,114,182,.5);background:rgba(244,114,182,.1);color:#f9a8d4}
+.ins-panels{display:grid;grid-template-columns:1fr auto;gap:14px;margin-bottom:12px}
+.ins-alert{background:rgba(255,255,255,.08);border-radius:10px;padding:14px}
+.ins-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.ins-icon{width:40px;height:40px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#7c3aed,#4c1d95)}
 .ins-big{font-size:14px;font-weight:700}
 .ins-big em{color:#c4b5fd;font-style:normal;font-size:18px}
 .ins-tag{font-size:11px;font-weight:600;background:rgba(196,181,253,.2);color:#c4b5fd;padding:2px 8px;border-radius:99px;margin-left:8px}
-.ins-rate-row{display:flex;align-items:center;gap:8px;margin:10px 0}
+.ins-rate{display:flex;align-items:center;gap:8px;margin:8px 0}
 .ins-rl{font-size:11px;opacity:.7}
 .ins-rv{font-size:20px;font-weight:800;color:#c4b5fd}
 .ins-arrow{font-size:16px;opacity:.5}
 .ins-rt{color:#86efac}
-.ins-ru{font-size:11px;opacity:.7}
 .ins-note{font-size:11px;background:rgba(134,239,172,.1);border:1px solid rgba(134,239,172,.3);border-radius:6px;padding:6px 10px;color:#86efac}
-.ins-gauge-card{background:rgba(255,255,255,.08);border-radius:10px;padding:14px;min-width:180px}
+.ins-gauge{background:rgba(255,255,255,.08);border-radius:10px;padding:14px;min-width:175px}
 .ins-gauge-wrap{position:relative;width:90px;height:90px;margin:0 auto}
 .ins-gc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .gp{font-size:20px;font-weight:800;color:#c4b5fd}
-.ins-kpi-table{margin-top:10px;border-top:1px solid rgba(255,255,255,.1);padding-top:8px}
+.ins-kpi{margin-top:10px;border-top:1px solid rgba(255,255,255,.1);padding-top:8px}
 .ins-kpi-title{font-size:10px;opacity:.6;margin-bottom:6px;text-transform:uppercase}
 .ins-kpi-row{display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px}
 .ins-kpi-lbl{opacity:.7}
 .ins-kpi-val{font-weight:700;color:#c4b5fd}
-.ins-pills{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.ins-pills{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
 .ins-pill{background:rgba(255,255,255,.08);border-radius:8px;padding:10px;display:flex;align-items:center;gap:8px}
 .ip-icon{font-size:16px}
 .ip-val{font-size:16px;font-weight:800;color:#c4b5fd;line-height:1}
 .ip-lbl{font-size:10px;opacity:.7;margin-top:2px}
 .ip-sub{font-size:10px;color:#a78bfa}
 
-/* Summary header */
+/* Summary */
 .sum-hdr{background:var(--card);border:1px solid var(--border);border-radius:var(--r);
-  padding:14px 18px;margin-bottom:14px;display:flex;align-items:center;
+  padding:12px 18px;margin-bottom:14px;display:flex;align-items:center;
   justify-content:space-between;flex-wrap:wrap;gap:10px;box-shadow:var(--sh)}
 .sum-title{font-size:14px;font-weight:700}
 .sum-sub{font-size:11px;color:var(--text2);margin-top:2px}
 .sum-stats{display:flex;gap:20px}
-.ss .v{font-size:18px;font-weight:800;color:var(--cor);text-align:center}
+.ss .v{font-size:18px;font-weight:800;text-align:center}
 .ss .l{font-size:10px;color:var(--text2);text-align:center}
 
-/* Step row */
+/* Steps */
 .step-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
 .step{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px;box-shadow:var(--sh)}
 .step-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.step-icon{font-size:18px}
 .step-pct{font-size:12px;font-weight:700;padding:2px 8px;border-radius:99px}
 .step-num{font-size:28px;font-weight:800;line-height:1}
 .step-denom{font-size:13px;color:var(--text2)}
 .step-lbl{font-size:11px;color:var(--text2);margin:4px 0 8px}
 .step-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden}
-.step-fill{height:100%;border-radius:3px;transition:.8s}
+.step-fill{height:100%;border-radius:3px}
 
 /* Tabs */
 .tabs-wrap{background:var(--card);border-radius:var(--r);border:1px solid var(--border);box-shadow:var(--sh);overflow:hidden}
 .tabs{display:flex;border-bottom:1px solid var(--border);padding:0 4px;background:#f8fafc}
 .tab{padding:10px 16px;cursor:pointer;font-size:12px;font-weight:500;color:var(--text2);
   border:none;background:none;border-bottom:2px solid transparent;margin-bottom:-1px;transition:.2s}
-.tab:hover{color:var(--cor)}
-.tab.on{color:var(--cor);border-bottom-color:var(--cor);font-weight:600}
+.tab:hover{color:var(--cor)}.tab.on{color:var(--cor);border-bottom-color:var(--cor);font-weight:600}
 .tab-body{padding:14px;display:none}
 
 /* Wstat */
-.wstat-row{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap}
-.wstat{display:flex;align-items:center;gap:8px;background:var(--bg);border-radius:8px;padding:8px 12px;flex:1;min-width:140px}
+.wstat-row{display:flex;gap:10px;margin-bottom:12px}
+.wstat{display:flex;align-items:center;gap:8px;background:var(--bg);border-radius:8px;padding:8px 12px;flex:1}
 .wstat-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
 .wstat-num{font-size:20px;font-weight:800;line-height:1}
 .wstat-pct{font-size:11px;font-weight:600;padding:1px 7px;border-radius:99px;margin-top:3px;display:inline-block}
@@ -124,35 +123,43 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
 .loc-bar-row{display:flex;align-items:center;gap:6px;font-size:11px}
 .loc-bl{width:50px;color:var(--text2)}
 .loc-bt{flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden}
-.loc-bf{height:100%;border-radius:4px;transition:.8s}
+.loc-bf{height:100%;border-radius:4px}
 .loc-bv{width:70px;text-align:right;font-weight:600;font-size:11px}
 
+/* Heatmap */
+.hm-grid{display:flex;flex-direction:column;gap:12px}
+.hm-concourse{margin-bottom:8px}
+.hm-title{font-size:12px;font-weight:600;margin-bottom:6px;color:var(--text)}
+.hm-gates{display:flex;flex-wrap:wrap;gap:6px}
+.hm-gate{width:52px;height:52px;border-radius:8px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;font-size:11px;font-weight:600;cursor:default;
+  border:2px solid transparent;transition:.2s}
+.hm-gate .gn{font-size:13px;font-weight:700}
+.hm-gate .gs{font-size:9px;margin-top:2px;opacity:.8}
+.hm-cab-only{background:#e0f2fe;color:#0369a1;border-color:#7dd3fc}
+.hm-done{background:#d1fae5;color:#065f46;border-color:#6ee7b7}
+.hm-pending{background:#f5f3ff;color:#6d28d9;border-color:#c4b5fd}
+.hm-legend{display:flex;gap:14px;margin-top:10px;font-size:11px;flex-wrap:wrap}
+.hm-leg{display:flex;align-items:center;gap:5px}
+.hm-dot{width:12px;height:12px;border-radius:3px}
+
 /* Plan */
-.pcard{background:var(--bg);border-radius:8px;padding:10px 12px}
+.pcard{background:var(--bg);border-radius:8px;padding:10px 12px;margin-bottom:0}
 .pc-l{font-size:11px;color:var(--text2);margin-bottom:3px}
 .pc-v{font-size:15px;font-weight:700;color:var(--text)}
-.pc-v.red{color:var(--danger)}.pc-v.grn{color:var(--success)}.pc-v.blu{color:var(--cab)}.pc-v.pur{color:var(--cor)}
-
-/* Actions */
-.actions{display:flex;gap:8px;margin-bottom:14px}
-.btn{display:flex;align-items:center;gap:6px;padding:7px 14px;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:var(--card);color:var(--text)}
-.btn.danger{background:#fff5f5;border-color:#ffd0d0;color:var(--danger)}
-
-/* Print header */
-.ph{background:linear-gradient(135deg,#1e1b4b,#4c1d95);color:#fff;padding:9px 16px;
-  margin-bottom:10px;border-radius:10px;display:flex;justify-content:space-between;align-items:center}
-.ph-title{font-size:15px;font-weight:700}
-.ph-hl{background:linear-gradient(90deg,#c4b5fd,#a78bfa);-webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;font-weight:800;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.pc-v.grn{color:var(--success)}.pc-v.blu{color:var(--cab)}.pc-v.pur{color:var(--cor)}
 
 @media print{
-  .topbar,.actions,.tabs,.btn{display:none!important}
+  .topbar,.tabs,.ins-actions{display:none!important}
   .tab-body{display:block!important}
-  .card{break-inside:avoid}
-  .step-row,.g3{display:grid!important;grid-template-columns:1fr 1fr 1fr!important;gap:10px!important}
-  .g2{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important}
-  .ins-pills{display:grid!important;grid-template-columns:repeat(6,1fr)!important}
+  .card,.step{break-inside:avoid}
+  .step-row,.g2{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important}
+  .g3{display:grid!important;grid-template-columns:1fr 1fr 1fr!important;gap:10px!important}
+  .ins-pills{display:grid!important;grid-template-columns:repeat(5,1fr)!important}
   canvas{display:none!important}
+  .ph{background:linear-gradient(135deg,#1e1b4b,#4c1d95);color:#fff;padding:9px 16px;
+    margin-bottom:10px;border-radius:10px;display:flex;justify-content:space-between;align-items:center;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 </style>
 </head>
@@ -163,7 +170,7 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
     <div class="tb-logo">⛏</div>
     <div>
       <div class="tb-title">Coring Progress Dashboard — <span class="tb-hl">SVB</span></div>
-      <div class="tb-sub">งาน Cabling &amp; Coring สนามบินสุวรรณภูมิ | ซิงค์ล่าสุด <span id="sync-ts">--</span></div>
+      <div class="tb-sub">งาน Cabling &amp; Coring สนามบินสุวรรณภูมิ | <span id="sync-ts">--</span></div>
     </div>
   </div>
   <div class="tb-stats">
@@ -174,51 +181,52 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
 </div>
 
 <main>
+
 <!-- Insights -->
 <div class="ins-box">
-  <div style="display:flex;justify-content:flex-end;gap:8px;margin-bottom:10px">
-    <button onclick="manualRefresh()" style="padding:5px 12px;border-radius:6px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;font-size:11px;cursor:pointer;font-family:inherit">↺ รีเฟรช</button>
-    <button onclick="exportPDF()" style="padding:5px 12px;border-radius:6px;border:1px solid rgba(244,114,182,.5);background:rgba(244,114,182,.1);color:#f9a8d4;font-size:11px;cursor:pointer;font-family:inherit">⬇ PDF</button>
+  <div class="ins-actions">
+    <button class="ins-btn" onclick="manualRefresh()">↺ รีเฟรช</button>
+    <button class="ins-btn pdf" onclick="exportPDF()">⬇ PDF</button>
   </div>
   <div class="ins-panels">
-    <div class="ins-alert-card">
-      <div class="ins-alert-head">
-        <div class="ins-icon" style="background:linear-gradient(135deg,#7c3aed,#4c1d95)">⚡</div>
+    <div class="ins-alert">
+      <div class="ins-head">
+        <div class="ins-icon">⛏</div>
         <div>
           <div class="ins-big">ทำได้ <em>0.34</em> จุด/วัน
             <span class="ins-tag">59% รวม</span>
           </div>
         </div>
       </div>
-      <div class="ins-rate-row">
+      <div class="ins-rate">
         <span class="ins-rl">ทำได้</span>
         <span class="ins-rv">0.34</span>
         <span class="ins-arrow">→</span>
-        <span class="ins-rl">เป้า</span>
+        <span class="ins-rl">เป้า Coring</span>
         <span class="ins-rv ins-rt">0.30</span>
-        <span class="ins-ru">จุด/วัน</span>
+        <span class="ins-rl">จุด/วัน</span>
       </div>
       <div class="ins-note">✅ ถ้าคงอัตรานี้ → คาดเสร็จ 27 มิ.ย. 69 (ก่อนกำหนด 13 วัน)</div>
     </div>
-    <div class="ins-gauge-card">
+    <div class="ins-gauge">
       <div class="ins-gauge-wrap">
         <canvas id="gauge-c" width="90" height="90"></canvas>
         <div class="ins-gc"><div class="gp" id="gauge-pct">59%</div></div>
       </div>
-      <div class="ins-kpi-table">
-        <div class="ins-kpi-title">ประสิทธิภาพ</div>
-        <div class="ins-kpi-row"><span class="ins-kpi-lbl">ทำได้จริง</span><span class="ins-kpi-val">0.34/วัน</span></div>
-        <div class="ins-kpi-row"><span class="ins-kpi-lbl">เป้าหมาย</span><span class="ins-kpi-val">0.30/วัน</span></div>
-        <div class="ins-kpi-row"><span class="ins-kpi-lbl">ส่วนต่าง</span><span class="ins-kpi-val" style="color:#c4b5fd">59%</span></div>
+      <div class="ins-kpi">
+        <div class="ins-kpi-title">ความคืบหน้า</div>
+        <div class="ins-kpi-row"><span class="ins-kpi-lbl">Cabling</span><span class="ins-kpi-val" style="color:#7dd3fc">100%</span></div>
+        <div class="ins-kpi-row"><span class="ins-kpi-lbl">Coring</span><span class="ins-kpi-val" style="color:#c4b5fd">17.9%</span></div>
+        <div class="ins-kpi-row"><span class="ins-kpi-lbl">รวม</span><span class="ins-kpi-val">59%</span></div>
       </div>
     </div>
   </div>
   <div class="ins-pills">
-    <div class="ins-pill"><div class="ip-icon">📅</div><div><div class="ip-val">27 มิ.ย.</div><div class="ip-lbl">คาดเสร็จ</div><div class="ip-sub">ก่อนกำหนด</div></div></div>
     <div class="ins-pill"><div class="ip-icon">🔵</div><div><div class="ip-val" style="color:#7dd3fc">39</div><div class="ip-lbl">Cabling</div><div class="ip-sub">100% ✓</div></div></div>
-    <div class="ins-pill"><div class="ip-icon">🟣</div><div><div class="ip-val" id="pill-cor">7</div><div class="ip-lbl">Coring</div><div class="ip-sub">17.9%</div></div></div>
-    <div class="ins-pill"><div class="ip-icon">📦</div><div><div class="ip-val" id="pill-rem">32</div><div class="ip-lbl">เหลือ</div><div class="ip-sub">Coring จุด</div></div></div>
+    <div class="ins-pill"><div class="ip-icon">⛏</div><div><div class="ip-val" id="pill-cor">7</div><div class="ip-lbl">Coring</div><div class="ip-sub">17.9%</div></div></div>
+    <div class="ins-pill"><div class="ip-icon">📦</div><div><div class="ip-val" id="pill-rem">32</div><div class="ip-lbl">Coring เหลือ</div><div class="ip-sub">จุด</div></div></div>
     <div class="ins-pill"><div class="ip-icon">⏱</div><div><div class="ip-val">108</div><div class="ip-lbl">วันเหลือ</div><div class="ip-sub">ถึง 10 ก.ค.</div></div></div>
+    <div class="ins-pill"><div class="ip-icon">📅</div><div><div class="ip-val">27 มิ.ย.</div><div class="ip-lbl">คาดเสร็จ</div><div class="ip-sub">ก่อนกำหนด</div></div></div>
   </div>
 </div>
 
@@ -231,6 +239,7 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
   <div class="sum-stats">
     <div class="ss"><div class="v" style="color:var(--cab)" id="ov-cab">39</div><div class="l">Cabling ✓</div></div>
     <div class="ss"><div class="v" style="color:var(--cor)" id="ov-cor">7</div><div class="l">Coring แล้ว</div></div>
+    <div class="ss"><div class="v" style="color:var(--cor)">59.0%</div><div class="l">% รวม</div></div>
   </div>
 </div>
 
@@ -238,7 +247,7 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
 <div class="step-row">
   <div class="step">
     <div class="step-top">
-      <span class="step-icon">🔵</span>
+      <span style="font-size:18px">🔵</span>
       <span class="step-pct" style="background:var(--cab-l);color:var(--cab)">100%</span>
     </div>
     <div><span class="step-num" style="color:var(--cab)">39</span><span class="step-denom">/39</span></div>
@@ -247,14 +256,13 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
   </div>
   <div class="step">
     <div class="step-top">
-      <span class="step-icon">🟣</span>
+      <span style="font-size:18px">⛏</span>
       <span class="step-pct" style="background:var(--cor-l);color:var(--cor)" id="step-cor-pct">17.9%</span>
     </div>
     <div><span class="step-num" style="color:var(--cor)" id="step-cor-n">7</span><span class="step-denom">/39</span></div>
     <div class="step-lbl">Coring — เจาะร้อยสาย</div>
     <div class="step-bar"><div class="step-fill" id="step-cor-bar" style="width:17.9%;background:var(--cor)"></div></div>
   </div>
-
 </div>
 
 <!-- Tabs -->
@@ -263,24 +271,30 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
   <button class="tab on"  onclick="showTab('overview',this)">📊 ภาพรวม</button>
   <button class="tab"     onclick="showTab('weekly',this)">📈 รายสัปดาห์</button>
   <button class="tab"     onclick="showTab('location',this)">📍 สถานที่</button>
+  <button class="tab"     onclick="showTab('heatmap',this)">🗺 Heatmap</button>
   <button class="tab"     onclick="showTab('plan',this)">📅 แผนงาน</button>
 </div>
 
 <!-- ══ Overview ══ -->
 <div class="tab-body" id="tab-overview" style="display:block">
   <div class="g2" style="margin-bottom:14px">
+    <!-- Burndown -->
     <div class="card">
-      <div class="ch"><div class="chi" style="background:var(--primary-l);color:var(--primary)">📉</div>Burn-down Chart</div>
-      <div style="position:relative;height:240px"><canvas id="burndown-c"></canvas></div>
-      <div class="cleg"><div class="cl"><div class="cld"></div>แผน</div><div class="cl"><div class="cll" style="background:var(--success)"></div>จริง</div><div class="cl" style="color:var(--danger);font-size:11px">| วันนี้</div></div>
+      <div class="ch"><div class="chi" style="background:#e0f2fe;color:var(--cab)">📉</div>Burn-down Chart
+        <div style="display:flex;gap:10px;margin-left:auto;font-size:11px;font-weight:400;color:var(--text3)">วันนี้ <span style="color:var(--danger)">|</span></div>
+      </div>
+      <div style="height:240px"><canvas id="burndown-c"></canvas></div>
+      <div class="cleg"><div class="cl"><div class="cld"></div>แผน</div><div class="cl"><div class="cll" style="background:var(--success)"></div>จริง</div></div>
     </div>
+    <!-- Donut -->
     <div class="card">
       <div class="ch"><div class="chi" style="background:var(--cor-l);color:var(--cor)">🍩</div>สัดส่วนความคืบหน้า</div>
-      <div style="position:relative;height:240px">
-        <canvas id="donut-c"></canvas>
+      <div style="height:240px;display:flex;align-items:center;justify-content:center">
+        <canvas id="donut-c" style="max-width:320px;max-height:220px"></canvas>
       </div>
     </div>
   </div>
+  <!-- Progress overall -->
   <div class="card" style="margin-bottom:14px">
     <div class="ch">
       <div class="chi" style="background:var(--cor-l);color:var(--cor)">📈</div>ความคืบหน้าสะสม — แผน vs จริง (%)
@@ -290,13 +304,14 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
       </div>
     </div>
     <div style="height:240px"><canvas id="prog-all-c"></canvas></div>
-    <div class="cleg"><div class="cl"><div class="cld"></div>แผนรวม</div><div class="cl"><div class="cll" style="background:var(--cor)"></div>จริงรวม</div><div class="cl" style="color:var(--danger);font-size:11px">| วันนี้</div></div>
+    <div class="cleg"><div class="cl"><div class="cld"></div>แผน</div><div class="cl"><div class="cll" style="background:var(--cor)"></div>จริง</div></div>
   </div>
+  <!-- Cabling + Coring small -->
   <div class="g2">
     <div class="card">
       <div class="ch">
         <div class="chi" style="background:var(--cab-l);color:var(--cab)">🔵</div>Cabling % สะสม
-        <div style="display:flex;gap:10px;margin-left:auto;font-size:11px;font-weight:400">
+        <div style="display:flex;gap:8px;margin-left:auto;font-size:11px;font-weight:400">
           <span id="cab-plan-lbl" style="color:var(--text3)">แผน: –%</span>
           <span id="cab-act-lbl" style="color:var(--cab);font-weight:600">จริง: –%</span>
         </div>
@@ -305,8 +320,8 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
     </div>
     <div class="card">
       <div class="ch">
-        <div class="chi" style="background:var(--cor-l);color:var(--cor)">🟣</div>Coring % สะสม
-        <div style="display:flex;gap:10px;margin-left:auto;font-size:11px;font-weight:400">
+        <div class="chi" style="background:var(--cor-l);color:var(--cor)">⛏</div>Coring % สะสม
+        <div style="display:flex;gap:8px;margin-left:auto;font-size:11px;font-weight:400">
           <span id="cor-plan-lbl" style="color:var(--text3)">แผน: –%</span>
           <span id="cor-act-lbl" style="color:var(--cor);font-weight:600">จริง: –%</span>
         </div>
@@ -320,15 +335,13 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
 <div class="tab-body" id="tab-weekly">
   <div class="wstat-row">
     <div class="wstat"><div class="wstat-dot" style="background:var(--cab)"></div><div>
-      <div class="wstat-num" style="color:var(--cab)"><span id="wstat-cab">39</span></div>
+      <div class="wstat-num" style="color:var(--cab)">39</div>
       <div class="wstat-pct" style="background:var(--cab-l);color:var(--cab)">100%</div>
-      <div class="wstat-lbl">Cabling แล้ว</div></div>
-    </div>
+      <div class="wstat-lbl">Cabling แล้ว</div></div></div>
     <div class="wstat"><div class="wstat-dot" style="background:var(--cor)"></div><div>
-      <div class="wstat-num" style="color:var(--cor)"><span id="wstat-cor">7</span></div>
-      <div class="wstat-pct" style="background:var(--cor-l);color:var(--cor)" id="wstat-cor-pct">17.9%</div>
-      <div class="wstat-lbl">Coring แล้ว</div></div>
-    </div>
+      <div class="wstat-num" style="color:var(--cor)" id="wstat-cor">7</div>
+      <div class="wstat-pct" style="background:var(--cor-l);color:var(--cor)">17.9%</div>
+      <div class="wstat-lbl">Coring แล้ว</div></div></div>
   </div>
   <div class="card" style="margin-bottom:14px">
     <div class="ch"><div class="chi" style="background:var(--cor-l);color:var(--cor)">📊</div>ผลรายสัปดาห์ — Cabling &amp; Coring</div>
@@ -336,7 +349,11 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
     <div class="cleg"><div class="cl"><div class="cll" style="background:var(--cab)"></div>Cabling จริง</div><div class="cl"><div class="cll" style="background:var(--cor)"></div>Coring จริง</div><div class="cl"><div class="cld"></div>แผนรวม</div></div>
   </div>
   <div class="card">
-    <div class="ch"><div class="chi" style="background:var(--cor-l);color:var(--cor)">📈</div>% สะสมรวม รายสัปดาห์</div>
+    <div class="ch"><div class="chi" style="background:var(--cor-l);color:var(--cor)">📈</div>% สะสมรวม รายสัปดาห์
+      <div style="display:flex;gap:8px;margin-left:auto;font-size:11px;font-weight:400">
+        <span style="color:var(--text3)">แผน</span><span style="color:var(--cor);font-weight:600">จริง</span>
+      </div>
+    </div>
     <div style="height:200px"><canvas id="cum-wk-c"></canvas></div>
     <div class="cleg"><div class="cl"><div class="cld"></div>แผน %</div><div class="cl"><div class="cll" style="background:var(--cor)"></div>จริง %</div></div>
   </div>
@@ -346,10 +363,27 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
 <div class="tab-body" id="tab-location">
   <div class="card" style="margin-bottom:14px">
     <div class="ch"><div class="chi" style="background:var(--cor-l);color:var(--cor)">📊</div>แยก Concourse — Cabling vs Coring</div>
-    <div style="height:280px"><canvas id="loc-bar-c"></canvas></div>
-    <div class="cleg"><div class="cl"><div class="cll" style="background:var(--cab)"></div>Cabling</div><div class="cl"><div class="cll" style="background:var(--cor)"></div>Coring</div><div class="cl"><div class="cld" style="border-color:#0ea5e9"></div>เป้า Cabling</div><div class="cl"><div class="cld" style="border-color:#7c3aed"></div>เป้า Coring</div></div>
+    <div style="height:300px"><canvas id="loc-bar-c"></canvas></div>
+    <div class="cleg">
+      <div class="cl"><div class="cll" style="background:var(--cab)"></div>Cabling จริง</div>
+      <div class="cl"><div class="cll" style="background:var(--cor)"></div>Coring จริง</div>
+      <div class="cl"><div class="cld" style="border-color:var(--cab)"></div>เป้า Cabling</div>
+      <div class="cl"><div class="cld" style="border-color:var(--cor)"></div>เป้า Coring</div>
+    </div>
   </div>
-  <div class="card"><div class="ch"><div class="chi" style="background:var(--primary-l);color:var(--primary)">📍</div>รายละเอียดแต่ละสถานที่</div><div id="loc-detail"></div></div>
+  <div class="card"><div class="ch"><div class="chi" style="background:#e0f2fe;color:var(--cab)">📍</div>รายละเอียดแต่ละสถานที่</div><div id="loc-detail"></div></div>
+</div>
+
+<!-- ══ Heatmap ══ -->
+<div class="tab-body" id="tab-heatmap">
+  <div class="card">
+    <div class="ch"><div class="chi" style="background:var(--cor-l);color:var(--cor)">🗺</div>Gate Heatmap — สถานะ Coring แต่ละจุด</div>
+    <div class="hm-legend">
+      <div class="hm-leg"><div class="hm-dot" style="background:#d1fae5;border:2px solid #6ee7b7"></div>Coring เสร็จ ✓</div>
+      <div class="hm-leg"><div class="hm-dot" style="background:#e0f2fe;border:2px solid #7dd3fc"></div>Cabling เสร็จ / Coring รอ</div>
+    </div>
+    <div class="hm-grid" id="hm-grid" style="margin-top:14px"></div>
+  </div>
 </div>
 
 <!-- ══ Plan ══ -->
@@ -367,8 +401,8 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
     </div>
     <div class="card">
       <div class="ch" style="font-size:12px;color:var(--text2);font-weight:500;margin-bottom:9px">📈 เป้าหมาย</div>
-      <div class="pcard" style="margin-bottom:7px"><div class="pc-l">Cabling</div><div class="pc-v grn">39/39 ✓ เสร็จ</div></div>
-      <div class="pcard"><div class="pc-l">Coring (ทำได้/ทั้งหมด)</div><div class="pc-v pur">7/39 จุด (17.9%)</div></div>
+      <div class="pcard" style="margin-bottom:7px"><div class="pc-l">🔵 Cabling</div><div class="pc-v grn">39/39 จุด ✓</div></div>
+      <div class="pcard"><div class="pc-l">⛏ Coring (ทำได้/ทั้งหมด)</div><div class="pc-v pur">7/39 จุด (17.9%)</div></div>
     </div>
     <div class="card">
       <div class="ch" style="font-size:12px;color:var(--text2);font-weight:500;margin-bottom:9px">✅ การประเมิน</div>
@@ -376,8 +410,8 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
       <div class="pcard" style="margin-bottom:7px">
         <div class="pc-l">ความคืบหน้าปัจจุบัน</div>
         <div class="pc-v pur">59.0%</div>
-        <div style="height:5px;background:var(--border);border-radius:99px;margin-top:5px;overflow:hidden">
-          <div style="height:100%;width:59%;background:var(--cor);border-radius:99px"></div>
+        <div style="height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:5px">
+          <div style="height:100%;width:59%;background:var(--cor);border-radius:3px"></div>
         </div>
       </div>
       <div class="pcard"><div class="pc-l">สถานะ</div><div class="pc-v grn">✓ ใกล้เคียงแผน</div></div>
@@ -385,9 +419,9 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
   </div>
   <div class="card" style="margin-bottom:14px">
     <div class="ch"><div class="chi" style="background:var(--success-l);color:var(--success)">⚡</div>ข้อมูลการดำเนินงานจริง</div>
-    <div class="g3" style="margin-bottom:11px">
+    <div class="g3">
       <div class="pcard"><div class="pc-l">🔵 Cabling</div><div class="pc-v blu" style="font-size:20px">39/39 จุด ✓</div></div>
-      <div class="pcard"><div class="pc-l">🟣 Coring (ทำแล้ว/ทั้งหมด)</div><div class="pc-v pur" style="font-size:20px">7/39 จุด</div></div>
+      <div class="pcard"><div class="pc-l">⛏ Coring (ทำแล้ว)</div><div class="pc-v pur" style="font-size:20px">7/39 จุด</div></div>
       <div class="pcard"><div class="pc-l">คาดว่าจะเสร็จ Coring</div><div class="pc-v grn" style="font-size:20px">27 มิ.ย. 69 <span style="font-size:11px">(ก่อน 13 วัน)</span></div></div>
     </div>
   </div>
@@ -398,44 +432,28 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
 </main>
 
 <script>
-const API = window.location.hostname==='localhost'?'http://localhost:3002':'https://svb-coring-api.onrender.com';
+const API=window.location.hostname==='localhost'?'http://localhost:3002':'https://svb-coring-api.onrender.com';
 
-// ════ DATA (Excel SVB-Coring + SVB-Coring-กราฟรายสัปดาห์) ════
-const N_WK=38, TOTAL=78, CAB_T=39, COR_T=39, CAB_D=39, COR_D=7, COMB=46;
-
+// ════ DATA ════
+const N_WK=38,TOTAL=78;
 const WK_SHORT=["W.1","W.2","W.3","W.4","W.5","W.6","W.7","W.8","W.9","W.10","W.11","W.12","W.13","W.14","W.15","W.16","W.17","W.18","W.19","W.20","W.21","W.22","W.23","W.24","W.25","W.26","W.27","W.28","W.29","W.30","W.31","W.32","W.33","W.34","W.35","W.36","W.37","W.38"];
 const WK_DATES=["8/11-14/11","15/11-21/11","22/11-28/11","29/11-5/12","6/12-12/12","13/12-19/12","20/12-26/12","27/12-2/1","3/1-9/1","10/1-16/1","17/1-23/1","24/1-30/1","31/1-6/2","7/2-13/2","14/2-20/2","21/2-27/2","28/2-6/3","7/3-13/3","14/3-20/3","21/3-27/3","28/3-3/4","4/4-10/4","11/4-17/4","18/4-24/4","25/4-1/5","2/5-8/5","9/5-15/5","16/5-22/5","23/5-29/5","30/5-5/6","6/6-12/6","13/6-19/6","20/6-26/6","27/6-3/7","4/7-10/7","11/7-17/7","18/7-24/7","25/7-31/7"];
 const WK_LABEL=WK_SHORT.map((w,i)=>w+'\n'+(WK_DATES[i]?WK_DATES[i].split('-')[0]:''));
 
-// Cabling: plan & actual weekly (R6,R7)
 const WK_CAB_P=[2,2,7,3,4,6,2,0,2,6,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 const WK_CAB_A=[2,2,7,3,4,6,2,null,2,6,5,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
-
-// Coring: plan & actual weekly (R46,R47)
 const WK_COR_P=[0,0,0,0,0,0,0,0,0,0,1,0,0,1,2,1,1,1,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0];
 const WK_COR_A=[null,null,null,null,null,null,null,null,null,null,1,null,null,1,2,1,1,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
 
-// Combined % plan/act (R82,R83)
 const COM_PLAN=[2.56,5.13,14.1,17.95,23.08,30.77,33.33,33.33,35.9,43.59,51.28,51.28,51.28,52.56,55.13,56.41,57.69,58.97,61.54,64.1,66.67,69.23,69.23,71.79,74.36,76.92,79.49,82.05,84.62,87.18,89.74,92.31,94.87,97.44,100.0,100.0,100.0,100.0];
 const COM_ACT_RAW=[2.56,5.13,14.1,17.95,23.08,30.77,33.33,33.33,35.9,43.59,51.28,51.28,51.28,52.56,55.13,56.41,57.69,58.97,58.97,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
 
-// Cabling %cum (R10), Coring %cum (R50)
 const CAB_CUM=[5.13,10.26,28.21,35.9,46.15,61.54,66.67,66.67,71.79,87.18,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100];
-const COR_CUM=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2.56, 2.56, 2.56, 5.13, 10.26, 12.82, 15.38, 17.95, 20.51, 25.64, 30.77, 35.9, 35.9, 41.03, 46.15, 51.28, 56.41, 61.54, 66.67, 71.79, 76.92, 82.05, 87.18, 92.31, 97.44, 97.44, 97.44, 100.0];
+const COR_CUM=[0,0,0,0,0,0,0,0,0,0,2.56,2.56,2.56,5.13,10.26,12.82,15.38,17.95,20.51,25.64,30.77,35.9,35.9,41.03,46.15,51.28,56.41,61.54,66.67,71.79,76.92,82.05,87.18,92.31,97.44,97.44,97.44,100.0];
 
-// Burndown combined
 const BD_PLAN=[76,74,67,64,60,54,52,52,50,44,36,36,36,35,31,30,29,28,24,20,16,12,12,8,4,0,0,0,0,0,0,0,0,0,0,0,0,0];
-const BD_ACT= [76,74,67,64,60,54,52,52,50,44,36,36,36,35,31,30,29,28,28,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
+const BD_ACT=[76,74,67,64,60,54,52,52,50,44,36,36,36,35,31,30,29,28,28,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
 
-// Daily (all dates sorted chronologically)
-const DAILY_L=["8/11","9/11","15/11","16/11","22/11","23/11","24/11","25/11","26/11","27/11","28/11","1/12","2/12","3/12","6/12","7/12","11/12","12/12","13/12","14/12","15/12","16/12","17/12","18/12","20/12","21/12","8/01","9/01","10/01","11/01","12/01","14/01","15/01","16/01","17/01","18/01","19/01","20/01","21/01","23/01","13/02","14/02","20/02","21/02","6/03","7/03","19/03","20/03","26/03","27/03","2/04","3/04","9/04","10/04","23/04","24/04","30/04","1/05","7/05","8/05","14/05","15/05","21/05","22/05","28/05","29/05","4/06","5/06","11/06","12/06","18/06","19/06","25/06","26/06","2/07","3/07","9/07","10/07"];
-const DAILY_CAB_A=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-const DAILY_COR_A=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-const DAILY_PLAN=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
-let _cc=0,_cr=0; const CUM_CAB_D=[],CUM_COR_D=[];
-DAILY_L.forEach((_,i)=>{_cc+=DAILY_CAB_A[i];_cr+=DAILY_COR_A[i];CUM_CAB_D.push(_cc);CUM_COR_D.push(_cr);});
-
-// Location
 const LOC_DATA=[
   {n:'Concourse C',cab_p:10,cab_d:10,cor_p:10,cor_d:3},
   {n:'Concourse E',cab_p:10,cab_d:10,cor_p:10,cor_d:3},
@@ -444,179 +462,203 @@ const LOC_DATA=[
   {n:'Concourse G',cab_p:5, cab_d:5, cor_p:5, cor_d:0},
 ];
 
-// TODAY_WK
+// Gate data for heatmap
+const GATE_DATA=[
+  {gate:'C1',loc:'Concourse C',cab:1,cor:0},{gate:'C2',loc:'Concourse C',cab:1,cor:1},
+  {gate:'C3',loc:'Concourse C',cab:1,cor:0},{gate:'C4',loc:'Concourse C',cab:1,cor:0},
+  {gate:'C5',loc:'Concourse C',cab:1,cor:0},{gate:'C6',loc:'Concourse C',cab:1,cor:0},
+  {gate:'C7',loc:'Concourse C',cab:1,cor:1},{gate:'C8',loc:'Concourse C',cab:1,cor:1},
+  {gate:'C9',loc:'Concourse C',cab:1,cor:0},{gate:'C10',loc:'Concourse C',cab:1,cor:0},
+  {gate:'D1',loc:'Concourse D',cab:1,cor:0},{gate:'D2',loc:'Concourse D',cab:1,cor:0},
+  {gate:'D3',loc:'Concourse D',cab:1,cor:0},{gate:'D4',loc:'Concourse D',cab:1,cor:0},
+  {gate:'D5',loc:'Concourse D',cab:1,cor:0},{gate:'D6',loc:'Concourse D',cab:1,cor:0},
+  {gate:'D7',loc:'Concourse D',cab:1,cor:0},{gate:'D8',loc:'Concourse D',cab:1,cor:0},
+  {gate:'E1',loc:'Concourse E',cab:1,cor:1},{gate:'E2',loc:'Concourse E',cab:1,cor:0},
+  {gate:'E3',loc:'Concourse E',cab:1,cor:0},{gate:'E4',loc:'Concourse E',cab:1,cor:0},
+  {gate:'E5',loc:'Concourse E',cab:1,cor:1},{gate:'E6',loc:'Concourse E',cab:1,cor:1},
+  {gate:'E7',loc:'Concourse E',cab:1,cor:0},{gate:'E8',loc:'Concourse E',cab:1,cor:0},
+  {gate:'E9',loc:'Concourse E',cab:1,cor:0},{gate:'E10',loc:'Concourse E',cab:1,cor:0},
+  {gate:'F1',loc:'Concourse F',cab:1,cor:0},{gate:'F2',loc:'Concourse F',cab:1,cor:0},
+  {gate:'F3',loc:'Concourse F',cab:1,cor:1},{gate:'F4',loc:'Concourse F',cab:1,cor:0},
+  {gate:'F5',loc:'Concourse F',cab:1,cor:0},{gate:'F6',loc:'Concourse F',cab:1,cor:0},
+  {gate:'G1',loc:'Concourse G',cab:1,cor:0},{gate:'G2',loc:'Concourse G',cab:1,cor:0},
+  {gate:'G3',loc:'Concourse G',cab:1,cor:0},{gate:'G4',loc:'Concourse G',cab:1,cor:0},
+  {gate:'G5',loc:'Concourse G',cab:1,cor:0},
+];
+
 const _projStart=new Date(2025,10,8);
 const _today=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Bangkok'}));
-const _days=Math.floor((_today-_projStart)/(86400000));
+const _days=Math.floor((_today-_projStart)/86400000);
 const TODAY_WK=Math.max(0,Math.min(N_WK-1,Math.floor(_days/7)));
 const TODAY_FRAC=(_days%7)/7;
 
-// ── Charts ────────────────────────────────────────────────────────────────────
-const TD_PLG=(id,color='#ef4444')=>({id:'td_'+id,afterDraw(chart){
-  const m=chart.getDatasetMeta(0);if(!m.data[TODAY_WK])return;
-  const {top,bottom}=chart.chartArea;
-  const x0=m.data[TODAY_WK].x,x1=m.data[TODAY_WK+1]?m.data[TODAY_WK+1].x:x0;
-  const x=x0+(x1-x0)*TODAY_FRAC;
-  const cv=chart.ctx;cv.save();
-  cv.beginPath();cv.moveTo(x,top);cv.lineTo(x,bottom);
-  cv.strokeStyle=color;cv.lineWidth=1.5;cv.setLineDash([4,3]);cv.stroke();
-  cv.setLineDash([]);
-  const lbl=_today.getDate()+'/'+(String(_today.getMonth()+1).padStart(2,'0'));
-  cv.font='bold 10px Segoe UI';const tw=cv.measureText(lbl).width;
-  cv.fillStyle=color;cv.beginPath();cv.roundRect(x-tw/2-4,top-1,tw+8,16,4);cv.fill();
-  cv.fillStyle='#fff';cv.textAlign='center';cv.textBaseline='top';cv.fillText(lbl,x,top+2);
-  cv.restore();
-}});
+// ── Helper: carry-forward ──────────────────────────────────────────────────
+function carry(raw){
+  let _l=null;
+  return WK_SHORT.map((_,i)=>{
+    if(raw[i]!==null&&raw[i]!==undefined)_l=raw[i];
+    return i<=TODAY_WK?_l:null;
+  });
+}
 
-function carry(raw){let _l=null;return WK_SHORT.map((_,i)=>{if(raw[i]!==null&&raw[i]!==undefined)_l=raw[i];return i<=TODAY_WK?_l:null;});}
+// ── Today line plugin ──────────────────────────────────────────────────────
+function todayPlugin(id){
+  return {id:'td_'+id,afterDraw(chart){
+    const m=chart.getDatasetMeta(0);
+    if(!m.data[TODAY_WK])return;
+    const {top,bottom}=chart.chartArea;
+    const x0=m.data[TODAY_WK].x,x1=m.data[TODAY_WK+1]?m.data[TODAY_WK+1].x:x0;
+    const x=x0+(x1-x0)*TODAY_FRAC;
+    const cv=chart.ctx;cv.save();
+    cv.beginPath();cv.moveTo(x,top);cv.lineTo(x,bottom);
+    cv.strokeStyle='#ef4444';cv.lineWidth=1.5;cv.setLineDash([4,3]);cv.stroke();
+    cv.setLineDash([]);
+    const lbl=_today.getDate()+'/'+(String(_today.getMonth()+1).padStart(2,'0'));
+    cv.font='bold 10px Segoe UI';const tw=cv.measureText(lbl).width;
+    cv.fillStyle='#ef4444';cv.beginPath();cv.roundRect(x-tw/2-4,top-1,tw+8,16,4);cv.fill();
+    cv.fillStyle='#fff';cv.textAlign='center';cv.textBaseline='top';cv.fillText(lbl,x,top+2);
+    cv.restore();
+  }};
+}
 
+// ── Datalabel plugin ───────────────────────────────────────────────────────
+function lblPlugin(id,color,step=4){
+  return {id:'lb_'+id,afterDatasetsDraw(chart){
+    const ctx2=chart.ctx;
+    chart.data.datasets.forEach((ds,di)=>{
+      const meta=chart.getDatasetMeta(di);if(meta.hidden)return;
+      const lastIdx=ds.data.reduce((a,v,j)=>v!=null?j:a,-1);
+      meta.data.forEach((pt,i)=>{
+        const v=ds.data[i];if(v==null)return;
+        if(i!==lastIdx&&i%step!==0)return;
+        ctx2.save();ctx2.font=di===0?'9px Segoe UI':'bold 9px Segoe UI';
+        ctx2.fillStyle=di===0?'#94a3b8':color;ctx2.textAlign='center';
+        ctx2.textBaseline=di===0?'bottom':'top';
+        ctx2.fillText(v.toFixed(1)+'%',pt.x,di===0?pt.y-4:pt.y+4);
+        ctx2.restore();
+      });
+    });
+  }};
+}
+
+const commonOpts=(color)=>({
+  responsive:true,maintainAspectRatio:false,layout:{padding:{top:20,bottom:8}},
+  interaction:{mode:'index',intersect:false},
+  plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(30,27,75,.92)',bodyColor:'rgba(255,255,255,.8)',padding:8,cornerRadius:8,callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y!=null?c.parsed.y.toFixed(1)+'%':'–'}`}}},
+  scales:{
+    x:{ticks:{font:{size:9},maxRotation:45,color:'#94a3c4'},grid:{display:false}},
+    y:{min:0,max:100,ticks:{font:{size:10},color:'#94a3c4',callback:v=>v+'%'},grid:{color:'#f0f4ff'}}
+  }
+});
+
+function lineChart(id,planData,actData,color,planId,actId,plugins=[]){
+  const actFull=carry(actData.length?actData:planData);
+  const e=Chart.getChart(document.getElementById(id));if(e)e.destroy();
+  new Chart(document.getElementById(id),{
+    type:'line',plugins:[todayPlugin(id),lblPlugin(id,color),...plugins],
+    data:{labels:WK_LABEL,datasets:[
+      {label:'แผน',data:planData,borderColor:'#94a3c4',borderDash:[5,3],borderWidth:1.5,pointRadius:2,tension:.3,fill:false},
+      {label:'จริง',data:actFull,borderColor:color,borderWidth:2.5,pointRadius:(c)=>c.parsed.y!=null?3:0,pointBackgroundColor:color,tension:.3,fill:true,backgroundColor:color.replace(')',',0.06)').replace('rgb','rgba'),spanGaps:false},
+    ]},
+    options:commonOpts(color)
+  });
+  const planNow=planData[Math.min(TODAY_WK,planData.length-1)];
+  const actNow=actFull[TODAY_WK];
+  if(planId){const el=document.getElementById(planId);if(el)el.textContent='แผน: '+planNow.toFixed(1)+'%';}
+  if(actId&&actNow!=null){const el=document.getElementById(actId);if(el)el.textContent='จริง: '+actNow.toFixed(1)+'%';}
+}
+
+// ── Build functions ────────────────────────────────────────────────────────
 function buildGauge(){
   const e=Chart.getChart(document.getElementById('gauge-c'));if(e)e.destroy();
-  new Chart(document.getElementById('gauge-c'),{type:'doughnut',data:{datasets:[{data:[59,41],backgroundColor:['#7c3aed','rgba(124,58,237,.2)'],borderWidth:0}]},options:{cutout:'72%',circumference:180,rotation:-90,responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}}}});
+  new Chart(document.getElementById('gauge-c'),{type:'doughnut',
+    data:{datasets:[{data:[59,41],backgroundColor:['#7c3aed','rgba(124,58,237,.2)'],borderWidth:0}]},
+    options:{cutout:'72%',circumference:180,rotation:-90,responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}}}
+  });
 }
 
 function buildBurndown(){
   const bdFull=carry(BD_ACT);
   const e=Chart.getChart(document.getElementById('burndown-c'));if(e)e.destroy();
   new Chart(document.getElementById('burndown-c'),{
-    type:'line',plugins:[TD_PLG('bd')],
+    type:'line',plugins:[todayPlugin('bd')],
     data:{labels:WK_LABEL,datasets:[
       {label:'แผน',data:BD_PLAN,borderColor:'#94a3c4',borderDash:[5,3],borderWidth:1.5,pointRadius:0,tension:.3,fill:false},
       {label:'จริง',data:bdFull,borderColor:'#10b981',borderWidth:2.5,pointRadius:(c)=>c.parsed.y!=null?3:0,pointBackgroundColor:'#10b981',tension:.3,fill:false,spanGaps:false},
     ]},
     options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
-      plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(30,27,75,.92)',bodyColor:'rgba(255,255,255,.8)',callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y!=null?c.parsed.y+' จุด':'–'}`}}},
-      scales:{x:{ticks:{font:{size:9},maxRotation:45,color:'#94a3c4'},grid:{display:false}},
-        y:{min:0,max:80,ticks:{font:{size:10},color:'#94a3c4'},grid:{color:'#f0f4ff'}}}}
+      plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(30,27,75,.92)',bodyColor:'rgba(255,255,255,.8)',padding:8,cornerRadius:8,callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y!=null?c.parsed.y+' จุด':'–'}`}}},
+      scales:{x:{ticks:{font:{size:9},maxRotation:45,color:'#94a3c4'},grid:{display:false}},y:{min:0,max:80,ticks:{font:{size:10},color:'#94a3c4'},grid:{color:'#f0f4ff'}}}}
   });
 }
 
 function buildDonut(){
-  const e=Chart.getChart(document.getElementById('donut-c'));if(e)e.destroy();
-  new Chart(document.getElementById('donut-c'),{type:'doughnut',data:{datasets:[{data:[39,7,32],backgroundColor:['#0ea5e9','#7c3aed','#e2e8f0'],borderWidth:3,borderColor:'#fff'}]},options:{cutout:'70%',responsive:false,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(30,27,75,.92)',callbacks:{label:c=>[' Cabling 100% (39/39)',' Coring 17.9% (7/39)',' เหลือ 32 จุด'][c.dataIndex]}}}}});
+  const el=document.getElementById('donut-c'); if(!el) return;
+  const ex=Chart.getChart(el); if(ex) ex.destroy();
+  new Chart(el,{
+    type:'doughnut',
+    data:{
+      labels:['Cabling 100%','Coring 17.9%','เหลือ 32 จุด'],
+      datasets:[{
+        data:[39,7,32],
+        backgroundColor:['#0ea5e9','#7c3aed','#e2e8f0'],
+        borderWidth:3,borderColor:'#fff'
+      }]
+    },
+    options:{
+      cutout:'62%',responsive:true,maintainAspectRatio:false,
+      layout:{padding:{left:4,right:4,top:4,bottom:4}},
+      plugins:{
+        legend:{display:true,position:'right',labels:{font:{size:11},boxWidth:14,padding:12,color:'#1e293b'}},
+        tooltip:{backgroundColor:'rgba(30,27,75,.92)',callbacks:{
+          label:ctx=>({0:' Cabling: 39/39 (100%)',1:' Coring: 7/39 (17.9%)',2:' เหลือ: 32 จุด'}[ctx.dataIndex]||'')
+        }}
+      }
+    }
+  });
 }
 
-const LBL_PLG=(color)=>({id:'lbl_'+color,afterDatasetsDraw(chart){
-  const ctx2=chart.ctx;
-  chart.data.datasets.forEach((ds,di)=>{
-    const meta=chart.getDatasetMeta(di);if(meta.hidden)return;
-    const lastIdx=ds.data.reduce((a,v,j)=>v!=null?j:a,-1);
-    meta.data.forEach((pt,i)=>{
-      const v=ds.data[i];if(v==null)return;
-      if(i!==lastIdx&&i%4!==0)return;
-      ctx2.save();ctx2.font=di===0?'9px Segoe UI':'bold 9px Segoe UI';
-      ctx2.fillStyle=di===0?'#94a3b8':color;ctx2.textAlign='center';
-      ctx2.textBaseline=di===0?'bottom':'top';
-      ctx2.fillText(v.toFixed(1)+'%',pt.x,di===0?pt.y-4:pt.y+4);ctx2.restore();
-    });
-  });
-}});
-
 function buildProgAll(){
-  const actFull=carry(COM_ACT_RAW);
-  const e=Chart.getChart(document.getElementById('prog-all-c'));if(e)e.destroy();
-  new Chart(document.getElementById('prog-all-c'),{
-    type:'line',plugins:[TD_PLG('pa'),LBL_PLG('#7c3aed')],
-    data:{labels:WK_LABEL,datasets:[
-      {label:'แผน %',data:COM_PLAN,borderColor:'#94a3c4',borderDash:[5,3],borderWidth:1.5,pointRadius:2,tension:.3,fill:false},
-      {label:'จริง %',data:actFull,borderColor:'#7c3aed',borderWidth:2.5,pointRadius:(c)=>c.parsed.y!=null?3:0,pointBackgroundColor:'#7c3aed',tension:.3,fill:true,backgroundColor:'rgba(124,58,237,.06)',spanGaps:false},
-    ]},
-    options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:20,bottom:8}},
-      interaction:{mode:'index',intersect:false},
-      plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(30,27,75,.92)',bodyColor:'rgba(255,255,255,.8)',callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y!=null?c.parsed.y.toFixed(1)+'%':'–'}`}}},
-      scales:{x:{ticks:{font:{size:9},maxRotation:45,color:'#94a3c4'},grid:{display:false}},
-        y:{min:0,max:100,ticks:{font:{size:10},color:'#94a3c4',callback:v=>v+'%'},grid:{color:'#f0f4ff'}}}}
-  });
-  const lastAct=[...COM_ACT_RAW].reverse().find(v=>v!=null);
-  document.getElementById('prog-plan-lbl').textContent='แผน: '+COM_PLAN[Math.min(TODAY_WK,N_WK-1)].toFixed(1)+'%';
-  if(lastAct!=null) document.getElementById('prog-act-lbl').textContent='จริง: '+lastAct.toFixed(1)+'%';
+  lineChart('prog-all-c',COM_PLAN,COM_ACT_RAW,'#7c3aed','prog-plan-lbl','prog-act-lbl');
 }
 
 function buildProgSmall(){
-  function mk(id,pArr,aArr,color,planLblId,actLblId){
-    const aFull=pArr.map((v,i)=>i<=TODAY_WK?aArr[i]:null);
-    const tdP={id:'td_'+id,afterDraw(chart){
-      const m=chart.getDatasetMeta(0);if(!m.data[TODAY_WK])return;
-      const {top,bottom}=chart.chartArea;
-      const x0=m.data[TODAY_WK].x,x1=m.data[TODAY_WK+1]?m.data[TODAY_WK+1].x:x0;
-      const x=x0+(x1-x0)*TODAY_FRAC;
-      const cv=chart.ctx;cv.save();
-      cv.beginPath();cv.moveTo(x,top);cv.lineTo(x,bottom);
-      cv.strokeStyle='#ef4444';cv.lineWidth=1.2;cv.setLineDash([4,3]);cv.stroke();
-      cv.setLineDash([]);
-      const lbl=_today.getDate()+'/'+(String(_today.getMonth()+1).padStart(2,'0'));
-      cv.font='bold 9px Segoe UI';const tw=cv.measureText(lbl).width;
-      cv.fillStyle='#ef4444';cv.beginPath();cv.roundRect(x-tw/2-3,top-1,tw+6,14,3);cv.fill();
-      cv.fillStyle='#fff';cv.textAlign='center';cv.textBaseline='top';cv.fillText(lbl,x,top+2);
-      cv.restore();
-    }};
-    const lblP={id:'lbl_'+id,afterDatasetsDraw(chart){
-      const ctx2=chart.ctx;
-      chart.data.datasets.forEach((ds,di)=>{
-        const meta=chart.getDatasetMeta(di);if(meta.hidden)return;
-        const lastIdx=ds.data.reduce((a,v,j)=>v!=null?j:a,-1);
-        meta.data.forEach((pt,i)=>{
-          const v=ds.data[i];if(v==null)return;
-          if(i!==lastIdx&&i%5!==0)return;
-          ctx2.save();ctx2.font=di===0?'8px Segoe UI':'bold 8px Segoe UI';
-          ctx2.fillStyle=di===0?'#94a3b8':color;ctx2.textAlign='center';
-          ctx2.textBaseline=di===0?'bottom':'top';
-          ctx2.fillText(v.toFixed(1)+'%',pt.x,di===0?pt.y-3:pt.y+3);ctx2.restore();
-        });
-      });
-    }};
-    const e=Chart.getChart(document.getElementById(id));if(e)e.destroy();
-    new Chart(document.getElementById(id),{type:'line',plugins:[tdP,lblP],
-      data:{labels:WK_LABEL,datasets:[
-        {label:'แผน',data:pArr,borderColor:'#94a3c4',borderDash:[5,3],borderWidth:1.5,pointRadius:2,tension:.3,fill:false},
-        {label:'จริง',data:aFull,borderColor:color,borderWidth:2,pointRadius:(c)=>c.parsed.y!=null?2:0,pointBackgroundColor:color,tension:.3,fill:false,spanGaps:false},
-      ]},
-      options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:16,bottom:12}},
-        interaction:{mode:'index',intersect:false},
-        plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(30,27,75,.92)',bodyColor:'rgba(255,255,255,.8)',callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y!=null?c.parsed.y.toFixed(1)+'%':'–'}`}}},
-        scales:{x:{ticks:{font:{size:8},maxRotation:45,color:'#94a3c4'},grid:{display:false}},
-          y:{min:0,max:100,ticks:{font:{size:9},color:'#94a3c4',callback:v=>v+'%'},grid:{color:'#f0f4ff'}}}}
-    });
-    // อัพเดท header labels
-    const planNow=pArr[Math.min(TODAY_WK,pArr.length-1)];
-    const actNow=aFull[TODAY_WK];
-    const pEl=document.getElementById(planLblId); if(pEl) pEl.textContent='แผน: '+planNow.toFixed(1)+'%';
-    const aEl=document.getElementById(actLblId);  if(aEl&&actNow!=null) aEl.textContent='จริง: '+actNow.toFixed(1)+'%';
-  }
-  mk('prog-cab-c',CAB_CUM,CAB_CUM,'#0ea5e9','cab-plan-lbl','cab-act-lbl');
-  mk('prog-cor-c',COR_CUM,COR_CUM,'#7c3aed','cor-plan-lbl','cor-act-lbl');
+  lineChart('prog-cab-c',CAB_CUM,CAB_CUM,'#0ea5e9','cab-plan-lbl','cab-act-lbl');
+  lineChart('prog-cor-c',COR_CUM,COR_CUM,'#7c3aed','cor-plan-lbl','cor-act-lbl');
 }
 
 let _wk=false;
 function buildWeekly(){
   if(_wk)return;_wk=true;
-  const wkLblPlugin={id:'wkLbl',afterDatasetsDraw(chart){
+  // bar chart with labels
+  const wkBarLbl={id:'wkbl',afterDatasetsDraw(chart){
     const ctx2=chart.ctx;
     [0,1].forEach(di=>{
       const meta=chart.getDatasetMeta(di);
       meta.data.forEach((bar,i)=>{
         const v=chart.data.datasets[di].data[i];
         if(!v||v===null||v<1)return;
-        const color=di===0?'#0ea5e9':'#7c3aed';
         ctx2.save();ctx2.font='bold 9px Segoe UI';
-        ctx2.fillStyle=color;ctx2.textAlign='center';ctx2.textBaseline='bottom';
+        ctx2.fillStyle=di===0?'#0369a1':'#6d28d9';ctx2.textAlign='center';ctx2.textBaseline='bottom';
         ctx2.fillText(v,bar.x,bar.y-1);ctx2.restore();
       });
     });
   }};
   const e1=Chart.getChart(document.getElementById('weekly-bar-c'));if(e1)e1.destroy();
-  new Chart(document.getElementById('weekly-bar-c'),{type:'bar',plugins:[wkLblPlugin],
+  new Chart(document.getElementById('weekly-bar-c'),{type:'bar',plugins:[wkBarLbl],
     data:{labels:WK_LABEL,datasets:[
       {label:'Cabling จริง',data:WK_CAB_A,backgroundColor:'rgba(14,165,233,.75)',borderRadius:3,stack:'s',order:2},
       {label:'Coring จริง', data:WK_COR_A,backgroundColor:'rgba(124,58,237,.75)',borderRadius:3,stack:'s',order:2},
       {label:'แผนรวม',type:'line',data:WK_CAB_P.map((v,i)=>v+WK_COR_P[i]),borderColor:'#94a3c4',borderDash:[4,3],borderWidth:1.5,pointRadius:0,fill:false,order:1,stack:undefined},
     ]},
-    options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+    options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:16}},
+      interaction:{mode:'index',intersect:false},
       plugins:{legend:{position:'bottom',labels:{font:{size:10},boxWidth:10}},tooltip:{backgroundColor:'rgba(30,27,75,.92)',bodyColor:'rgba(255,255,255,.8)'}},
       scales:{x:{stacked:true,ticks:{font:{size:9},maxRotation:45},grid:{display:false}},y:{stacked:true,ticks:{font:{size:10}},grid:{color:'#f0f4ff'}}}}
   });
-  const actFull2=carry(COM_ACT_RAW);
-  const cumLblP={id:'cumLbl',afterDatasetsDraw(chart){
+  // cum line with today + labels
+  const actFull=carry(COM_ACT_RAW);
+  const cumLbl={id:'cumbl',afterDatasetsDraw(chart){
     const ctx2=chart.ctx;
     chart.data.datasets.forEach((ds,di)=>{
       const meta=chart.getDatasetMeta(di);if(meta.hidden)return;
@@ -632,61 +674,92 @@ function buildWeekly(){
     });
   }};
   const e2=Chart.getChart(document.getElementById('cum-wk-c'));if(e2)e2.destroy();
-  new Chart(document.getElementById('cum-wk-c'),{type:'line',plugins:[TD_PLG('cw'),cumLblP],
+  new Chart(document.getElementById('cum-wk-c'),{type:'line',plugins:[todayPlugin('cw'),cumLbl],
     data:{labels:WK_LABEL,datasets:[
       {label:'แผน %',data:COM_PLAN,borderColor:'#94a3c4',borderDash:[5,3],borderWidth:1.5,pointRadius:2,tension:.3,fill:false},
-      {label:'จริง %',data:actFull2,borderColor:'#7c3aed',borderWidth:2,pointRadius:(c)=>c.parsed.y!=null?2:0,pointBackgroundColor:'#7c3aed',tension:.3,fill:false,spanGaps:false},
+      {label:'จริง %',data:actFull,borderColor:'#7c3aed',borderWidth:2,pointRadius:(c)=>c.parsed.y!=null?2:0,pointBackgroundColor:'#7c3aed',tension:.3,fill:false,spanGaps:false},
     ]},
     options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:18,bottom:10}},
       interaction:{mode:'index',intersect:false},
       plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(30,27,75,.92)',bodyColor:'rgba(255,255,255,.8)',callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y!=null?c.parsed.y.toFixed(1)+'%':'–'}`}}},
-      scales:{x:{ticks:{font:{size:9},maxRotation:45,color:'#94a3c4'},grid:{display:false}},
-        y:{min:0,max:100,ticks:{font:{size:10},callback:v=>v+'%'},grid:{color:'#f0f4ff'}}}}
+      scales:{x:{ticks:{font:{size:9},maxRotation:45,color:'#94a3c4'},grid:{display:false}},y:{min:0,max:100,ticks:{font:{size:10},callback:v=>v+'%'},grid:{color:'#f0f4ff'}}}}
   });
 }
 
-
 let _loc=false;
+
+
+function buildHeatmap(){
+  const w=document.getElementById('heatmap-wrap'); if(!w) return;
+  const locs=['Concourse C','Concourse D','Concourse E','Concourse F','Concourse G'];
+  const colors={both:'#0ea5e9',cab_only:'#bfdbfe',none:'#f1f5f9'};
+  // both=Cabling+Coring done, cab_only=Cabling only, none=ยังไม่ทำ
+  w.innerHTML = locs.map(loc=>{
+    const gates = GATE_DATA.filter(g=>g.loc===loc);
+    const done_cor = gates.filter(g=>g.cor===1).length;
+    return `<div style="margin-bottom:16px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+        <strong style="font-size:13px;color:var(--cor)">${loc}</strong>
+        <span style="font-size:11px;color:var(--text2)">Coring ${done_cor}/${gates.length}</span>
+        <div style="flex:1;height:4px;background:var(--border);border-radius:2px;overflow:hidden">
+          <div style="height:100%;width:${Math.round(done_cor/gates.length*100)}%;background:var(--cor);border-radius:2px"></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        ${gates.map(g=>{
+          const st = g.cor===1?'both':'cab_only';
+          const bg = st==='both'?'#7c3aed':'#bfdbfe';
+          const tc = st==='both'?'#fff':'#1e40af';
+          const label = st==='both'?'✓':'·';
+          return '<div title="'+g.gate+(g.cor===1?" — Coring ✓":" — Cabling ✓ / Coring Pending")+'" style="width:48px;height:48px;border-radius:8px;background:'+bg+';display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:default;border:2px solid '+(st==="both"?"#6d28d9":"#93c5fd")+'">'
+            +'<div style="font-size:11px;font-weight:700;color:'+tc+'">'+g.gate+'</div>'
+            +'<div style="font-size:14px;color:'+tc+'">'+label+'</div>'
+            +'</div>';
+        }).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
 function buildLocation(){
   if(_loc)return;_loc=true;
-  const locLblPlugin={id:'locLbls',afterDatasetsDraw(chart){
+  buildHeatmap();
+  const locLbl={id:'locbl',afterDatasetsDraw(chart){
     const ctx2=chart.ctx;
     [0,1].forEach(di=>{
-      const meta=chart.getDatasetMeta(di);
-      meta.data.forEach((bar,i)=>{
-        const v=chart.data.datasets[di].data[i];
-        if(!v||v<1)return;
-        const color=di===0?'#0ea5e9':'#7c3aed';
-        ctx2.save();ctx2.font='bold 10px Segoe UI';
-        ctx2.fillStyle=color;ctx2.textAlign='center';ctx2.textBaseline='bottom';
+      chart.getDatasetMeta(di).data.forEach((bar,i)=>{
+        const v=chart.data.datasets[di].data[i];if(!v||v<1)return;
+        ctx2.save();ctx2.font='bold 11px Segoe UI';
+        ctx2.fillStyle=di===0?'#0369a1':'#6d28d9';ctx2.textAlign='center';ctx2.textBaseline='bottom';
         ctx2.fillText(v,bar.x,bar.y-2);ctx2.restore();
       });
     });
   }};
   const e=Chart.getChart(document.getElementById('loc-bar-c'));if(e)e.destroy();
-  new Chart(document.getElementById('loc-bar-c'),{type:'bar',plugins:[locLblPlugin],
+  new Chart(document.getElementById('loc-bar-c'),{type:'bar',plugins:[locLbl],
     data:{labels:LOC_DATA.map(d=>d.n),datasets:[
-      {label:'Cabling',data:LOC_DATA.map(d=>d.cab_d),backgroundColor:'rgba(14,165,233,.75)',borderRadius:3,order:2},
-      {label:'Coring', data:LOC_DATA.map(d=>d.cor_d),backgroundColor:'rgba(124,58,237,.75)',borderRadius:3,order:2},
-      {label:'เป้า Cabling',type:'line',data:LOC_DATA.map(d=>d.cab_p),borderColor:'#0ea5e9',borderDash:[4,3],borderWidth:1.5,pointRadius:4,fill:false,order:1},
-      {label:'เป้า Coring', type:'line',data:LOC_DATA.map(d=>d.cor_p),borderColor:'#7c3aed',borderDash:[4,3],borderWidth:1.5,pointRadius:4,fill:false,order:1},
+      {label:'Cabling จริง',data:LOC_DATA.map(d=>d.cab_d),backgroundColor:'rgba(14,165,233,.75)',borderRadius:3,order:2},
+      {label:'Coring จริง', data:LOC_DATA.map(d=>d.cor_d),backgroundColor:'rgba(124,58,237,.75)',borderRadius:3,order:2},
+      {label:'เป้า Cabling',type:'line',data:LOC_DATA.map(d=>d.cab_p),borderColor:'#0ea5e9',borderDash:[4,3],borderWidth:1.5,pointRadius:5,pointStyle:'circle',fill:false,order:1},
+      {label:'เป้า Coring', type:'line',data:LOC_DATA.map(d=>d.cor_p),borderColor:'#7c3aed',borderDash:[4,3],borderWidth:1.5,pointRadius:5,pointStyle:'circle',fill:false,order:1},
     ]},
     options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:16}},
       interaction:{mode:'index',intersect:false},
       plugins:{legend:{position:'bottom',labels:{font:{size:10},boxWidth:10}},tooltip:{backgroundColor:'rgba(30,27,75,.92)',bodyColor:'rgba(255,255,255,.8)'}},
       scales:{x:{ticks:{font:{size:11}},grid:{display:false}},y:{ticks:{font:{size:10}},grid:{color:'#f0f4ff'}}}}
   });
+  // detail list
   const w=document.getElementById('loc-detail');
-  const colors=['#0ea5e9','#7c3aed','#f59e0b','#10b981','#ef4444'];
+  const colors=['#0284c7','#7c3aed','#b45309','#059669','#be185d'];
   w.innerHTML=LOC_DATA.map((d,ci)=>{
     const cab_pct=Math.round(d.cab_d/Math.max(d.cab_p,1)*100);
     const cor_pct=Math.round(d.cor_d/Math.max(d.cor_p,1)*100);
-    const tot_pct=Math.round((d.cab_d+d.cor_d)/(d.cab_p+d.cor_p)*100);
-    const bg=tot_pct>=80?'var(--success-l)':tot_pct>=30?'var(--warning-l)':'var(--cor-l)';
-    const tc=tot_pct>=80?'var(--success)':tot_pct>=30?'var(--warning)':'var(--cor)';
+    const tot=Math.round((d.cab_d+d.cor_d)/(d.cab_p+d.cor_p)*100);
+    const bg=tot>=80?'var(--success-l)':tot>=30?'var(--warning-l)':'var(--cor-l)';
+    const tc=tot>=80?'var(--success)':tot>=30?'var(--warning)':'var(--cor)';
     return `<div class="loc-row">
       <div class="loc-name"><strong style="color:${colors[ci]}">${d.n}</strong>
-        <span style="margin-left:6px;background:${bg};color:${tc};font-size:10px;font-weight:600;padding:1px 6px;border-radius:99px">${tot_pct}%</span>
+        <span style="margin-left:5px;background:${bg};color:${tc};font-size:10px;font-weight:600;padding:1px 6px;border-radius:99px">${tot}%</span>
         <div style="font-size:10px;color:var(--text2);margin-top:2px">${d.cab_d+d.cor_d}/${d.cab_p+d.cor_p} จุด</div>
       </div>
       <div class="loc-bars">
@@ -697,73 +770,78 @@ function buildLocation(){
   }).join('');
 }
 
+function buildHeatmap(){
+  const w=document.getElementById('hm-grid');
+  const locs=['Concourse C','Concourse D','Concourse E','Concourse F','Concourse G'];
+  const colors={'Concourse C':'#0284c7','Concourse D':'#7c3aed','Concourse E':'#b45309','Concourse F':'#059669','Concourse G':'#be185d'};
+  w.innerHTML=locs.map(loc=>{
+    const gates=GATE_DATA.filter(g=>g.loc===loc);
+    const done=gates.filter(g=>g.cor===1).length;
+    return `<div class="hm-concourse">
+      <div class="hm-title">${loc} — Coring ${done}/${gates.length}
+        <span style="margin-left:8px;font-size:11px;font-weight:400;color:var(--text2)">(${Math.round(done/gates.length*100)}%)</span>
+        <div style="display:inline-block;height:4px;width:${Math.round(done/gates.length*100)}%;background:${colors[loc]};border-radius:2px;margin-left:8px;vertical-align:middle"></div>
+      </div>
+      <div class="hm-gates">
+        ${gates.map(g=>{
+          const cls=g.cor===1?'hm-done':'hm-cab-only';
+          const sub=g.cor===1?'✓ เสร็จ':'Cabling ✓';
+          return `<div class="hm-gate ${cls}" title="${g.gate}: Cabling ${g.cab?'✓':'✗'} | Coring ${g.cor?'✓':'รอ'}">
+            <div class="gn">${g.gate}</div>
+            <div class="gs">${sub}</div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
 function buildPlanLoc(){
   const w=document.getElementById('plan-loc');
   if(!w||w.innerHTML)return;
-  const sch=[
-    {n:'Concourse E',cs:'7 ก.พ. 69',ce:'20 ก.พ. 69'},
-    {n:'Concourse C',cs:'19 มี.ค. 69',ce:'27 มี.ค. 69'},
-    {n:'Concourse F',cs:'2 เม.ย. 69',ce:'3 เม.ย. 69'},
-    {n:'Concourse D',cs:'23 เม.ย. 69',ce:'29 พ.ค. 69'},
-    {n:'Concourse G',cs:'18 มิ.ย. 69',ce:'10 ก.ค. 69'},
-  ];
-  const colors=['#0ea5e9','#7c3aed','#f59e0b','#10b981','#ef4444'];
+  const sch=[{n:'Concourse E',cs:'7 ก.พ. 69',ce:'20 ก.พ. 69'},{n:'Concourse C',cs:'19 มี.ค. 69',ce:'27 มี.ค. 69'},{n:'Concourse F',cs:'2 เม.ย. 69',ce:'3 เม.ย. 69'},{n:'Concourse D',cs:'23 เม.ย. 69',ce:'29 พ.ค. 69'},{n:'Concourse G',cs:'18 มิ.ย. 69',ce:'10 ก.ค. 69'}];
+  const colors=['#0284c7','#7c3aed','#b45309','#059669','#be185d'];
   const pairs=[];for(let i=0;i<LOC_DATA.length;i+=2)pairs.push(LOC_DATA.slice(i,i+2));
   w.innerHTML=pairs.map(pair=>`<div class="g2" style="margin-bottom:9px">${pair.map(d=>{
     const ci=LOC_DATA.indexOf(d);
     const s=sch.find(x=>x.n===d.n)||{cs:'-',ce:'-'};
     const cor_pct=Math.round(d.cor_d/Math.max(d.cor_p,1)*100);
-    const tot_pct=Math.round((d.cab_d+d.cor_d)/(d.cab_p+d.cor_p)*100);
     return `<div class="pcard">
       <div style="display:flex;justify-content:space-between;margin-bottom:8px">
         <strong style="color:${colors[ci]}">${d.n}</strong>
-        <span style="background:var(--cor-l);color:var(--cor);font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px">${tot_pct}%</span>
+        <span style="background:var(--cor-l);color:var(--cor);font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px">${cor_pct}%</span>
       </div>
       <div style="font-size:12px;margin-bottom:3px">Cabling: <strong style="color:var(--cab)">${d.cab_d}/${d.cab_p} ✓</strong> | Coring: <strong style="color:var(--cor)">${d.cor_d}/${d.cor_p}</strong></div>
-      <div style="height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin-bottom:8px">
-        <div style="height:100%;width:${cor_pct}%;background:var(--cor);border-radius:3px"></div>
-      </div>
+      <div style="height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin-bottom:8px"><div style="height:100%;width:${cor_pct}%;background:var(--cor);border-radius:3px"></div></div>
       <div style="font-size:10px;color:var(--text2);display:flex;gap:10px">
-        <span>Coring เริ่ม: <strong>${s.cs}</strong></span>
-        <span>สิ้นสุด: <strong>${s.ce}</strong></span>
+        <span>Coring เริ่ม: <strong>${s.cs}</strong></span><span>สิ้นสุด: <strong>${s.ce}</strong></span>
       </div>
     </div>`;
   }).join('')}</div>`).join('');
 }
 
-// ── Tabs ──────────────────────────────────────────────────────────────────────
-const TABS=['overview','weekly','location','plan'];
+const TABS=['overview','weekly','location','heatmap','plan'];
 function showTab(n,btn){
   TABS.forEach(t=>document.getElementById('tab-'+t).style.display=t===n?'block':'none');
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));btn.classList.add('on');
   if(n==='weekly')buildWeekly();
   if(n==='location')buildLocation();
+  if(n==='heatmap')buildHeatmap();
   if(n==='plan')buildPlanLoc();
 }
 
 async function manualRefresh(){
   document.getElementById('sync-ts').textContent=new Date().toLocaleTimeString('th-TH');
-  try{
-    const r=await fetch(`${API}/api/summary`);const d=await r.json();
-    if(d.overall){
-      const cor=d.overall.coring_done||COR_D;
-      const comb=CAB_D+cor; const pct=Math.round(comb/TOTAL*100);
-      ['tb-cor','pill-cor','wstat-cor','ov-cor','step-cor-n'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=cor;});
-      ['tb-comb'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=comb+'/78';});
-      ['tb-pct','pill-pct','ov-pct'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=pct.toFixed(1)+'%';});
-      const el=document.getElementById('pill-rem');if(el)el.textContent=78-comb;
-    }
-  }catch(e){}
 }
 
 async function exportPDF(){
   const pw=window.open('','_blank','width=1280,height=900');
   if(!pw){alert('กรุณาอนุญาต popup');return;}
-  pw.document.write('<html><body style="display:flex;align-items:center;justify-content:center;height:100vh;background:#1e1b4b;color:#c4b5fd;font-family:sans-serif"><div style="text-align:center"><div style="font-size:36px">⛏</div><div style="margin-top:12px">กำลังเตรียม PDF...</div></div></body></html>');
+  pw.document.write('<html><body style="display:flex;align-items:center;justify-content:center;height:100vh;background:#1e1b4b;color:#c4b5fd;font-family:sans-serif"><div style="text-align:center"><div style="font-size:40px">⛏</div><div style="margin-top:12px">กำลังเตรียม PDF...</div></div></body></html>');
   pw.document.close();
   try{
-    ['overview','weekly','location','plan'].forEach(t=>{document.getElementById('tab-'+t).style.display='block';});
-    buildWeekly();buildLocation();buildPlanLoc();
+    TABS.forEach(t=>document.getElementById('tab-'+t).style.display='block');
+    buildWeekly();buildLocation();buildHeatmap();buildPlanLoc();
     await new Promise(r=>setTimeout(r,1000));
     const imgs={};
     if(typeof Chart!=='undefined')
@@ -775,20 +853,20 @@ async function exportPDF(){
     const mn=document.querySelector('main').cloneNode(true);
     ins.querySelectorAll('canvas').forEach(cv=>{const d=imgs[cv.id];if(d){const i=document.createElement('img');i.src=d.url;i.style.cssText='position:absolute;inset:0;width:90px;height:90px';cv.parentNode.replaceChild(i,cv);}});
     mn.querySelectorAll('.tab-body').forEach(t=>t.style.display='block');
-    mn.querySelectorAll('.tabs,.actions,.btn').forEach(t=>t.style.display='none');
+    mn.querySelectorAll('.tabs,.ins-actions').forEach(t=>t.style.display='none');
     mn.querySelectorAll('canvas').forEach(cv=>{const d=imgs[cv.id];if(d){const i=document.createElement('img');i.src=d.url;i.style.cssText=`display:block;width:${d.w}px;height:${d.h}px;max-width:100%`;cv.parentNode.replaceChild(i,cv);}else cv.style.display='none';});
-    ['tab-weekly','tab-location','tab-plan'].forEach(id=>{const el=mn.querySelector('#'+id);if(el)el.style.pageBreakBefore='always';});
+    ['tab-weekly','tab-location','tab-heatmap','tab-plan'].forEach(id=>{const el=mn.querySelector('#'+id);if(el)el.style.pageBreakBefore='always';});
     const date=new Date().toLocaleDateString('th-TH');
     const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>SVB Coring Progress Dashboard</title>
 <style>@page{size:A4 landscape;margin:8mm 12mm}*{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;box-sizing:border-box}body{font-family:'Segoe UI',Tahoma,sans-serif;font-size:12px;background:#fff;margin:0}${styles}
-.topbar,.tabs,.actions,.btn{display:none!important}.tab-body{display:block!important}.card{break-inside:avoid}canvas{display:none!important}
-.step-row{display:grid!important;grid-template-columns:1fr 1fr 1fr!important;gap:10px!important}
+.topbar,.tabs,.ins-actions{display:none!important}.tab-body{display:block!important}.card,.step{break-inside:avoid}canvas{display:none!important}
+.step-row{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important}
 .g2{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important}
 .g3{display:grid!important;grid-template-columns:1fr 1fr 1fr!important;gap:10px!important}
-.ins-pills{display:grid!important;grid-template-columns:repeat(6,1fr)!important}
-#tab-plan .g2{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important}
+.ins-pills{display:grid!important;grid-template-columns:repeat(5,1fr)!important}
+.hm-gates{display:flex!important;flex-wrap:wrap!important;gap:6px!important}
 </style></head><body>
-<div class="ph"><div class="ph-title">⛏ Coring Progress Dashboard — <span class="ph-hl">SVB</span></div><span style="font-size:11px;opacity:.8">${date}</span></div>
+<div class="ph"><div style="font-size:15px;font-weight:700">⛏ Coring Progress Dashboard — <span style="background:linear-gradient(90deg,#c4b5fd,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:800;-webkit-print-color-adjust:exact">SVB</span></div><span style="font-size:11px;opacity:.8">${date}</span></div>
 ${ins.outerHTML}${mn.outerHTML}
 <script>window.onload=function(){setTimeout(function(){window.print();},800);};<\/script>
 </body></html>`;
@@ -803,6 +881,7 @@ ${ins.outerHTML}${mn.outerHTML}
 
 window.addEventListener('DOMContentLoaded',()=>{
   buildGauge();buildBurndown();buildDonut();buildProgAll();buildProgSmall();
+  buildHeatmap();
   manualRefresh();
 });
 </script>
