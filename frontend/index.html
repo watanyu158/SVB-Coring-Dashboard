@@ -25,10 +25,10 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--t
 .tb-l{display:flex;align-items:center;gap:12px}
 .tb-logo{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.15);
   display:flex;align-items:center;justify-content:center;font-size:18px}
-.tb-title{font-size:14px;font-weight:700;letter-spacing:.3px}
+.tb-title{font-size:13px;font-weight:700;letter-spacing:.2px}
 .tb-hl{background:linear-gradient(90deg,#c4b5fd,#a78bfa);-webkit-background-clip:text;
   -webkit-text-fill-color:transparent;font-weight:800}
-.tb-sub{font-size:11px;opacity:.7;margin-top:1px}
+.tb-sub{font-size:10px;opacity:.7;margin-top:1px}
 .tb-stats{display:flex;gap:20px}
 .tb-stat .v{font-size:15px;font-weight:700;color:#c4b5fd;text-align:center}
 .tb-stat .l{font-size:10px;opacity:.6;text-align:center}
@@ -186,7 +186,7 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
         <div class="ins-icon" style="background:linear-gradient(135deg,#7c3aed,#4c1d95)">⚡</div>
         <div>
           <div class="ins-big">ทำได้ <em>0.34</em> จุด/วัน
-            <span class="ins-tag">96% ของแผน</span>
+            <span class="ins-tag">59% รวม</span>
           </div>
         </div>
       </div>
@@ -203,13 +203,13 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
     <div class="ins-gauge-card">
       <div class="ins-gauge-wrap">
         <canvas id="gauge-c" width="90" height="90"></canvas>
-        <div class="ins-gc"><div class="gp" id="gauge-pct">96%</div></div>
+        <div class="ins-gc"><div class="gp" id="gauge-pct">59%</div></div>
       </div>
       <div class="ins-kpi-table">
         <div class="ins-kpi-title">ประสิทธิภาพ</div>
         <div class="ins-kpi-row"><span class="ins-kpi-lbl">ทำได้จริง</span><span class="ins-kpi-val">0.34/วัน</span></div>
         <div class="ins-kpi-row"><span class="ins-kpi-lbl">เป้าหมาย</span><span class="ins-kpi-val">0.30/วัน</span></div>
-        <div class="ins-kpi-row"><span class="ins-kpi-lbl">ส่วนต่าง</span><span class="ins-kpi-val" style="color:#c4b5fd">96%</span></div>
+        <div class="ins-kpi-row"><span class="ins-kpi-lbl">ส่วนต่าง</span><span class="ins-kpi-val" style="color:#c4b5fd">59%</span></div>
       </div>
     </div>
   </div>
@@ -347,7 +347,7 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
   <div class="card" style="margin-bottom:14px">
     <div class="ch"><div class="chi" style="background:var(--cor-l);color:var(--cor)">📊</div>แยก Concourse — Cabling vs Coring</div>
     <div style="height:280px"><canvas id="loc-bar-c"></canvas></div>
-    <div class="cleg"><div class="cl"><div class="cll" style="background:var(--cab)"></div>Cabling</div><div class="cl"><div class="cll" style="background:var(--cor)"></div>Coring</div><div class="cl"><div class="cld"></div>เป้าหมาย</div></div>
+    <div class="cleg"><div class="cl"><div class="cll" style="background:var(--cab)"></div>Cabling</div><div class="cl"><div class="cll" style="background:var(--cor)"></div>Coring</div><div class="cl"><div class="cld" style="border-color:#0ea5e9"></div>เป้า Cabling</div><div class="cl"><div class="cld" style="border-color:#7c3aed"></div>เป้า Coring</div></div>
   </div>
   <div class="card"><div class="ch"><div class="chi" style="background:var(--primary-l);color:var(--primary)">📍</div>รายละเอียดแต่ละสถานที่</div><div id="loc-detail"></div></div>
 </div>
@@ -472,7 +472,7 @@ function carry(raw){let _l=null;return WK_SHORT.map((_,i)=>{if(raw[i]!==null&&ra
 
 function buildGauge(){
   const e=Chart.getChart(document.getElementById('gauge-c'));if(e)e.destroy();
-  new Chart(document.getElementById('gauge-c'),{type:'doughnut',data:{datasets:[{data:[96,4],backgroundColor:['#7c3aed','rgba(124,58,237,.2)'],borderWidth:0}]},options:{cutout:'72%',circumference:180,rotation:-90,responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}}}});
+  new Chart(document.getElementById('gauge-c'),{type:'doughnut',data:{datasets:[{data:[59,41],backgroundColor:['#7c3aed','rgba(124,58,237,.2)'],borderWidth:0}]},options:{cutout:'72%',circumference:180,rotation:-90,responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}}}});
 }
 
 function buildBurndown(){
@@ -480,7 +480,7 @@ function buildBurndown(){
   const e=Chart.getChart(document.getElementById('burndown-c'));if(e)e.destroy();
   new Chart(document.getElementById('burndown-c'),{
     type:'line',plugins:[TD_PLG('bd')],
-    data:{labels:WK_SHORT,datasets:[
+    data:{labels:WK_LABEL,datasets:[
       {label:'แผน',data:BD_PLAN,borderColor:'#94a3c4',borderDash:[5,3],borderWidth:1.5,pointRadius:0,tension:.3,fill:false},
       {label:'จริง',data:bdFull,borderColor:'#10b981',borderWidth:2.5,pointRadius:(c)=>c.parsed.y!=null?3:0,pointBackgroundColor:'#10b981',tension:.3,fill:false,spanGaps:false},
     ]},
@@ -517,7 +517,7 @@ function buildProgAll(){
   const e=Chart.getChart(document.getElementById('prog-all-c'));if(e)e.destroy();
   new Chart(document.getElementById('prog-all-c'),{
     type:'line',plugins:[TD_PLG('pa'),LBL_PLG('#7c3aed')],
-    data:{labels:WK_SHORT,datasets:[
+    data:{labels:WK_LABEL,datasets:[
       {label:'แผน %',data:COM_PLAN,borderColor:'#94a3c4',borderDash:[5,3],borderWidth:1.5,pointRadius:2,tension:.3,fill:false},
       {label:'จริง %',data:actFull,borderColor:'#7c3aed',borderWidth:2.5,pointRadius:(c)=>c.parsed.y!=null?3:0,pointBackgroundColor:'#7c3aed',tension:.3,fill:true,backgroundColor:'rgba(124,58,237,.06)',spanGaps:false},
     ]},
@@ -567,7 +567,7 @@ function buildProgSmall(){
     }};
     const e=Chart.getChart(document.getElementById(id));if(e)e.destroy();
     new Chart(document.getElementById(id),{type:'line',plugins:[tdP,lblP],
-      data:{labels:WK_SHORT,datasets:[
+      data:{labels:WK_LABEL,datasets:[
         {label:'แผน',data:pArr,borderColor:'#94a3c4',borderDash:[5,3],borderWidth:1.5,pointRadius:2,tension:.3,fill:false},
         {label:'จริง',data:aFull,borderColor:color,borderWidth:2,pointRadius:(c)=>c.parsed.y!=null?2:0,pointBackgroundColor:color,tension:.3,fill:false,spanGaps:false},
       ]},
@@ -633,7 +633,7 @@ function buildWeekly(){
   }};
   const e2=Chart.getChart(document.getElementById('cum-wk-c'));if(e2)e2.destroy();
   new Chart(document.getElementById('cum-wk-c'),{type:'line',plugins:[TD_PLG('cw'),cumLblP],
-    data:{labels:WK_SHORT,datasets:[
+    data:{labels:WK_LABEL,datasets:[
       {label:'แผน %',data:COM_PLAN,borderColor:'#94a3c4',borderDash:[5,3],borderWidth:1.5,pointRadius:2,tension:.3,fill:false},
       {label:'จริง %',data:actFull2,borderColor:'#7c3aed',borderWidth:2,pointRadius:(c)=>c.parsed.y!=null?2:0,pointBackgroundColor:'#7c3aed',tension:.3,fill:false,spanGaps:false},
     ]},
@@ -668,7 +668,8 @@ function buildLocation(){
     data:{labels:LOC_DATA.map(d=>d.n),datasets:[
       {label:'Cabling',data:LOC_DATA.map(d=>d.cab_d),backgroundColor:'rgba(14,165,233,.75)',borderRadius:3,order:2},
       {label:'Coring', data:LOC_DATA.map(d=>d.cor_d),backgroundColor:'rgba(124,58,237,.75)',borderRadius:3,order:2},
-      {label:'เป้าหมาย',type:'line',data:LOC_DATA.map(d=>d.cab_p+d.cor_p),borderColor:'#94a3c4',borderDash:[4,3],borderWidth:1.5,pointRadius:4,fill:false,order:1},
+      {label:'เป้า Cabling',type:'line',data:LOC_DATA.map(d=>d.cab_p),borderColor:'#0ea5e9',borderDash:[4,3],borderWidth:1.5,pointRadius:4,fill:false,order:1},
+      {label:'เป้า Coring', type:'line',data:LOC_DATA.map(d=>d.cor_p),borderColor:'#7c3aed',borderDash:[4,3],borderWidth:1.5,pointRadius:4,fill:false,order:1},
     ]},
     options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:16}},
       interaction:{mode:'index',intersect:false},
