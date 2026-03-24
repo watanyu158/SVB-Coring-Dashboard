@@ -88,7 +88,7 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
 .ss .l{font-size:10px;color:var(--text2);text-align:center}
 
 /* Step row */
-.step-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px}
+.step-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
 .step{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px;box-shadow:var(--sh)}
 .step-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .step-icon{font-size:18px}
@@ -167,7 +167,6 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
     </div>
   </div>
   <div class="tb-stats">
-    <div class="tb-stat"><div class="v" id="tb-comb">46/78</div><div class="l">รวม</div></div>
     <div class="tb-stat"><div class="v" style="color:#7dd3fc" id="tb-cab">39/39</div><div class="l">Cabling</div></div>
     <div class="tb-stat"><div class="v" style="color:#c4b5fd" id="tb-cor">7/39</div><div class="l">Coring</div></div>
     <div class="tb-stat"><div class="v" style="color:#c4b5fd" id="tb-pct">59.0%</div><div class="l">% รวม</div></div>
@@ -175,20 +174,19 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
 </div>
 
 <main>
-<div class="actions">
-  <button class="btn" onclick="manualRefresh()">↺ รีเฟรช</button>
-  <button class="btn danger" onclick="exportPDF()">⬇ PDF</button>
-</div>
-
 <!-- Insights -->
 <div class="ins-box">
+  <div style="display:flex;justify-content:flex-end;gap:8px;margin-bottom:10px">
+    <button onclick="manualRefresh()" style="padding:5px 12px;border-radius:6px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;font-size:11px;cursor:pointer;font-family:inherit">↺ รีเฟรช</button>
+    <button onclick="exportPDF()" style="padding:5px 12px;border-radius:6px;border:1px solid rgba(244,114,182,.5);background:rgba(244,114,182,.1);color:#f9a8d4;font-size:11px;cursor:pointer;font-family:inherit">⬇ PDF</button>
+  </div>
   <div class="ins-panels">
     <div class="ins-alert-card">
       <div class="ins-alert-head">
         <div class="ins-icon" style="background:linear-gradient(135deg,#7c3aed,#4c1d95)">⚡</div>
         <div>
           <div class="ins-big">ทำได้ <em>0.34</em> จุด/วัน
-            <span class="ins-tag">✓ เกินเป้า +13%</span>
+            <span class="ins-tag">96% ของแผน</span>
           </div>
         </div>
       </div>
@@ -205,13 +203,13 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
     <div class="ins-gauge-card">
       <div class="ins-gauge-wrap">
         <canvas id="gauge-c" width="90" height="90"></canvas>
-        <div class="ins-gc"><div class="gp" id="gauge-pct">113%</div></div>
+        <div class="ins-gc"><div class="gp" id="gauge-pct">96%</div></div>
       </div>
       <div class="ins-kpi-table">
         <div class="ins-kpi-title">ประสิทธิภาพ</div>
         <div class="ins-kpi-row"><span class="ins-kpi-lbl">ทำได้จริง</span><span class="ins-kpi-val">0.34/วัน</span></div>
         <div class="ins-kpi-row"><span class="ins-kpi-lbl">เป้าหมาย</span><span class="ins-kpi-val">0.30/วัน</span></div>
-        <div class="ins-kpi-row"><span class="ins-kpi-lbl">ส่วนต่าง</span><span class="ins-kpi-val" style="color:#86efac">+0.04/วัน</span></div>
+        <div class="ins-kpi-row"><span class="ins-kpi-lbl">ส่วนต่าง</span><span class="ins-kpi-val" style="color:#c4b5fd">96%</span></div>
       </div>
     </div>
   </div>
@@ -221,7 +219,6 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
     <div class="ins-pill"><div class="ip-icon">🟣</div><div><div class="ip-val" id="pill-cor">7</div><div class="ip-lbl">Coring</div><div class="ip-sub">17.9%</div></div></div>
     <div class="ins-pill"><div class="ip-icon">📦</div><div><div class="ip-val" id="pill-rem">32</div><div class="ip-lbl">เหลือ</div><div class="ip-sub">Coring จุด</div></div></div>
     <div class="ins-pill"><div class="ip-icon">⏱</div><div><div class="ip-val">108</div><div class="ip-lbl">วันเหลือ</div><div class="ip-sub">ถึง 10 ก.ค.</div></div></div>
-    <div class="ins-pill"><div class="ip-icon">📊</div><div><div class="ip-val" id="pill-pct">59%</div><div class="ip-lbl">รวม</div><div class="ip-sub">Combined</div></div></div>
   </div>
 </div>
 
@@ -229,13 +226,11 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
 <div class="sum-hdr">
   <div>
     <div class="sum-title">🔧 รายงานสรุปงาน Cabling &amp; Coring — สนามบินสุวรรณภูมิ (SVB)</div>
-    <div class="sum-sub">ช่วงดำเนินงาน: 8 พ.ย. 2568 – 10 ก.ค. 2569 | 38 สัปดาห์ | เป้าหมายรวม 78 จุด (Cabling 39 + Coring 39)</div>
+    <div class="sum-sub">ช่วงดำเนินงาน: 8 พ.ย. 2568 – 10 ก.ค. 2569 | 38 สัปดาห์ | Cabling 39 จุด + Coring 39 จุด</div>
   </div>
   <div class="sum-stats">
-    <div class="ss"><div class="v" style="color:var(--text)">78</div><div class="l">เป้าหมายรวม</div></div>
     <div class="ss"><div class="v" style="color:var(--cab)" id="ov-cab">39</div><div class="l">Cabling ✓</div></div>
     <div class="ss"><div class="v" style="color:var(--cor)" id="ov-cor">7</div><div class="l">Coring แล้ว</div></div>
-    <div class="ss"><div class="v" id="ov-pct">59.0%</div><div class="l">% รวม</div></div>
   </div>
 </div>
 
@@ -259,15 +254,7 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
     <div class="step-lbl">Coring — เจาะร้อยสาย</div>
     <div class="step-bar"><div class="step-fill" id="step-cor-bar" style="width:17.9%;background:var(--cor)"></div></div>
   </div>
-  <div class="step">
-    <div class="step-top">
-      <span class="step-icon">📊</span>
-      <span class="step-pct" style="background:#ede9fe;color:#6d28d9" id="step-com-pct">59.0%</span>
-    </div>
-    <div><span class="step-num" style="color:#6d28d9" id="step-com-n">46</span><span class="step-denom">/78</span></div>
-    <div class="step-lbl">รวม Cabling + Coring</div>
-    <div class="step-bar"><div class="step-fill" style="width:59%;background:linear-gradient(90deg,var(--cab),var(--cor))"></div></div>
-  </div>
+
 </div>
 
 <!-- Tabs -->
@@ -289,12 +276,8 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
     </div>
     <div class="card">
       <div class="ch"><div class="chi" style="background:var(--cor-l);color:var(--cor)">🍩</div>สัดส่วนความคืบหน้า</div>
-      <div style="height:240px;padding:8px">
-        <div style="position:relative;width:100%;height:100%">
-          <canvas id="donut-c"></canvas>
-
-        </div>
-
+      <div style="position:relative;height:240px">
+        <canvas id="donut-c"></canvas>
       </div>
     </div>
   </div>
@@ -384,7 +367,6 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
     </div>
     <div class="card">
       <div class="ch" style="font-size:12px;color:var(--text2);font-weight:500;margin-bottom:9px">📈 เป้าหมาย</div>
-      <div class="pcard" style="margin-bottom:7px"><div class="pc-l">เป้าหมายรวม</div><div class="pc-v">78 จุด</div></div>
       <div class="pcard" style="margin-bottom:7px"><div class="pc-l">Cabling</div><div class="pc-v grn">39/39 ✓ เสร็จ</div></div>
       <div class="pcard"><div class="pc-l">Coring (ทำได้/ทั้งหมด)</div><div class="pc-v pur">7/39 จุด (17.9%)</div></div>
     </div>
@@ -404,19 +386,10 @@ main{max-width:1280px;margin:0 auto;padding:16px 20px}
   <div class="card" style="margin-bottom:14px">
     <div class="ch"><div class="chi" style="background:var(--success-l);color:var(--success)">⚡</div>ข้อมูลการดำเนินงานจริง</div>
     <div class="g3" style="margin-bottom:11px">
-      <div class="pcard"><div class="pc-l">ทำแล้วรวม</div><div class="pc-v" style="font-size:20px">46/78 จุด</div></div>
-      <div class="pcard"><div class="pc-l">เฉลี่ยที่ทำได้/วัน</div><div class="pc-v" style="font-size:20px">0.34/วัน</div></div>
-      <div class="pcard"><div class="pc-l">คาดว่าจะเสร็จ</div><div class="pc-v grn" style="font-size:20px">27 มิ.ย. 69 <span style="font-size:11px">(ก่อน 13 วัน)</span></div></div>
+      <div class="pcard"><div class="pc-l">🔵 Cabling</div><div class="pc-v blu" style="font-size:20px">39/39 จุด ✓</div></div>
+      <div class="pcard"><div class="pc-l">🟣 Coring (ทำแล้ว/ทั้งหมด)</div><div class="pc-v pur" style="font-size:20px">7/39 จุด</div></div>
+      <div class="pcard"><div class="pc-l">คาดว่าจะเสร็จ Coring</div><div class="pc-v grn" style="font-size:20px">27 มิ.ย. 69 <span style="font-size:11px">(ก่อน 13 วัน)</span></div></div>
     </div>
-    <div style="font-size:12px;color:var(--text2);margin-bottom:5px">ประสิทธิภาพเทียบกับเป้าหมาย:</div>
-    <div style="display:flex;align-items:center;gap:9px">
-      <span style="font-size:12px;color:var(--text2);white-space:nowrap">ทำได้ 0.34/วัน จากเป้า 0.30/วัน</span>
-      <div style="flex:1;height:11px;background:var(--border);border-radius:99px;overflow:hidden">
-        <div style="height:100%;width:100%;background:linear-gradient(90deg,var(--success),#34d399);border-radius:99px"></div>
-      </div>
-      <span style="font-size:12px;font-weight:700;color:var(--success)">113%</span>
-    </div>
-    <div style="text-align:right;font-size:11px;color:var(--success);margin-top:3px">✅ เกินเป้าหมาย</div>
   </div>
   <div class="card"><div class="ch"><div class="chi" style="background:var(--cor-l);color:var(--cor)">📍</div>ความก้าวหน้าแยก Concourse</div><div id="plan-loc"></div></div>
 </div>
@@ -431,6 +404,8 @@ const API = window.location.hostname==='localhost'?'http://localhost:3002':'http
 const N_WK=38, TOTAL=78, CAB_T=39, COR_T=39, CAB_D=39, COR_D=7, COMB=46;
 
 const WK_SHORT=["W.1","W.2","W.3","W.4","W.5","W.6","W.7","W.8","W.9","W.10","W.11","W.12","W.13","W.14","W.15","W.16","W.17","W.18","W.19","W.20","W.21","W.22","W.23","W.24","W.25","W.26","W.27","W.28","W.29","W.30","W.31","W.32","W.33","W.34","W.35","W.36","W.37","W.38"];
+// WK with date line below
+const WK_LABEL=WK_SHORT.map((w,i)=>w+'\n'+(WK_DATES[i]?WK_DATES[i].split('-')[0]:''));
 const WK_DATES=["8/11-14/11","15/11-21/11","22/11-28/11","29/11-5/12","6/12-12/12","13/12-19/12","20/12-26/12","27/12-2/1","3/1-9/1","10/1-16/1","17/1-23/1","24/1-30/1","31/1-6/2","7/2-13/2","14/2-20/2","21/2-27/2","28/2-6/3","7/3-13/3","14/3-20/3","21/3-27/3","28/3-3/4","4/4-10/4","11/4-17/4","18/4-24/4","25/4-1/5","2/5-8/5","9/5-15/5","16/5-22/5","23/5-29/5","30/5-5/6","6/6-12/6","13/6-19/6","20/6-26/6","27/6-3/7","4/7-10/7","11/7-17/7","18/7-24/7","25/7-31/7"];
 
 // Cabling: plan & actual weekly (R6,R7)
@@ -498,7 +473,7 @@ function carry(raw){let _l=null;return WK_SHORT.map((_,i)=>{if(raw[i]!==null&&ra
 
 function buildGauge(){
   const e=Chart.getChart(document.getElementById('gauge-c'));if(e)e.destroy();
-  new Chart(document.getElementById('gauge-c'),{type:'doughnut',data:{datasets:[{data:[113,0],backgroundColor:['#7c3aed','rgba(124,58,237,.2)'],borderWidth:0}]},options:{cutout:'72%',circumference:180,rotation:-90,responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}}}});
+  new Chart(document.getElementById('gauge-c'),{type:'doughnut',data:{datasets:[{data:[96,4],backgroundColor:['#7c3aed','rgba(124,58,237,.2)'],borderWidth:0}]},options:{cutout:'72%',circumference:180,rotation:-90,responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}}}});
 }
 
 function buildBurndown(){
@@ -616,9 +591,23 @@ function buildProgSmall(){
 let _wk=false;
 function buildWeekly(){
   if(_wk)return;_wk=true;
+  const wkLblPlugin={id:'wkLbl',afterDatasetsDraw(chart){
+    const ctx2=chart.ctx;
+    [0,1].forEach(di=>{
+      const meta=chart.getDatasetMeta(di);
+      meta.data.forEach((bar,i)=>{
+        const v=chart.data.datasets[di].data[i];
+        if(!v||v===null||v<1)return;
+        const color=di===0?'#0ea5e9':'#7c3aed';
+        ctx2.save();ctx2.font='bold 9px Segoe UI';
+        ctx2.fillStyle=color;ctx2.textAlign='center';ctx2.textBaseline='bottom';
+        ctx2.fillText(v,bar.x,bar.y-1);ctx2.restore();
+      });
+    });
+  }};
   const e1=Chart.getChart(document.getElementById('weekly-bar-c'));if(e1)e1.destroy();
-  new Chart(document.getElementById('weekly-bar-c'),{type:'bar',
-    data:{labels:WK_SHORT,datasets:[
+  new Chart(document.getElementById('weekly-bar-c'),{type:'bar',plugins:[wkLblPlugin],
+    data:{labels:WK_LABEL,datasets:[
       {label:'Cabling จริง',data:WK_CAB_A,backgroundColor:'rgba(14,165,233,.75)',borderRadius:3,stack:'s',order:2},
       {label:'Coring จริง', data:WK_COR_A,backgroundColor:'rgba(124,58,237,.75)',borderRadius:3,stack:'s',order:2},
       {label:'แผนรวม',type:'line',data:WK_CAB_P.map((v,i)=>v+WK_COR_P[i]),borderColor:'#94a3c4',borderDash:[4,3],borderWidth:1.5,pointRadius:0,fill:false,order:1,stack:undefined},
