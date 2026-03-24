@@ -849,9 +849,7 @@ async function exportPDF(){
         try{const id=ch.canvas?.id;if(!id)return;imgs[id]={url:ch.toBase64Image('image/png',1),w:ch.canvas.offsetWidth,h:ch.canvas.offsetHeight};}catch(e){}
       });
     const styles=Array.from(document.styleSheets).map(ss=>{try{return Array.from(ss.cssRules).map(r=>r.cssText).join('\n');}catch(e){return '';}}).join('\n');
-    const ins=document.querySelector('.ins-box').cloneNode(true);
     const mn=document.querySelector('main').cloneNode(true);
-    ins.querySelectorAll('canvas').forEach(cv=>{const d=imgs[cv.id];if(d){const i=document.createElement('img');i.src=d.url;i.style.cssText='position:absolute;inset:0;width:90px;height:90px';cv.parentNode.replaceChild(i,cv);}});
     mn.querySelectorAll('.tab-body').forEach(t=>t.style.display='block');
     mn.querySelectorAll('.tabs,.ins-actions').forEach(t=>t.style.display='none');
     mn.querySelectorAll('canvas').forEach(cv=>{const d=imgs[cv.id];if(d){const i=document.createElement('img');i.src=d.url;i.style.cssText=`display:block;width:${d.w}px;height:${d.h}px;max-width:100%`;cv.parentNode.replaceChild(i,cv);}else cv.style.display='none';});
@@ -867,7 +865,7 @@ async function exportPDF(){
 .hm-gates{display:flex!important;flex-wrap:wrap!important;gap:6px!important}
 </style></head><body>
 <div class="ph"><div style="font-size:15px;font-weight:700">⛏ Coring Progress Dashboard — <span style="background:linear-gradient(90deg,#c4b5fd,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:800;-webkit-print-color-adjust:exact">SVB</span></div><span style="font-size:11px;opacity:.8">${date}</span></div>
-${ins.outerHTML}${mn.outerHTML}
+${mn.outerHTML}
 <script>window.onload=function(){setTimeout(function(){window.print();},800);};<\/script>
 </body></html>`;
     pw.document.open();pw.document.write(html);pw.document.close();
