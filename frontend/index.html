@@ -558,7 +558,7 @@ function lineChart(id,planData,actData,color,planId,actId,plugins=[]){
     type:'line',plugins:[todayPlugin(id),lblPlugin(id,color),...plugins],
     data:{labels:WK_LABEL,datasets:[
       {label:'แผน',data:planData,borderColor:'#94a3c4',borderDash:[5,3],borderWidth:1.5,pointRadius:2,tension:.3,fill:false},
-      {label:'จริง',data:actFull,borderColor:color,borderWidth:1.5,pointRadius:(c)=>c.parsed.y!=null?3:0,pointBackgroundColor:color,tension:.3,fill:true,backgroundColor:color.replace(')',',0.06)').replace('rgb','rgba'),spanGaps:false},
+      {label:'จริง',data:actFull,borderColor:color,borderWidth:1.5,pointRadius:(c)=>c.parsed.y!=null?3:0,pointBackgroundColor:color,tension:.3,fill:true,backgroundColor:color.replace(')',',0.02)').replace('rgb','rgba'),spanGaps:false},
     ]},
     options:commonOpts(color)
   });
