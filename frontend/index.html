@@ -799,7 +799,7 @@ function buildHeatmap(){
 function buildPlanLoc(){
   const w=document.getElementById('plan-loc');
   if(!w||w.innerHTML)return;
-  const sch=[{n:'Concourse E',cs:'7 ก.พ. 69',ce:'20 ก.พ. 69'},{n:'Concourse C',cs:'19 มี.ค. 69',ce:'27 มี.ค. 69'},{n:'Concourse F',cs:'2 เม.ย. 69',ce:'3 เม.ย. 69'},{n:'Concourse D',cs:'23 เม.ย. 69',ce:'29 พ.ค. 69'},{n:'Concourse G',cs:'18 มิ.ย. 69',ce:'10 ก.ค. 69'}];
+  const sch=[{n:'Concourse E',cs:'23 ม.ค. 69',ce:'8 พ.ค. 69'},{n:'Concourse C',cs:'20 ก.พ. 69',ce:'9 เม.ย. 69'},{n:'Concourse F',cs:'13 ก.พ. 69',ce:'28 พ.ค. 69'},{n:'Concourse D',cs:'4 มิ.ย. 69',ce:'26 มิ.ย. 69'},{n:'Concourse G',cs:'29 พ.ค. 69',ce:'10 ก.ค. 69'}];
   const colors=['#0284c7','#7c3aed','#b45309','#059669','#be185d'];
   const pairs=[];for(let i=0;i<LOC_DATA.length;i+=2)pairs.push(LOC_DATA.slice(i,i+2));
   w.innerHTML=pairs.map(pair=>`<div class="g2" style="margin-bottom:9px">${pair.map(d=>{
