@@ -206,7 +206,7 @@ main{padding:14px 20px;max-width:1400px;margin:0 auto}
       <div class="ins-alert-head">
         <div class="ins-icon">🚀</div>
         <div>
-          <div class="ins-big">Cabling สะสม <em id="ins-act-pct">59.0%</em> — ช้ากว่าแผน <span class="ins-pct-tag" id="ins-gap-tag">-18.6%</span></div>
+          <div class="ins-big">Combined สะสม <em id="ins-act-pct">59.0%</em> — ช้ากว่าแผน <span class="ins-pct-tag" id="ins-gap-tag">-18.6%</span></div>
           <div style="font-size:12px;color:var(--text2);margin-top:3px">W.19 (14/3-20/3) | เป้าหมาย 39 จุด | เสร็จแล้ว 39 จุด (Cabling 100%)</div>
         </div>
       </div>
@@ -340,7 +340,7 @@ main{padding:14px 20px;max-width:1400px;margin:0 auto}
   <div class="card mb14">
     <div class="ch"><div class="chi" style="background:var(--primary-l);color:var(--primary)">📊</div>จำนวนอุปกรณ์รายสัปดาห์ — แผน vs Migration จริง</div>
     <div class="wk-stat-row">
-      <span class="wk-stat-done" id="wstat-mig-done">39</span>
+      <span class="wk-stat-done" id="wstat-mig-done">7</span>
       <span class="wk-stat-total">/ 39 จุด</span>
       <span class="wk-stat-pct" id="wstat-mig-pct" style="background:var(--warning-l);color:var(--warning)">73.1%</span>
       <span style="font-size:11px;color:var(--text2);margin-left:4px">Migration สะสม</span>
@@ -367,7 +367,7 @@ main{padding:14px 20px;max-width:1400px;margin:0 auto}
     <div class="card">
       <div class="ch"><div class="chi" style="background:var(--warning-l);color:var(--warning)">📈</div>% สะสม Migration vs แผน</div>
       <div class="wk-stat-row">
-        <span class="wk-stat-done" style="color:var(--warning)" id="wstat-mig-done2">39</span>
+        <span class="wk-stat-done" style="color:var(--warning)" id="wstat-mig-done2">7</span>
         <span class="wk-stat-total">/ 39 จุด</span>
         <span class="wk-stat-pct" id="wstat-mig-pct2" style="background:var(--warning-l);color:var(--warning)">73.1%</span>
         <span style="font-size:11px;color:var(--text2);margin-left:4px">Migration สะสม</span>
@@ -569,14 +569,14 @@ const WK_SHORT   = [
   ['W.4','23/2-1/3'],['W.5','2/3-8/3'],['W.6','9/3-15/3'],
   ['W.7','16/3-22/3'],['W.8','23/3-29/3'],['W.9','30/3-5/4']
 ];
-const TOTAL_PLAN = 39;
-const WK_PLAN    = [2, 2, 7, 3, 4, 6, 2, 0, 2, 6, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+const TOTAL_PLAN = 78;
+const WK_PLAN    = [2, 2, 7, 3, 4, 6, 2, 0, 2, 6, 6, 0, 0, 1, 2, 1, 1, 1, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0];
 const WK_CFG     = [2, 2, 7, 3, 4, 6, 2, null, 2, 6, 5, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
-const WK_MIG     = [2, 2, 7, 3, 4, 6, 2, null, 2, 6, 5, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+const WK_MIG     = [null, null, null, null, null, null, null, null, null, null, 1, null, null, 1, 2, 1, 1, 1, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
 
 // Cumulative % (carry-forward actual to today)
 const CUM_PLAN_PCT = [2.6, 5.1, 14.1, 17.9, 23.1, 30.8, 33.3, 33.3, 35.9, 43.6, 51.3, 51.3, 51.3, 52.6, 55.1, 56.4, 57.7, 59.0, 61.5, 64.1, 66.7, 69.2, 69.2, 71.8, 74.4, 76.9, 79.5, 82.1, 84.6, 87.2, 89.7, 92.3, 94.9, 97.4, 100.0, 100.0, 100.0, 100.0];
-const CUM_ACT_RAW  = [2.6, 5.1, 14.1, 17.9, 23.1, 30.8, 33.3, 33.3, 35.9, 43.6, 51.3, 51.3, 51.3, 52.6, 55.1, 56.4, 57.7, 59.0, 59.0, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+const CUM_ACT_RAW  = [5.1, 10.3, 28.2, 35.9, 46.2, 61.5, 66.7, 66.7, 71.8, 87.2, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0];
 
 // Carry-forward actual to TODAY_WK
 function carryFwd(arr){
@@ -594,17 +594,19 @@ const CUM_CFG_PCT = WK_CFG.map(v=>{ if(v!==null) cumCfg+=v; return cumCfg>0?Math
 const CUM_CFG_ACT = carryFwd(CUM_CFG_PCT.map((v,i)=>WK_CFG[i]!==null?v:null));
 
 // Burndown
-const BD_PLAN = [37, 35, 28, 25, 21, 15, 13, 13, 11, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+const BD_PLAN = [76, 74, 67, 64, 60, 54, 52, 52, 50, 44, 38, 38, 38, 37, 35, 34, 33, 32, 30, 28, 26, 24, 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2, 0, 0, 0, 0];
 let cumMig=0;
 const BD_ACT_RAW = WK_MIG.map(v=>{ if(v!==null){cumMig+=v;return TOTAL_PLAN-cumMig;} return null; });
 const BD_ACT  = carryFwd(BD_ACT_RAW);
 
 // Daily
-const DAILY_LABELS = ['8/11', '9/11', '15/11', '16/11', '22/11', '23/11', '24/11', '25/11', '26/11', '27/11', '28/11', '1/12', '2/12', '3/12', '6/12', '7/12', '11/12', '12/12', '13/12', '14/12', '15/12', '16/12', '17/12', '18/12', '20/12', '21/12', '8/01', '9/01', '10/01', '11/01', '12/01', '14/01', '15/01', '16/01', '17/01', '18/01', '19/01', '20/01', '21/01'];
-const DAILY_PLAN   = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-const DAILY_ACT    = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-const CUM_PLAN_D = [2.56, 5.13, 7.69, 10.26, 12.82, 15.38, 17.95, 20.51, 23.08, 25.64, 28.21, 30.77, 33.33, 35.9, 38.46, 41.03, 43.59, 46.15, 48.72, 51.28, 53.85, 56.41, 58.97, 61.54, 64.1, 66.67, 69.23, 71.79, 74.36, 76.92, 79.49, 82.05, 84.62, 87.18, 89.74, 92.31, 94.87, 97.44, 100.0];
-const CUM_ACT_D_RAW = [2.56, 5.13, 7.69, 10.26, 12.82, 15.38, 17.95, 20.51, 23.08, 25.64, 28.21, 30.77, 33.33, 35.9, 38.46, 41.03, 43.59, 46.15, 48.72, 51.28, 53.85, 56.41, 58.97, 61.54, 64.1, 66.67, 69.23, 71.79, 74.36, 76.92, 79.49, 82.05, 84.62, 87.18, 89.74, 92.31, 94.87, 97.44, 100.0];
+
+const DAILY_CAB_ACTUAL = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+const DAILY_LABELS = ['8/11', '9/11', '15/11', '16/11', '22/11', '23/11', '24/11', '25/11', '26/11', '27/11', '28/11', '1/12', '2/12', '3/12', '6/12', '7/12', '11/12', '12/12', '13/12', '14/12', '15/12', '16/12', '17/12', '18/12', '20/12', '21/12', '8/01', '9/01', '10/01', '11/01', '12/01', '14/01', '15/01', '16/01', '17/01', '18/01', '19/01', '20/01', '21/01', '23/01', '13/02', '14/02', '20/02', '21/02', '6/03', '7/03', '19/03', '20/03', '26/03', '27/03', '2/04', '3/04', '9/04', '10/04', '23/04', '24/04', '30/04', '1/05', '7/05', '8/05', '14/05', '15/05', '21/05', '22/05', '28/05', '29/05', '4/06', '5/06', '11/06', '12/06', '18/06', '19/06', '25/06', '26/06', '2/07', '3/07', '9/07', '10/07'];
+const DAILY_PLAN   = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+const DAILY_ACT    = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+const CUM_PLAN_D = [1.28, 2.56, 3.85, 5.13, 6.41, 7.69, 8.97, 10.26, 11.54, 12.82, 14.1, 15.38, 16.67, 17.95, 19.23, 20.51, 21.79, 23.08, 24.36, 25.64, 26.92, 28.21, 29.49, 30.77, 32.05, 33.33, 34.62, 35.9, 37.18, 38.46, 39.74, 41.03, 42.31, 43.59, 44.87, 46.15, 47.44, 48.72, 50.0, 51.28, 52.56, 53.85, 55.13, 56.41, 57.69, 58.97, 60.26, 61.54, 62.82, 64.1, 65.38, 66.67, 67.95, 69.23, 70.51, 71.79, 73.08, 74.36, 75.64, 76.92, 78.21, 79.49, 80.77, 82.05, 83.33, 84.62, 85.9, 87.18, 88.46, 89.74, 91.03, 92.31, 93.59, 94.87, 96.15, 97.44, 98.72, 100.0];
+const CUM_ACT_D_RAW = [1.28, 2.56, 3.85, 5.13, 6.41, 7.69, 8.97, 10.26, 11.54, 12.82, 14.1, 15.38, 16.67, 17.95, 19.23, 20.51, 21.79, 23.08, 24.36, 25.64, 26.92, 28.21, 29.49, 30.77, 32.05, 33.33, 34.62, 35.9, 37.18, 38.46, 39.74, 41.03, 42.31, 43.59, 44.87, 46.15, 47.44, 48.72, 50.0, 51.28, 52.56, 53.85, 55.13, 56.41, 57.69, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97, 58.97];
 
 // Carry-forward daily actual
 let lastD=null;
@@ -612,11 +614,11 @@ const CUM_ACT_D = CUM_ACT_D_RAW.map(v=>{ if(v!==null) lastD=v; return lastD; });
 
 // Location data
 const LOC_DATA = [
-  {n:'Concourse C', tor:10, cfg:10, inst:10, mig:10},
-  {n:'Concourse E', tor:10, cfg:10, inst:10, mig:10},
-  {n:'Concourse D', tor:8,  cfg:8,  inst:8,  mig:8},
-  {n:'Concourse F', tor:6,  cfg:6,  inst:6,  mig:6},
-  {n:'Concourse G', tor:5,  cfg:5,  inst:5,  mig:5},
+  {n:'Concourse C', tor:10, cfg:10, inst:3,  mig:3},
+  {n:'Concourse E', tor:10, cfg:10, inst:3,  mig:3},
+  {n:'Concourse F', tor:6,  cfg:6,  inst:1,  mig:1},
+  {n:'Concourse D', tor:8,  cfg:8,  inst:0,  mig:0},
+  {n:'Concourse G', tor:5,  cfg:5,  inst:0,  mig:0},
 ];
 
 // ── Today line plugin ─────────────────────────────────────────────────────────
@@ -683,11 +685,11 @@ function buildCumWeekly(){
 
 // ── Build Weekly Bar ──────────────────────────────────────────────────────────
 const HQ_TYPE_DATA = [
-  {n:'Concourse C', plan:10, done:10},
-  {n:'Concourse E', plan:10, done:10},
-  {n:'Concourse D', plan:8,  done:8},
-  {n:'Concourse F', plan:6,  done:6},
-  {n:'Concourse G', plan:5,  done:5},
+  {n:'Concourse C', plan:10, done:3},
+  {n:'Concourse E', plan:10, done:3},
+  {n:'Concourse D', plan:8,  done:0},
+  {n:'Concourse F', plan:6,  done:1},
+  {n:'Concourse G', plan:5,  done:0},
 ];
 function buildWeeklyBar(){
   const cv=document.getElementById('wk-bar-c');
@@ -720,7 +722,7 @@ function buildWeeklyBar(){
     plugins:[dataLabelPlugin],
     data:{labels:WK_SHORT,datasets:[
       {label:'แผน',data:WK_PLAN,backgroundColor:'rgba(148,163,196,.4)',borderColor:'#94a3c4',borderWidth:1,borderRadius:3,order:2},
-      {label:'Cabling จริง',data:WK_MIG,backgroundColor:'rgba(255,159,67,.75)',borderColor:'#ff9f43',borderWidth:1,borderRadius:3,order:1},
+      {label:'Coring จริง',data:WK_MIG,backgroundColor:'rgba(255,159,67,.75)',borderColor:'#ff9f43',borderWidth:1,borderRadius:3,order:1},
     ]},
     options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
       layout:{padding:{top:20}},
@@ -765,8 +767,9 @@ function buildDailyBar(){
   const ex=Chart.getChart(cv); if(ex) ex.destroy();
   new Chart(cv,{type:'bar',
     data:{labels:DAILY_LABELS,datasets:[
-      {label:'แผน',data:DAILY_PLAN,backgroundColor:'rgba(148,163,196,.4)',borderColor:'#94a3c4',borderWidth:1,order:2},
-      {label:'จริง',type:'line',data:DAILY_ACT,borderColor:'#ff9f43',borderWidth:2,pointRadius:(c)=>c.raw!=null?2:0,pointBackgroundColor:'#ff9f43',fill:false,tension:.2,order:1,spanGaps:false},
+      {label:'Cabling จริง',data:DAILY_CAB_ACTUAL,backgroundColor:'rgba(67,97,238,.75)',borderRadius:2,stack:'s',order:2},
+      {label:'Coring จริง', data:DAILY_ACT,backgroundColor:'rgba(43,196,138,.75)',borderRadius:2,stack:'s',order:2},
+      {label:'แผน',type:'line',data:DAILY_PLAN,borderColor:'#94a3c4',borderDash:[4,3],borderWidth:1.5,pointRadius:0,fill:false,order:1},
     ]},
     options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
       plugins:{legend:{position:'bottom',labels:{font:{size:11}}}},
@@ -928,7 +931,7 @@ async function exportPDF(){
     mn.querySelectorAll('canvas').forEach(cv=>{const d=imgs[cv.id];if(d){const i=document.createElement('img');i.src=d.url;i.style.cssText=`display:block;width:${d.w}px;height:${d.h}px;max-width:100%`;cv.parentNode.replaceChild(i,cv);}else cv.style.display='none';});
     ['tab-weekly','tab-daily','tab-location','tab-plan'].forEach((id,i)=>{const el=mn.querySelector(`#${id}`);if(el)el.style.pageBreakBefore='always';});
     const date=new Date().toLocaleDateString('th-TH');
-    const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Coring Progress Dashboard</title>
+    const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>SVB Coring Progress Dashboard</title>
 <style>@page{size:A4 landscape;margin:8mm 10mm}*{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;box-sizing:border-box}body{font-family:'Segoe UI',Tahoma,sans-serif;font-size:12px;background:#fff;margin:0}
 ${styles}
 .topbar,.tabs,[onclick]{display:none!important}.tab-body{display:block!important}.card{break-inside:avoid}canvas{display:none!important}
