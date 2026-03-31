@@ -12,7 +12,7 @@ app.use(express.json());
 
 const SHAREPOINT_URL = process.env.SHAREPOINT_URL || '';
 const CACHE_PATH     = path.join(__dirname, 'coring_cache.xlsx');
-const LOCAL_PATH     = path.join(__dirname, 'SAT_Progress.xlsx');
+const LOCAL_PATH     = path.join(__dirname, 'SAT Progress.xlsx');
 const CACHE_TTL_MS   = 5 * 60 * 1000;
 
 let cacheTime = 0;
