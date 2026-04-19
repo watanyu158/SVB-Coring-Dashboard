@@ -770,10 +770,15 @@ function buildWeekly(){
     const ctx2=chart.ctx;
     chart.data.datasets.forEach((ds,di)=>{
       const meta=chart.getDatasetMeta(di);if(meta.hidden)return;
-      const lastIdx=ds.data.reduce((a,v,j)=>v!=null?j:a,-1);
+      // raw data (ไม่ carry-forward) สำหรับ actual
+      const rawData=di===1?COM_ACT_RAW:ds.data;
+      const lastIdx=rawData.reduce((a,v,j)=>v!=null?j:a,-1);
+      // แสดงเฉพาะ: จุดสุดท้าย + ทุก 5 จุด
       meta.data.forEach((pt,i)=>{
         const v=ds.data[i];if(v==null)return;
-        if(i!==lastIdx&&i%4!==0)return;
+        // actual: แสดงเฉพาะ point ที่มีค่าจริง (rawData!=null)
+        if(di===1&&rawData[i]==null)return;
+        if(i!==lastIdx&&i%5!==0)return;
         ctx2.save();ctx2.font=di===0?'9px Segoe UI':'bold 9px Segoe UI';
         ctx2.fillStyle=di===0?'#94a3b8':'#7c3aed';ctx2.textAlign='center';
         ctx2.textBaseline=di===0?'bottom':'top';
