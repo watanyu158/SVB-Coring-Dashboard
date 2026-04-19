@@ -248,18 +248,18 @@ main{max-width:1280px;margin:0 auto;padding:14px 20px}
   <div class="step">
     <div class="step-top">
       <span style="font-size:18px">🔵</span>
-      <span class="step-pct" style="background:var(--cab-l);color:var(--cab)">100%</span>
+      <span class="step-pct" style="background:var(--cab-l);color:var(--cab)" id="step-cab-pct">–</span>
     </div>
-    <div><span class="step-num" style="color:var(--cab)">39</span><span class="step-denom">/39</span></div>
+    <div><span class="step-num" style="color:var(--cab)" id="step-cab-n">–</span><span class="step-denom" id="step-cab-denom">/–</span></div>
     <div class="step-lbl">Cabling — เดินสายสัญญาณ</div>
-    <div class="step-bar"><div class="step-fill" style="width:100%;background:var(--cab)"></div></div>
+    <div class="step-bar"><div class="step-fill" id="step-cab-bar" style="width:0%;background:var(--cab)"></div></div>
   </div>
   <div class="step">
     <div class="step-top">
       <span style="font-size:18px">⛏</span>
       <span class="step-pct" style="background:var(--cor-l);color:var(--cor)" id="step-cor-pct">–</span>
     </div>
-    <div><span class="step-num" style="color:var(--cor)" id="step-cor-n">–</span><span class="step-denom">/39</span></div>
+    <div><span class="step-num" style="color:var(--cor)" id="step-cor-n">–</span><span class="step-denom" id="step-cor-denom">/–</span></div>
     <div class="step-lbl">Coring — เจาะร้อยสาย</div>
     <div class="step-bar"><div class="step-fill" id="step-cor-bar" style="width:0%;background:var(--cor)"></div></div>
   </div>
@@ -335,8 +335,8 @@ main{max-width:1280px;margin:0 auto;padding:14px 20px}
 <div class="tab-body" id="tab-weekly">
   <div class="wstat-row">
     <div class="wstat"><div class="wstat-dot" style="background:var(--cab)"></div><div>
-      <div class="wstat-num" style="color:var(--cab)">39</div>
-      <div class="wstat-pct" style="background:var(--cab-l);color:var(--cab)">100%</div>
+      <div class="wstat-num" style="color:var(--cab)" id="wstat-cab">–</div>
+      <div class="wstat-pct" style="background:var(--cab-l);color:var(--cab)" id="wstat-cab-pct">–</div>
       <div class="wstat-lbl">Cabling แล้ว</div></div></div>
     <div class="wstat"><div class="wstat-dot" style="background:var(--cor)"></div><div>
       <div class="wstat-num" style="color:var(--cor)" id="wstat-cor">–</div>
@@ -395,7 +395,7 @@ main{max-width:1280px;margin:0 auto;padding:14px 20px}
       <div class="g2" style="gap:7px">
         <div class="pcard"><div class="pc-l">วันเริ่มต้น</div><div class="pc-v blu" id="pc-proj-start">–</div></div>
         <div class="pcard"><div class="pc-l">วันสิ้นสุด</div><div class="pc-v" id="pc-proj-end">–</div></div>
-        <div class="pcard"><div class="pc-l">จำนวนวัน</div><div class="pc-v">244 วัน</div></div>
+        <div class="pcard"><div class="pc-l">จำนวนวัน</div><div class="pc-v" id="pc-total-days">–</div></div>
         <div class="pcard"><div class="pc-l">วันที่เหลือ</div><div class="pc-v grn" id="pc-days-left">–</div></div>
       </div>
     </div>
@@ -406,15 +406,15 @@ main{max-width:1280px;margin:0 auto;padding:14px 20px}
     </div>
     <div class="card">
       <div class="ch" style="font-size:12px;color:var(--text2);font-weight:500;margin-bottom:9px">✅ การประเมิน</div>
-      <div class="pcard" style="margin-bottom:7px"><div class="pc-l">ความคืบหน้าตามแผน (W.19)</div><div class="pc-v">61.5%</div></div>
+      <div class="pcard" style="margin-bottom:7px"><div class="pc-l" id="pc-plan-wk-lbl">ความคืบหน้าตามแผน</div><div class="pc-v" id="pc-plan-wk-pct">–</div></div>
       <div class="pcard" style="margin-bottom:7px">
         <div class="pc-l">ความคืบหน้าปัจจุบัน</div>
         <div class="pc-v pur" id="pc-combined">–</div>
         <div style="height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:5px">
-          <div style="height:100%;width:59%;background:var(--cor);border-radius:3px"></div>
+          <div id="pc-progress-bar" style="height:100%;width:0%;background:var(--cor);border-radius:3px"></div>
         </div>
       </div>
-      <div class="pcard"><div class="pc-l">สถานะ</div><div class="pc-v grn">✓ ใกล้เคียงแผน</div></div>
+      <div class="pcard"><div class="pc-l">สถานะ</div><div class="pc-v grn" id="pc-status">–</div></div>
     </div>
   </div>
   <div class="card" style="margin-bottom:14px">
@@ -422,7 +422,7 @@ main{max-width:1280px;margin:0 auto;padding:14px 20px}
     <div class="g3">
       <div class="pcard"><div class="pc-l">🔵 Cabling</div><div class="pc-v blu" style="font-size:20px" id="pc-cab-large">–</div></div>
       <div class="pcard"><div class="pc-l">⛏ Coring (ทำแล้ว)</div><div class="pc-v pur" style="font-size:20px" id="pc-cor-large">–</div></div>
-      <div class="pcard"><div class="pc-l">คาดว่าจะเสร็จ Coring</div><div class="pc-v grn" style="font-size:20px">27 มิ.ย. 69 <span style="font-size:11px">(ก่อน 13 วัน)</span></div></div>
+      <div class="pcard"><div class="pc-l">คาดว่าจะเสร็จ Coring</div><div class="pc-v grn" style="font-size:20px" id="pc-finish-large">–</div></div>
     </div>
   </div>
   <div class="card"><div class="ch"><div class="chi" style="background:var(--cor-l);color:var(--cor)">📍</div>ความก้าวหน้าแยก Concourse</div><div id="plan-loc"></div></div>
@@ -539,6 +539,25 @@ async function loadData(){
     _set('pc-cab-summary', ov.cab_done+'/'+TOTAL+' จุด ✓');
     _set('pc-cab-large',   ov.cab_done+'/'+TOTAL+' จุด ✓');
     _set('pc-cor-large',   ov.cor_done+'/'+TOTAL+' จุด');
+    // update dynamic elements
+    _set('step-cab-pct', ov.cab_pct+'%');
+    _set('step-cab-n', ov.cab_done);
+    _set('step-cab-denom', '/'+TOTAL);
+    _set('step-cor-denom', '/'+TOTAL);
+    _sw('step-cab-bar', ov.cab_pct+'%');
+    _set('wstat-cab', ov.cab_done);
+    _set('wstat-cab-pct', ov.cab_pct+'%');
+    // plan card
+    const _totalDays = Math.round((_projEnd-_projStart2)/86400000);
+    _set('pc-total-days', _totalDays+' วัน');
+    // plan pct at current week
+    const _planNow = COM_PLAN[Math.min(TODAY_WK, COM_PLAN.length-1)]||0;
+    _set('pc-plan-wk-lbl', 'ความคืบหน้าตามแผน (W.'+Math.min(TODAY_WK+1,N_WK)+')');
+    _set('pc-plan-wk-pct', _planNow.toFixed(1)+'%');
+    if(_e('pc-progress-bar')) _e('pc-progress-bar').style.width=ov.combined_pct+'%';
+    const _gap = ov.combined_pct - _planNow;
+    _set('pc-status', _gap>=0 ? '✓ เกินแผน '+_gap.toFixed(1)+'%' : '⚠ ต่ำกว่าแผน '+Math.abs(_gap).toFixed(1)+'%');
+    _set('pc-finish-large', _fmtTH(_finishDate)+(_daysEarly>0?' (ก่อน '+_daysEarly+' วัน)':' (ช้า '+Math.abs(_daysEarly)+' วัน)'));
     // rebuild charts
     buildGauge();buildBurndown();buildDonut(ov.cab_done,ov.cor_done,TOTAL);buildProgAll();buildProgSmall();buildHeatmap();
   }catch(e){console.error('loadData error:',e);}
@@ -852,7 +871,7 @@ function buildHeatmap(){
 function buildPlanLoc(){
   const w=document.getElementById('plan-loc');
   if(!w||w.innerHTML)return;
-  const sch=[{n:'Concourse E',cs:'23 ม.ค. 69',ce:'8 พ.ค. 69'},{n:'Concourse C',cs:'20 ก.พ. 69',ce:'9 เม.ย. 69'},{n:'Concourse F',cs:'13 ก.พ. 69',ce:'28 พ.ค. 69'},{n:'Concourse D',cs:'4 มิ.ย. 69',ce:'26 มิ.ย. 69'},{n:'Concourse G',cs:'29 พ.ค. 69',ce:'10 ก.ค. 69'}];
+  const sch=window._SCH_DATA||LOC_DATA.map(l=>({n:l.n,cs:'–',ce:'–'}));
   const colors=['#0284c7','#7c3aed','#b45309','#059669','#be185d'];
   const pairs=[];for(let i=0;i<LOC_DATA.length;i+=2)pairs.push(LOC_DATA.slice(i,i+2));
   w.innerHTML=pairs.map(pair=>`<div class="g2" style="margin-bottom:9px">${pair.map(d=>{
