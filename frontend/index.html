@@ -174,9 +174,9 @@ main{max-width:1280px;margin:0 auto;padding:14px 20px}
     </div>
   </div>
   <div class="tb-stats">
-    <div class="tb-stat"><div class="v" style="color:#7dd3fc" id="tb-cab">39/39</div><div class="l">Cabling</div></div>
-    <div class="tb-stat"><div class="v" style="color:#c4b5fd" id="tb-cor">7/39</div><div class="l">Coring</div></div>
-    <div class="tb-stat"><div class="v" style="color:#c4b5fd" id="tb-pct">59.0%</div><div class="l">% รวม</div></div>
+    <div class="tb-stat"><div class="v" style="color:#7dd3fc" id="tb-cab">–</div><div class="l">Cabling</div></div>
+    <div class="tb-stat"><div class="v" style="color:#c4b5fd" id="tb-cor">–</div><div class="l">Coring</div></div>
+    <div class="tb-stat"><div class="v" style="color:#c4b5fd" id="tb-pct">–</div><div class="l">% รวม</div></div>
   </div>
 </div>
 
@@ -216,14 +216,14 @@ main{max-width:1280px;margin:0 auto;padding:14px 20px}
       <div class="ins-kpi">
         <div class="ins-kpi-title">ความคืบหน้า</div>
         <div class="ins-kpi-row"><span class="ins-kpi-lbl">Cabling</span><span class="ins-kpi-val" style="color:#7dd3fc">100%</span></div>
-        <div class="ins-kpi-row"><span class="ins-kpi-lbl">Coring</span><span class="ins-kpi-val" style="color:#c4b5fd">17.9%</span></div>
+        <div class="ins-kpi-row"><span class="ins-kpi-lbl">Coring</span><span class="ins-kpi-val" style="color:#c4b5fd" id="kpi-cor-pct">–</span></div>
         <div class="ins-kpi-row"><span class="ins-kpi-lbl">รวม</span><span class="ins-kpi-val">59%</span></div>
       </div>
     </div>
   </div>
   <div class="ins-pills">
     <div class="ins-pill"><div class="ip-icon">🔵</div><div><div class="ip-val" style="color:#7dd3fc">39</div><div class="ip-lbl">Cabling</div><div class="ip-sub">100% ✓</div></div></div>
-    <div class="ins-pill"><div class="ip-icon">⛏</div><div><div class="ip-val" id="pill-cor">7</div><div class="ip-lbl">Coring</div><div class="ip-sub">17.9%</div></div></div>
+    <div class="ins-pill"><div class="ip-icon">⛏</div><div><div class="ip-val" id="pill-cor">–</div><div class="ip-lbl">Coring</div><div class="ip-sub" id="pill-cor-pct">–</div></div></div>
     <div class="ins-pill"><div class="ip-icon">📦</div><div><div class="ip-val" id="pill-rem">32</div><div class="ip-lbl">Coring เหลือ</div><div class="ip-sub">จุด</div></div></div>
     <div class="ins-pill"><div class="ip-icon">⏱</div><div><div class="ip-val">108</div><div class="ip-lbl">วันเหลือ</div><div class="ip-sub">ถึง 10 ก.ค.</div></div></div>
     <div class="ins-pill"><div class="ip-icon">📅</div><div><div class="ip-val">27 มิ.ย.</div><div class="ip-lbl">คาดเสร็จ</div><div class="ip-sub">ก่อนกำหนด</div></div></div>
@@ -237,9 +237,9 @@ main{max-width:1280px;margin:0 auto;padding:14px 20px}
     <div class="sum-sub">ช่วงดำเนินงาน: 8 พ.ย. 2568 – 10 ก.ค. 2569 | 38 สัปดาห์ | Cabling 39 จุด + Coring 39 จุด</div>
   </div>
   <div class="sum-stats">
-    <div class="ss"><div class="v" style="color:var(--cab)" id="ov-cab">39</div><div class="l">Cabling ✓</div></div>
-    <div class="ss"><div class="v" style="color:var(--cor)" id="ov-cor">7</div><div class="l">Coring แล้ว</div></div>
-    <div class="ss"><div class="v" style="color:var(--cor)">59.0%</div><div class="l">% รวม</div></div>
+    <div class="ss"><div class="v" style="color:var(--cab)" id="ov-cab">–</div><div class="l">Cabling ✓</div></div>
+    <div class="ss"><div class="v" style="color:var(--cor)" id="ov-cor">–</div><div class="l">Coring แล้ว</div></div>
+    <div class="ss"><div class="v" style="color:var(--cor)" id="ov-combined">–</div><div class="l">% รวม</div></div>
   </div>
 </div>
 
@@ -259,7 +259,7 @@ main{max-width:1280px;margin:0 auto;padding:14px 20px}
       <span style="font-size:18px">⛏</span>
       <span class="step-pct" style="background:var(--cor-l);color:var(--cor)" id="step-cor-pct">17.9%</span>
     </div>
-    <div><span class="step-num" style="color:var(--cor)" id="step-cor-n">7</span><span class="step-denom">/39</span></div>
+    <div><span class="step-num" style="color:var(--cor)" id="step-cor-n">–</span><span class="step-denom">/39</span></div>
     <div class="step-lbl">Coring — เจาะร้อยสาย</div>
     <div class="step-bar"><div class="step-fill" id="step-cor-bar" style="width:17.9%;background:var(--cor)"></div></div>
   </div>
@@ -339,8 +339,8 @@ main{max-width:1280px;margin:0 auto;padding:14px 20px}
       <div class="wstat-pct" style="background:var(--cab-l);color:var(--cab)">100%</div>
       <div class="wstat-lbl">Cabling แล้ว</div></div></div>
     <div class="wstat"><div class="wstat-dot" style="background:var(--cor)"></div><div>
-      <div class="wstat-num" style="color:var(--cor)" id="wstat-cor">7</div>
-      <div class="wstat-pct" style="background:var(--cor-l);color:var(--cor)">17.9%</div>
+      <div class="wstat-num" style="color:var(--cor)" id="wstat-cor">–</div>
+      <div class="wstat-pct" style="background:var(--cor-l);color:var(--cor)" id="wstat-cor-pct">–</div>
       <div class="wstat-lbl">Coring แล้ว</div></div></div>
   </div>
   <div class="card" style="margin-bottom:14px">
@@ -402,14 +402,14 @@ main{max-width:1280px;margin:0 auto;padding:14px 20px}
     <div class="card">
       <div class="ch" style="font-size:12px;color:var(--text2);font-weight:500;margin-bottom:9px">📈 เป้าหมาย</div>
       <div class="pcard" style="margin-bottom:7px"><div class="pc-l">🔵 Cabling</div><div class="pc-v grn">39/39 จุด ✓</div></div>
-      <div class="pcard"><div class="pc-l">⛏ Coring (ทำได้/ทั้งหมด)</div><div class="pc-v pur">7/39 จุด (17.9%)</div></div>
+      <div class="pcard"><div class="pc-l">⛏ Coring (ทำได้/ทั้งหมด)</div><div class="pc-v pur" id="pc-cor-summary">– จุด</div></div>
     </div>
     <div class="card">
       <div class="ch" style="font-size:12px;color:var(--text2);font-weight:500;margin-bottom:9px">✅ การประเมิน</div>
       <div class="pcard" style="margin-bottom:7px"><div class="pc-l">ความคืบหน้าตามแผน (W.19)</div><div class="pc-v">61.5%</div></div>
       <div class="pcard" style="margin-bottom:7px">
         <div class="pc-l">ความคืบหน้าปัจจุบัน</div>
-        <div class="pc-v pur">59.0%</div>
+        <div class="pc-v pur" id="pc-combined">–</div>
         <div style="height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:5px">
           <div style="height:100%;width:59%;background:var(--cor);border-radius:3px"></div>
         </div>
@@ -475,15 +475,27 @@ async function loadData(){
     GATE_DATA.length=0; d.gates.forEach(g=>GATE_DATA.push({gate:g.gate,loc:g.loc,cab:g.cab,cor:g.cor}));
     _projStart=new Date(ov.proj_start+'T00:00:00');
     _recomputeToday();
-    // อัพเดต summary pills ถ้ามี
+    // อัพเดต elements ทั้งหมด
     const _e=id=>document.getElementById(id);
-    if(_e('stat-total'))   _e('stat-total').textContent=TOTAL;
-    if(_e('stat-cab'))     _e('stat-cab').textContent=ov.cab_done;
-    if(_e('stat-cor'))     _e('stat-cor').textContent=ov.cor_done;
-    if(_e('stat-cab-pct')) _e('stat-cab-pct').textContent=ov.cab_pct+'%';
-    if(_e('stat-cor-pct')) _e('stat-cor-pct').textContent=ov.cor_pct+'%';
-    if(_e('stat-comb'))    _e('stat-comb').textContent=ov.combined_pct+'%';
-    if(_e('sync-ts'))      _e('sync-ts').textContent=new Date(d.last_updated).toLocaleTimeString('th-TH');
+    const _set=(id,v)=>{const el=_e(id);if(el)el.textContent=v;};
+    const _sw=(id,w)=>{const el=_e(id);if(el)el.style.width=w;};
+    _set('tb-cab',   ov.cab_done+'/'+TOTAL);
+    _set('tb-cor',   ov.cor_done+'/'+TOTAL);
+    _set('tb-pct',   ov.combined_pct+'%');
+    _set('ov-cab',   ov.cab_done);
+    _set('ov-cor',   ov.cor_done);
+    _set('ov-combined', ov.combined_pct+'%');
+    _set('pill-cor', ov.cor_done);
+    _set('pill-cor-pct', ov.cor_pct+'%');
+    _set('kpi-cor-pct', ov.cor_pct+'%');
+    _set('step-cor-pct', ov.cor_pct+'%');
+    _set('step-cor-n', ov.cor_done);
+    _sw('step-cor-bar', ov.cor_pct+'%');
+    _set('wstat-cor', ov.cor_done);
+    _set('wstat-cor-pct', ov.cor_pct+'%');
+    _set('pc-cor-summary', ov.cor_done+'/'+TOTAL+' จุด ('+ov.cor_pct+'%)');
+    _set('pc-combined', ov.combined_pct+'%');
+    _set('sync-ts', new Date(d.last_updated).toLocaleTimeString('th-TH'));
     // rebuild charts
     buildGauge();buildBurndown();buildDonut();buildProgAll();buildProgSmall();buildHeatmap();
   }catch(e){console.error('loadData error:',e);}
