@@ -531,6 +531,7 @@ async function loadData(){
     _set('ins-note', _daysEarly>0
       ? '✅ ถ้าคงอัตรานี้ → คาดเสร็จ '+_fmtTH(_finishDate)+' (ก่อนกำหนด '+_daysEarly+' วัน)'
       : '⚠ ถ้าคงอัตรานี้ → คาดเสร็จ '+_fmtTH(_finishDate)+' (ช้ากว่ากำหนด '+Math.abs(_daysEarly)+' วัน)');
+    window._gaugePct=ov.combined_pct;
     _set('gauge-pct', ov.combined_pct+'%');
     _set('kpi-cab-pct', ov.cab_pct+'%');
     _set('kpi-combined-pct', ov.combined_pct+'%');
@@ -594,18 +595,32 @@ function carry(raw){
 // ── Today line plugin ──────────────────────────────────────────────────────
 function todayPlugin(id){
   return {id:'td_'+id,afterDraw(chart){
-    const m=chart.getDatasetMeta(0);
-    if(!m||!m.data[TODAY_WK])return;
+    if(!chart.chartArea) return;
     const {top,bottom}=chart.chartArea;
-    const x0=m.data[TODAY_WK].x,x1=m.data[TODAY_WK+1]?m.data[TODAY_WK+1].x:x0;
-    const x=x0+(x1-x0)*TODAY_FRAC;
+    let x=null;
+    // bar chart: ใช้ scale xAxis
+    const xScale=chart.scales?.x;
+    if(xScale && chart.config.type==='bar'){
+      const wk=Math.max(0,Math.min(TODAY_WK,xScale.ticks.length-1));
+      const x0=xScale.getPixelForTick(wk);
+      const x1=wk+1<xScale.ticks.length?xScale.getPixelForTick(wk+1):x0;
+      // center of current bar + fraction
+      const barW=x1-x0;
+      x=x0+barW*TODAY_FRAC;
+    } else {
+      // line chart: ใช้ dataset meta
+      const m=chart.getDatasetMeta(0);
+      if(!m||!m.data[TODAY_WK])return;
+      const x0=m.data[TODAY_WK].x,x1=m.data[TODAY_WK+1]?m.data[TODAY_WK+1].x:x0;
+      x=x0+(x1-x0)*TODAY_FRAC;
+    }
+    if(x===null)return;
     const cv=chart.ctx;cv.save();
     cv.beginPath();cv.moveTo(x,top);cv.lineTo(x,bottom);
     cv.strokeStyle='#ef4444';cv.lineWidth=1.5;cv.setLineDash([4,3]);cv.stroke();
     cv.setLineDash([]);
     const lbl=String(_today.getDate()).padStart(2,'0')+'/'+(String(_today.getMonth()+1).padStart(2,'0'));
     cv.font='bold 10px Segoe UI,sans-serif';const tw=cv.measureText(lbl).width;
-    // วาด label เหนือ chart area (top-20 ถึง top-4)
     cv.fillStyle='#ef4444';cv.beginPath();cv.roundRect(x-tw/2-4,top-20,tw+8,16,4);cv.fill();
     cv.fillStyle='#fff';cv.textAlign='center';cv.textBaseline='top';cv.fillText(lbl,x,top-18);
     cv.restore();
@@ -663,7 +678,7 @@ function lineChart(id,planData,actData,color,planId,actId,plugins=[]){
 function buildGauge(){
   const e=Chart.getChart(document.getElementById('gauge-c'));if(e)e.destroy();
   new Chart(document.getElementById('gauge-c'),{type:'doughnut',
-    data:{datasets:[{data:[59,41],backgroundColor:['#7c3aed','rgba(124,58,237,0.04)'],borderWidth:0}]},
+    data:{datasets:[{data:[window._gaugePct||50,100-(window._gaugePct||50)],backgroundColor:['#7c3aed','rgba(124,58,237,0.12)'],borderWidth:0}]},
     options:{cutout:'72%',circumference:180,rotation:-90,responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}}}
   });
 }
@@ -677,9 +692,9 @@ function buildBurndown(){
       {label:'แผน',data:BD_PLAN,borderColor:'#94a3c4',borderDash:[5,3],borderWidth:1.5,pointRadius:0,tension:.3,fill:false},
       {label:'จริง',data:bdFull,borderColor:'#10b981',borderWidth:2.5,pointRadius:(c)=>c.parsed&&c.parsed.y!=null?3:0,pointBackgroundColor:'#10b981',tension:.3,fill:false,spanGaps:false},
     ]},
-    options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+    options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:24}},interaction:{mode:'index',intersect:false},
       plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(30,27,75,.92)',bodyColor:'rgba(255,255,255,.8)',padding:8,cornerRadius:8,callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y!=null?c.parsed.y+' จุด':'–'}`}}},
-      scales:{x:{ticks:{font:{size:9},maxRotation:45,color:'#94a3c4'},grid:{display:false}},y:{min:0,max:80,ticks:{font:{size:10},color:'#94a3c4'},grid:{color:'#f0f4ff'}}}}
+      scales:{x:{ticks:{font:{size:9},maxRotation:45,autoSkip:true,maxTicksLimit:20,color:'#94a3c4'},grid:{display:false}},y:{min:0,suggestedMax:TOTAL*2,ticks:{font:{size:10},color:'#94a3c4'},grid:{color:'#f0f4ff'}}}}
   });
 }
 
