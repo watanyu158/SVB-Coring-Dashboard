@@ -510,27 +510,32 @@ async function loadData(){
     const _weeksLeft = Math.max(1, Math.ceil((_projEnd-_now)/604800000));
     const _corRemaining = TOTAL - ov.cor_done;
     const _targetRate = _weeksLeft>0 ? Math.round(_corRemaining/_weeksLeft*10)/10 : 0;
+    // pctMore: บวก=เกินเป้า, ลบ=ต่ำกว่าเป้า
     const _pctMore = _targetRate>0 ? Math.round((_actualRate/_targetRate-1)*100) : 0;
     const _remaining = TOTAL - ov.cor_done;
     const _weeksToFinish = _actualRate>0 ? Math.ceil(_remaining/_actualRate) : 999;
     const _finishDate = new Date(_now); _finishDate.setDate(_finishDate.getDate()+_weeksToFinish*7);
     const _daysEarly = Math.round((_projEnd-_finishDate)/86400000);
-    const _fmtTH=dt=>(dt instanceof Date?dt:new Date(dt+'T00:00:00')).toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'2-digit'});
-    // insight elements
+    // format วันที่พร้อมปี พ.ศ. 4 หลัก
+    const _fmtTH=dt=>{
+      const d=dt instanceof Date?dt:new Date(dt+'T00:00:00');
+      return d.toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'numeric'});
+    };
+    // insight elements — _pctMore>0 = เกินเป้า, <0 = ต่ำกว่าเป้า
     _set('ins-rate', _actualRate);
     _set('ins-rv-actual', _actualRate);
     _set('ins-rv-target', _targetRate);
-    _set('ins-tag', _pctMore<=0 ? '✓ เกินเป้า '+Math.abs(_pctMore)+'%' : '⚠ ต่ำกว่าเป้า '+_pctMore+'%');
+    _set('ins-tag', _pctMore>=0 ? '✓ เกินเป้า '+_pctMore+'%' : '⚠ ต่ำกว่าเป้า '+Math.abs(_pctMore)+'%');
     _set('ins-note', _daysEarly>0
       ? '✅ ถ้าคงอัตรานี้ → คาดเสร็จ '+_fmtTH(_finishDate)+' (ก่อนกำหนด '+_daysEarly+' วัน)'
-      : '⚠ คาดเสร็จ '+_fmtTH(_finishDate)+' (ช้ากว่ากำหนด '+Math.abs(_daysEarly)+' วัน)');
+      : '⚠ ถ้าคงอัตรานี้ → คาดเสร็จ '+_fmtTH(_finishDate)+' (ช้ากว่ากำหนด '+Math.abs(_daysEarly)+' วัน)');
     _set('gauge-pct', ov.combined_pct+'%');
     _set('kpi-cab-pct', ov.cab_pct+'%');
     _set('kpi-combined-pct', ov.combined_pct+'%');
     _set('pill-cab', ov.cab_done);
     _set('pill-cab-pct', ov.cab_pct+'% ✓');
     _set('pill-rem', _remaining);
-    _set('pill-finish', _fmtTH(_finishDate).split(' ').slice(0,2).join(' '));
+    _set('pill-finish', _fmtTH(_finishDate));
     _set('pill-finish-sub', _daysEarly>0?'ก่อนกำหนด':'ช้ากว่ากำหนด');
     // วันเหลือ
     _set('pill-days', _daysLeft);
