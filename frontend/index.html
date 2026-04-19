@@ -225,7 +225,7 @@ main{max-width:1280px;margin:0 auto;padding:14px 20px}
     <div class="ins-pill"><div class="ip-icon">🔵</div><div><div class="ip-val" style="color:#7dd3fc">39</div><div class="ip-lbl">Cabling</div><div class="ip-sub">100% ✓</div></div></div>
     <div class="ins-pill"><div class="ip-icon">⛏</div><div><div class="ip-val" id="pill-cor">–</div><div class="ip-lbl">Coring</div><div class="ip-sub" id="pill-cor-pct">–</div></div></div>
     <div class="ins-pill"><div class="ip-icon">📦</div><div><div class="ip-val" id="pill-rem">32</div><div class="ip-lbl">Coring เหลือ</div><div class="ip-sub">จุด</div></div></div>
-    <div class="ins-pill"><div class="ip-icon">⏱</div><div><div class="ip-val">108</div><div class="ip-lbl">วันเหลือ</div><div class="ip-sub">ถึง 10 ก.ค.</div></div></div>
+    <div class="ins-pill"><div class="ip-icon">⏱</div><div><div class="ip-val" id="pill-days">–</div><div class="ip-lbl">วันเหลือ</div><div class="ip-sub" id="pill-days-sub">–</div></div></div>
     <div class="ins-pill"><div class="ip-icon">📅</div><div><div class="ip-val">27 มิ.ย.</div><div class="ip-lbl">คาดเสร็จ</div><div class="ip-sub">ก่อนกำหนด</div></div></div>
   </div>
 </div>
@@ -234,7 +234,7 @@ main{max-width:1280px;margin:0 auto;padding:14px 20px}
 <div class="sum-hdr">
   <div>
     <div class="sum-title">⛏ รายงานสรุปงาน Cabling &amp; Coring — สนามบินสุวรรณภูมิ (SVB)</div>
-    <div class="sum-sub">ช่วงดำเนินงาน: 8 พ.ย. 2568 – 10 ก.ค. 2569 | 38 สัปดาห์ | Cabling 39 จุด + Coring 39 จุด</div>
+    <div class="sum-sub" id="sum-sub">–</div>
   </div>
   <div class="sum-stats">
     <div class="ss"><div class="v" style="color:var(--cab)" id="ov-cab">–</div><div class="l">Cabling ✓</div></div>
@@ -257,11 +257,11 @@ main{max-width:1280px;margin:0 auto;padding:14px 20px}
   <div class="step">
     <div class="step-top">
       <span style="font-size:18px">⛏</span>
-      <span class="step-pct" style="background:var(--cor-l);color:var(--cor)" id="step-cor-pct">17.9%</span>
+      <span class="step-pct" style="background:var(--cor-l);color:var(--cor)" id="step-cor-pct">–</span>
     </div>
     <div><span class="step-num" style="color:var(--cor)" id="step-cor-n">–</span><span class="step-denom">/39</span></div>
     <div class="step-lbl">Coring — เจาะร้อยสาย</div>
-    <div class="step-bar"><div class="step-fill" id="step-cor-bar" style="width:17.9%;background:var(--cor)"></div></div>
+    <div class="step-bar"><div class="step-fill" id="step-cor-bar" style="width:0%;background:var(--cor)"></div></div>
   </div>
 </div>
 
@@ -393,15 +393,15 @@ main{max-width:1280px;margin:0 auto;padding:14px 20px}
     <div class="card">
       <div class="ch" style="font-size:12px;color:var(--text2);font-weight:500;margin-bottom:9px">📅 ระยะเวลา</div>
       <div class="g2" style="gap:7px">
-        <div class="pcard"><div class="pc-l">วันเริ่มต้น</div><div class="pc-v blu">8 พ.ย. 68</div></div>
-        <div class="pcard"><div class="pc-l">วันสิ้นสุด</div><div class="pc-v">10 ก.ค. 69</div></div>
+        <div class="pcard"><div class="pc-l">วันเริ่มต้น</div><div class="pc-v blu" id="pc-proj-start">–</div></div>
+        <div class="pcard"><div class="pc-l">วันสิ้นสุด</div><div class="pc-v" id="pc-proj-end">–</div></div>
         <div class="pcard"><div class="pc-l">จำนวนวัน</div><div class="pc-v">244 วัน</div></div>
-        <div class="pcard"><div class="pc-l">วันที่เหลือ</div><div class="pc-v grn">108 วัน</div></div>
+        <div class="pcard"><div class="pc-l">วันที่เหลือ</div><div class="pc-v grn" id="pc-days-left">–</div></div>
       </div>
     </div>
     <div class="card">
       <div class="ch" style="font-size:12px;color:var(--text2);font-weight:500;margin-bottom:9px">📈 เป้าหมาย</div>
-      <div class="pcard" style="margin-bottom:7px"><div class="pc-l">🔵 Cabling</div><div class="pc-v grn">39/39 จุด ✓</div></div>
+      <div class="pcard" style="margin-bottom:7px"><div class="pc-l">🔵 Cabling</div><div class="pc-v grn" id="pc-cab-summary">–</div></div>
       <div class="pcard"><div class="pc-l">⛏ Coring (ทำได้/ทั้งหมด)</div><div class="pc-v pur" id="pc-cor-summary">– จุด</div></div>
     </div>
     <div class="card">
@@ -420,8 +420,8 @@ main{max-width:1280px;margin:0 auto;padding:14px 20px}
   <div class="card" style="margin-bottom:14px">
     <div class="ch"><div class="chi" style="background:var(--success-l);color:var(--success)">⚡</div>ข้อมูลการดำเนินงานจริง</div>
     <div class="g3">
-      <div class="pcard"><div class="pc-l">🔵 Cabling</div><div class="pc-v blu" style="font-size:20px">39/39 จุด ✓</div></div>
-      <div class="pcard"><div class="pc-l">⛏ Coring (ทำแล้ว)</div><div class="pc-v pur" style="font-size:20px">7/39 จุด</div></div>
+      <div class="pcard"><div class="pc-l">🔵 Cabling</div><div class="pc-v blu" style="font-size:20px" id="pc-cab-large">–</div></div>
+      <div class="pcard"><div class="pc-l">⛏ Coring (ทำแล้ว)</div><div class="pc-v pur" style="font-size:20px" id="pc-cor-large">–</div></div>
       <div class="pcard"><div class="pc-l">คาดว่าจะเสร็จ Coring</div><div class="pc-v grn" style="font-size:20px">27 มิ.ย. 69 <span style="font-size:11px">(ก่อน 13 วัน)</span></div></div>
     </div>
   </div>
@@ -496,8 +496,25 @@ async function loadData(){
     _set('pc-cor-summary', ov.cor_done+'/'+TOTAL+' จุด ('+ov.cor_pct+'%)');
     _set('pc-combined', ov.combined_pct+'%');
     _set('sync-ts', new Date(d.last_updated).toLocaleTimeString('th-TH'));
+    // วันเหลือ
+    const _projEnd = new Date(ov.proj_end+'T00:00:00');
+    const _now = new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Bangkok'}));
+    const _daysLeft = Math.max(0, Math.ceil((_projEnd-_now)/86400000));
+    _set('pill-days', _daysLeft);
+    _set('pill-days-sub', 'ถึง '+_projEnd.toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'2-digit'}));
+    // proj dates (Thai format)
+    const _fmtTH=dt=>new Date(dt+'T00:00:00').toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'2-digit'});
+    _set('pc-days-left', _daysLeft+' วัน');
+    _set('pc-proj-start', _fmtTH(ov.proj_start));
+    _set('pc-proj-end',   _fmtTH(ov.proj_end));
+    // sum-sub
+    _set('sum-sub', 'ช่วงดำเนินงาน: '+_fmtTH(ov.proj_start)+' – '+_fmtTH(ov.proj_end)+' | '+N_WK+' สัปดาห์ | Cabling '+TOTAL+' จุด + Coring '+TOTAL+' จุด');
+    // cabling summaries
+    _set('pc-cab-summary', ov.cab_done+'/'+TOTAL+' จุด ✓');
+    _set('pc-cab-large',   ov.cab_done+'/'+TOTAL+' จุด ✓');
+    _set('pc-cor-large',   ov.cor_done+'/'+TOTAL+' จุด');
     // rebuild charts
-    buildGauge();buildBurndown();buildDonut();buildProgAll();buildProgSmall();buildHeatmap();
+    buildGauge();buildBurndown();buildDonut(ov.cab_done,ov.cor_done,TOTAL);buildProgAll();buildProgSmall();buildHeatmap();
   }catch(e){console.error('loadData error:',e);}
 }
 // ── Helper: carry-forward ──────────────────────────────────────────────────
@@ -600,15 +617,17 @@ function buildBurndown(){
   });
 }
 
-function buildDonut(){
+function buildDonut(cab_done, cor_done, total){
+  if(cab_done===undefined){ cab_done=TOTAL; cor_done=0; total=TOTAL; }
+  const remaining=Math.max(0,total*2-cab_done-cor_done);
   const el=document.getElementById('donut-c'); if(!el) return;
   const ex=Chart.getChart(el); if(ex) ex.destroy();
   new Chart(el,{
     type:'doughnut',
     data:{
-      labels:['Cabling 100%','Coring 17.9%','เหลือ 32 จุด'],
+      labels:['Cabling '+Math.round(cab_done/total*100)+'%','Coring '+Math.round(cor_done/total*100)+'%','เหลือ '+remaining+' จุด'],
       datasets:[{
-        data:[39,7,32],
+        data:[cab_done,cor_done,remaining],
         backgroundColor:['#0ea5e9','#7c3aed','#e2e8f0'],
         borderWidth:3,borderColor:'#fff'
       }]
@@ -619,7 +638,7 @@ function buildDonut(){
       plugins:{
         legend:{display:true,position:'right',labels:{font:{size:11},boxWidth:14,padding:12,color:'#1e293b'}},
         tooltip:{backgroundColor:'rgba(30,27,75,.92)',callbacks:{
-          label:ctx=>({0:' Cabling: 39/39 (100%)',1:' Coring: 7/39 (17.9%)',2:' เหลือ: 32 จุด'}[ctx.dataIndex]||'')
+          label:ctx=>([' Cabling: '+cab_done+'/'+total+' ('+Math.round(cab_done/total*100)+'%)',' Coring: '+cor_done+'/'+total+' ('+Math.round(cor_done/total*100)+'%)',' เหลือ: '+remaining+' จุด'][ctx.dataIndex]||'')
         }}
       }
     }
