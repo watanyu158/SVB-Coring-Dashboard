@@ -434,64 +434,59 @@ main{max-width:1280px;margin:0 auto;padding:14px 20px}
 <script>
 const API=window.location.hostname==='localhost'?'http://localhost:3002':'https://svb-coring-api.onrender.com';
 
-// ════ DATA ════
-const N_WK=38,TOTAL=78;
-const WK_SHORT=["W.1","W.2","W.3","W.4","W.5","W.6","W.7","W.8","W.9","W.10","W.11","W.12","W.13","W.14","W.15","W.16","W.17","W.18","W.19","W.20","W.21","W.22","W.23","W.24","W.25","W.26","W.27","W.28","W.29","W.30","W.31","W.32","W.33","W.34","W.35","W.36","W.37","W.38"];
-const WK_DATES=["8/11-14/11","15/11-21/11","22/11-28/11","29/11-5/12","6/12-12/12","13/12-19/12","20/12-26/12","27/12-2/1","3/1-9/1","10/1-16/1","17/1-23/1","24/1-30/1","31/1-6/2","7/2-13/2","14/2-20/2","21/2-27/2","28/2-6/3","7/3-13/3","14/3-20/3","21/3-27/3","28/3-3/4","4/4-10/4","11/4-17/4","18/4-24/4","25/4-1/5","2/5-8/5","9/5-15/5","16/5-22/5","23/5-29/5","30/5-5/6","6/6-12/6","13/6-19/6","20/6-26/6","27/6-3/7","4/7-10/7","11/7-17/7","18/7-24/7","25/7-31/7"];
-const WK_LABEL=WK_SHORT.map((w,i)=>w+'\n'+(WK_DATES[i]?WK_DATES[i].split('-')[0]:''));
+// ════ DATA — populated from API ════
+let N_WK=38, TOTAL=39;
+let WK_SHORT=[], WK_DATES=[], WK_LABEL=[];
+let WK_CAB_P=[], WK_CAB_A=[], WK_COR_P=[], WK_COR_A=[];
+let COM_PLAN=[], COM_ACT_RAW=[], CAB_CUM=[], COR_CUM=[];
+let BD_PLAN=[], BD_ACT=[];
+let LOC_DATA=[], GATE_DATA=[];
+let _projStart=new Date(2025,10,8);
+let TODAY_WK=0, TODAY_FRAC=0;
 
-const WK_CAB_P=[2,2,7,3,4,6,2,0,2,6,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-const WK_CAB_A=[2,2,7,3,4,6,2,null,2,6,5,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
-const WK_COR_P=[0,0,0,0,0,0,0,0,0,0,1,0,0,1,2,1,1,1,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0];
-const WK_COR_A=[null,null,null,null,null,null,null,null,null,null,1,null,null,1,2,1,1,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
+function _recomputeToday(){
+  const _t=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Bangkok'}));
+  const _d=Math.floor((_t-_projStart)/86400000);
+  TODAY_WK=Math.max(0,Math.min(N_WK-1,Math.floor(_d/7)));
+  TODAY_FRAC=(_d%7)/7;
+}
+_recomputeToday();
 
-const COM_PLAN=[2.56,5.13,14.1,17.95,23.08,30.77,33.33,33.33,35.9,43.59,51.28,51.28,51.28,52.56,55.13,56.41,57.69,58.97,61.54,64.1,66.67,69.23,69.23,71.79,74.36,76.92,79.49,82.05,84.62,87.18,89.74,92.31,94.87,97.44,100.0,100.0,100.0,100.0];
-const COM_ACT_RAW=[2.56,5.13,14.1,17.95,23.08,30.77,33.33,33.33,35.9,43.59,51.28,51.28,51.28,52.56,55.13,56.41,57.69,58.97,58.97,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
-
-const CAB_CUM=[5.13,10.26,28.21,35.9,46.15,61.54,66.67,66.67,71.79,87.18,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100];
-const COR_CUM=[0,0,0,0,0,0,0,0,0,0,2.56,2.56,2.56,5.13,10.26,12.82,15.38,17.95,20.51,25.64,30.77,35.9,35.9,41.03,46.15,51.28,56.41,61.54,66.67,71.79,76.92,82.05,87.18,92.31,97.44,97.44,97.44,100.0];
-
-const BD_PLAN=[76,74,67,64,60,54,52,52,50,44,36,36,36,35,31,30,29,28,24,20,16,12,12,8,4,0,0,0,0,0,0,0,0,0,0,0,0,0];
-const BD_ACT=[76,74,67,64,60,54,52,52,50,44,36,36,36,35,31,30,29,28,28,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
-
-const LOC_DATA=[
-  {n:'Concourse C',cab_p:10,cab_d:10,cor_p:10,cor_d:3},
-  {n:'Concourse E',cab_p:10,cab_d:10,cor_p:10,cor_d:3},
-  {n:'Concourse D',cab_p:8, cab_d:8, cor_p:8, cor_d:0},
-  {n:'Concourse F',cab_p:6, cab_d:6, cor_p:6, cor_d:1},
-  {n:'Concourse G',cab_p:5, cab_d:5, cor_p:5, cor_d:0},
-];
-
-// Gate data for heatmap
-const GATE_DATA=[
-  {gate:'C1',loc:'Concourse C',cab:1,cor:0},{gate:'C2',loc:'Concourse C',cab:1,cor:1},
-  {gate:'C3',loc:'Concourse C',cab:1,cor:0},{gate:'C4',loc:'Concourse C',cab:1,cor:0},
-  {gate:'C5',loc:'Concourse C',cab:1,cor:0},{gate:'C6',loc:'Concourse C',cab:1,cor:0},
-  {gate:'C7',loc:'Concourse C',cab:1,cor:1},{gate:'C8',loc:'Concourse C',cab:1,cor:1},
-  {gate:'C9',loc:'Concourse C',cab:1,cor:0},{gate:'C10',loc:'Concourse C',cab:1,cor:0},
-  {gate:'D1',loc:'Concourse D',cab:1,cor:0},{gate:'D2',loc:'Concourse D',cab:1,cor:0},
-  {gate:'D3',loc:'Concourse D',cab:1,cor:0},{gate:'D4',loc:'Concourse D',cab:1,cor:0},
-  {gate:'D5',loc:'Concourse D',cab:1,cor:0},{gate:'D6',loc:'Concourse D',cab:1,cor:0},
-  {gate:'D7',loc:'Concourse D',cab:1,cor:0},{gate:'D8',loc:'Concourse D',cab:1,cor:0},
-  {gate:'E1',loc:'Concourse E',cab:1,cor:1},{gate:'E2',loc:'Concourse E',cab:1,cor:0},
-  {gate:'E3',loc:'Concourse E',cab:1,cor:0},{gate:'E4',loc:'Concourse E',cab:1,cor:0},
-  {gate:'E5',loc:'Concourse E',cab:1,cor:1},{gate:'E6',loc:'Concourse E',cab:1,cor:1},
-  {gate:'E7',loc:'Concourse E',cab:1,cor:0},{gate:'E8',loc:'Concourse E',cab:1,cor:0},
-  {gate:'E9',loc:'Concourse E',cab:1,cor:0},{gate:'E10',loc:'Concourse E',cab:1,cor:0},
-  {gate:'F1',loc:'Concourse F',cab:1,cor:0},{gate:'F2',loc:'Concourse F',cab:1,cor:0},
-  {gate:'F3',loc:'Concourse F',cab:1,cor:1},{gate:'F4',loc:'Concourse F',cab:1,cor:0},
-  {gate:'F5',loc:'Concourse F',cab:1,cor:0},{gate:'F6',loc:'Concourse F',cab:1,cor:0},
-  {gate:'G1',loc:'Concourse G',cab:1,cor:0},{gate:'G2',loc:'Concourse G',cab:1,cor:0},
-  {gate:'G3',loc:'Concourse G',cab:1,cor:0},{gate:'G4',loc:'Concourse G',cab:1,cor:0},
-  {gate:'G5',loc:'Concourse G',cab:1,cor:0},
-];
-
-const _projStart=new Date(2025,10,8);
-const _today=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Bangkok'}));
-const _days=Math.floor((_today-_projStart)/86400000);
-const TODAY_WK=Math.max(0,Math.min(N_WK-1,Math.floor(_days/7)));
-const TODAY_FRAC=(_days%7)/7;
-
+async function loadData(){
+  try{
+    const d=await fetch(API+'/api/summary').then(r=>r.json());
+    const ov=d.overall, wk=d.weekly;
+    TOTAL=ov.total; N_WK=wk.n_wk;
+    WK_SHORT.length=0; wk.labels.forEach(v=>WK_SHORT.push(v));
+    WK_DATES.length=0; wk.dates.forEach(v=>WK_DATES.push(v));
+    WK_LABEL.length=0; WK_SHORT.forEach((w,i)=>WK_LABEL.push(w+'\n'+(WK_DATES[i]?WK_DATES[i].split('-')[0]:'')));
+    WK_CAB_P.length=0; wk.cab_plan.forEach(v=>WK_CAB_P.push(v));
+    WK_CAB_A.length=0; wk.cab_act.forEach(v=>WK_CAB_A.push(v));
+    WK_COR_P.length=0; wk.cor_plan.forEach(v=>WK_COR_P.push(v));
+    WK_COR_A.length=0; wk.cor_act.forEach(v=>WK_COR_A.push(v));
+    COM_PLAN.length=0; wk.cum_comb_plan.forEach(v=>COM_PLAN.push(v));
+    COM_ACT_RAW.length=0; wk.cum_comb_act.forEach(v=>COM_ACT_RAW.push(v));
+    CAB_CUM.length=0; wk.cum_cab_plan.forEach(v=>CAB_CUM.push(v));
+    COR_CUM.length=0; wk.cum_cor_plan.forEach(v=>COR_CUM.push(v));
+    BD_PLAN.length=0; d.burndown.plan.forEach(v=>BD_PLAN.push(v));
+    BD_ACT.length=0;  d.burndown.act.forEach(v=>BD_ACT.push(v));
+    LOC_DATA.length=0; d.locations.forEach(l=>LOC_DATA.push({n:l.n,cab_p:l.cab_p,cab_d:l.cab_d,cor_p:l.cor_p,cor_d:l.cor_d}));
+    GATE_DATA.length=0; d.gates.forEach(g=>GATE_DATA.push({gate:g.gate,loc:g.loc,cab:g.cab,cor:g.cor}));
+    _projStart=new Date(ov.proj_start+'T00:00:00');
+    _recomputeToday();
+    // อัพเดต summary pills ถ้ามี
+    const _e=id=>document.getElementById(id);
+    if(_e('stat-total'))   _e('stat-total').textContent=TOTAL;
+    if(_e('stat-cab'))     _e('stat-cab').textContent=ov.cab_done;
+    if(_e('stat-cor'))     _e('stat-cor').textContent=ov.cor_done;
+    if(_e('stat-cab-pct')) _e('stat-cab-pct').textContent=ov.cab_pct+'%';
+    if(_e('stat-cor-pct')) _e('stat-cor-pct').textContent=ov.cor_pct+'%';
+    if(_e('stat-comb'))    _e('stat-comb').textContent=ov.combined_pct+'%';
+    if(_e('sync-ts'))      _e('sync-ts').textContent=new Date(d.last_updated).toLocaleTimeString('th-TH');
+    // rebuild charts
+    buildGauge();buildBurndown();buildDonut();buildProgAll();buildProgSmall();buildHeatmap();
+  }catch(e){console.error('loadData error:',e);}
+}
 // ── Helper: carry-forward ──────────────────────────────────────────────────
 function carry(raw){
   let _l=null;
