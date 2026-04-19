@@ -351,7 +351,7 @@ main{max-width:1280px;margin:0 auto;padding:14px 20px}
   <div class="card">
     <div class="ch"><div class="chi" style="background:var(--cor-l);color:var(--cor)">📈</div>% สะสมรวม รายสัปดาห์
       <div style="display:flex;gap:8px;margin-left:auto;font-size:11px;font-weight:400">
-        <span style="color:var(--text3)">แผน</span><span style="color:var(--cor);font-weight:600">จริง</span>
+        <span style="color:var(--text3)" id="cum-plan-lbl">แผน: –%</span><span style="color:var(--cor);font-weight:600" id="cum-act-lbl">จริง: –%</span>
       </div>
     </div>
     <div style="height:200px"><canvas id="cum-wk-c"></canvas></div>
@@ -770,30 +770,31 @@ function buildWeekly(){
     const ctx2=chart.ctx;
     chart.data.datasets.forEach((ds,di)=>{
       const meta=chart.getDatasetMeta(di);if(meta.hidden)return;
-      // actual ใช้ COM_ACT_RAW หา lastIdx จริง (ไม่ carry-forward)
-      const rawRef=di===1?COM_ACT_RAW:ds.data;
-      const lastIdx=rawRef.reduce((a,v,j)=>v!=null?j:a,-1);
-      if(lastIdx<0)return;
-      // แสดงแค่จุดสุดท้าย (มุมขวา) เท่านั้น
-      const pt=meta.data[lastIdx];
-      const v=ds.data[lastIdx];
-      if(!pt||v==null)return;
-      ctx2.save();
-      ctx2.font=di===0?'bold 10px Segoe UI':'bold 10px Segoe UI';
-      ctx2.fillStyle=di===0?'#94a3b8':'#7c3aed';
-      ctx2.textAlign='left';
-      ctx2.textBaseline='middle';
-      ctx2.fillText(v.toFixed(1)+'%',pt.x+5,di===0?pt.y-6:pt.y+6);
-      ctx2.restore();
+      const lastIdx=ds.data.reduce((a,v,j)=>v!=null?j:a,-1);
+      meta.data.forEach((pt,i)=>{
+        const v=ds.data[i];if(v==null)return;
+        if(i!==lastIdx&&i%4!==0)return;
+        ctx2.save();ctx2.font=di===0?'9px Segoe UI':'bold 9px Segoe UI';
+        ctx2.fillStyle=di===0?'#94a3b8':'#7c3aed';ctx2.textAlign='center';
+        ctx2.textBaseline=di===0?'bottom':'top';
+        ctx2.fillText(v.toFixed(1)+'%',pt.x,di===0?pt.y-4:pt.y+4);ctx2.restore();
+      });
     });
   }};
+  // อัพเดท label แผน/จริง มุมขวา
+  const _planLast=COM_PLAN.reduce((a,v,i)=>v!=null?{v,i}:a,{v:null,i:-1});
+  const _actLast=COM_ACT_RAW.reduce((a,v,i)=>v!=null?{v,i}:a,{v:null,i:-1});
+  const _elPlan=document.getElementById('cum-plan-lbl');
+  const _elAct=document.getElementById('cum-act-lbl');
+  if(_elPlan&&_planLast.v!=null) _elPlan.textContent='แผน: '+_planLast.v.toFixed(1)+'%';
+  if(_elAct&&_actLast.v!=null)   _elAct.textContent='จริง: '+_actLast.v.toFixed(1)+'%';
   const e2=Chart.getChart(document.getElementById('cum-wk-c'));if(e2)e2.destroy();
   new Chart(document.getElementById('cum-wk-c'),{type:'line',plugins:[todayPlugin('cw'),cumLbl],
     data:{labels:WK_LABEL,datasets:[
       {label:'แผน %',data:COM_PLAN,borderColor:'#94a3c4',borderDash:[5,3],borderWidth:1.5,pointRadius:2,tension:.3,fill:false},
       {label:'จริง %',data:actFull,borderColor:'#7c3aed',borderWidth:2,pointRadius:(c)=>c.parsed&&c.parsed.y!=null?2:0,pointBackgroundColor:'#7c3aed',tension:.3,fill:false,spanGaps:false},
     ]},
-    options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:26,right:48,bottom:10}},
+    options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:26,bottom:10}},
       interaction:{mode:'index',intersect:false},
       plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(30,27,75,.92)',bodyColor:'rgba(255,255,255,.8)',callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y!=null?c.parsed.y.toFixed(1)+'%':'–'}`}}},
       scales:{x:{ticks:{font:{size:9},maxRotation:45,color:'#94a3c4'},grid:{display:false}},y:{min:0,max:100,ticks:{font:{size:10},callback:v=>v+'%'},grid:{color:'#f0f4ff'}}}}
