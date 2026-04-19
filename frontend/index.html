@@ -193,40 +193,40 @@ main{max-width:1280px;margin:0 auto;padding:14px 20px}
       <div class="ins-head">
         <div class="ins-icon">⛏</div>
         <div>
-          <div class="ins-big">ทำได้ <em>2.4</em> จุด/สัปดาห์
-            <span class="ins-tag">✓ เกินเป้า 14%</span>
+          <div class="ins-big">ทำได้ <em id="ins-rate">–</em> จุด/สัปดาห์
+            <span class="ins-tag" id="ins-tag">–</span>
           </div>
         </div>
       </div>
       <div class="ins-rate">
         <span class="ins-rl">ทำได้</span>
-        <span class="ins-rv">2.4</span>
+        <span class="ins-rv" id="ins-rv-actual">–</span>
         <span class="ins-arrow">→</span>
         <span class="ins-rl">เป้า Coring</span>
-        <span class="ins-rv ins-rt">2.1</span>
+        <span class="ins-rv ins-rt" id="ins-rv-target">–</span>
         <span class="ins-rl">จุด/สัปดาห์</span>
       </div>
-      <div class="ins-note">✅ ถ้าคงอัตรานี้ → คาดเสร็จ 27 มิ.ย. 69 (ก่อนกำหนด 13 วัน)</div>
+      <div class="ins-note" id="ins-note">–</div>
     </div>
     <div class="ins-gauge">
       <div class="ins-gauge-wrap">
         <canvas id="gauge-c" width="90" height="90"></canvas>
-        <div class="ins-gc"><div class="gp" id="gauge-pct">59%</div></div>
+        <div class="ins-gc"><div class="gp" id="gauge-pct">–</div></div>
       </div>
       <div class="ins-kpi">
         <div class="ins-kpi-title">ความคืบหน้า</div>
-        <div class="ins-kpi-row"><span class="ins-kpi-lbl">Cabling</span><span class="ins-kpi-val" style="color:#7dd3fc">100%</span></div>
+        <div class="ins-kpi-row"><span class="ins-kpi-lbl">Cabling</span><span class="ins-kpi-val" style="color:#7dd3fc" id="kpi-cab-pct">–</span></div>
         <div class="ins-kpi-row"><span class="ins-kpi-lbl">Coring</span><span class="ins-kpi-val" style="color:#c4b5fd" id="kpi-cor-pct">–</span></div>
-        <div class="ins-kpi-row"><span class="ins-kpi-lbl">รวม</span><span class="ins-kpi-val">59%</span></div>
+        <div class="ins-kpi-row"><span class="ins-kpi-lbl">รวม</span><span class="ins-kpi-val" id="kpi-combined-pct">–</span></div>
       </div>
     </div>
   </div>
   <div class="ins-pills">
-    <div class="ins-pill"><div class="ip-icon">🔵</div><div><div class="ip-val" style="color:#7dd3fc">39</div><div class="ip-lbl">Cabling</div><div class="ip-sub">100% ✓</div></div></div>
+    <div class="ins-pill"><div class="ip-icon">🔵</div><div><div class="ip-val" style="color:#7dd3fc" id="pill-cab">–</div><div class="ip-lbl">Cabling</div><div class="ip-sub" id="pill-cab-pct">–</div></div></div>
     <div class="ins-pill"><div class="ip-icon">⛏</div><div><div class="ip-val" id="pill-cor">–</div><div class="ip-lbl">Coring</div><div class="ip-sub" id="pill-cor-pct">–</div></div></div>
-    <div class="ins-pill"><div class="ip-icon">📦</div><div><div class="ip-val" id="pill-rem">32</div><div class="ip-lbl">Coring เหลือ</div><div class="ip-sub">จุด</div></div></div>
+    <div class="ins-pill"><div class="ip-icon">📦</div><div><div class="ip-val" id="pill-rem">–</div><div class="ip-lbl">Coring เหลือ</div><div class="ip-sub">จุด</div></div></div>
     <div class="ins-pill"><div class="ip-icon">⏱</div><div><div class="ip-val" id="pill-days">–</div><div class="ip-lbl">วันเหลือ</div><div class="ip-sub" id="pill-days-sub">–</div></div></div>
-    <div class="ins-pill"><div class="ip-icon">📅</div><div><div class="ip-val">27 มิ.ย.</div><div class="ip-lbl">คาดเสร็จ</div><div class="ip-sub">ก่อนกำหนด</div></div></div>
+    <div class="ins-pill"><div class="ip-icon">📅</div><div><div class="ip-val" id="pill-finish">–</div><div class="ip-lbl">คาดเสร็จ</div><div class="ip-sub" id="pill-finish-sub">–</div></div></div>
   </div>
 </div>
 
@@ -496,19 +496,45 @@ async function loadData(){
     _set('pc-cor-summary', ov.cor_done+'/'+TOTAL+' จุด ('+ov.cor_pct+'%)');
     _set('pc-combined', ov.combined_pct+'%');
     _set('sync-ts', new Date(d.last_updated).toLocaleTimeString('th-TH'));
-    // วันเหลือ
+    // คำนวณ insight
     const _projEnd = new Date(ov.proj_end+'T00:00:00');
+    const _projStart2 = new Date(ov.proj_start+'T00:00:00');
     const _now = new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Bangkok'}));
     const _daysLeft = Math.max(0, Math.ceil((_projEnd-_now)/86400000));
+    const _weeksElapsed = Math.max(1, Math.ceil((_now-_projStart2)/604800000));
+    const _actualRate = Math.round(ov.cor_done/_weeksElapsed*10)/10;
+    const _totalWeeks = Math.ceil((_projEnd-_projStart2)/604800000);
+    const _targetRate = _totalWeeks>0 ? Math.round(TOTAL/_totalWeeks*10)/10 : 0;
+    const _pctMore = _targetRate>0 ? Math.round((_actualRate/_targetRate-1)*100) : 0;
+    const _remaining = TOTAL - ov.cor_done;
+    const _weeksToFinish = _actualRate>0 ? Math.ceil(_remaining/_actualRate) : 999;
+    const _finishDate = new Date(_now); _finishDate.setDate(_finishDate.getDate()+_weeksToFinish*7);
+    const _daysEarly = Math.round((_projEnd-_finishDate)/86400000);
+    const _fmtTH=dt=>(dt instanceof Date?dt:new Date(dt+'T00:00:00')).toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'2-digit'});
+    // insight elements
+    _set('ins-rate', _actualRate);
+    _set('ins-rv-actual', _actualRate);
+    _set('ins-rv-target', _targetRate);
+    _set('ins-tag', _pctMore<=0 ? '✓ เกินเป้า '+Math.abs(_pctMore)+'%' : '⚠ ต่ำกว่าเป้า '+_pctMore+'%');
+    _set('ins-note', _daysEarly>0
+      ? '✅ ถ้าคงอัตรานี้ → คาดเสร็จ '+_fmtTH(_finishDate)+' (ก่อนกำหนด '+_daysEarly+' วัน)'
+      : '⚠ คาดเสร็จ '+_fmtTH(_finishDate)+' (ช้ากว่ากำหนด '+Math.abs(_daysEarly)+' วัน)');
+    _set('gauge-pct', ov.combined_pct+'%');
+    _set('kpi-cab-pct', ov.cab_pct+'%');
+    _set('kpi-combined-pct', ov.combined_pct+'%');
+    _set('pill-cab', ov.cab_done);
+    _set('pill-cab-pct', ov.cab_pct+'% ✓');
+    _set('pill-rem', _remaining);
+    _set('pill-finish', _fmtTH(_finishDate).split(' ').slice(0,2).join(' '));
+    _set('pill-finish-sub', _daysEarly>0?'ก่อนกำหนด':'ช้ากว่ากำหนด');
+    // วันเหลือ
     _set('pill-days', _daysLeft);
-    _set('pill-days-sub', 'ถึง '+_projEnd.toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'2-digit'}));
-    // proj dates (Thai format)
-    const _fmtTH=dt=>new Date(dt+'T00:00:00').toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'2-digit'});
+    _set('pill-days-sub', 'ถึง '+_fmtTH(_projEnd));
     _set('pc-days-left', _daysLeft+' วัน');
-    _set('pc-proj-start', _fmtTH(ov.proj_start));
-    _set('pc-proj-end',   _fmtTH(ov.proj_end));
+    _set('pc-proj-start', _fmtTH(_projStart2));
+    _set('pc-proj-end',   _fmtTH(_projEnd));
     // sum-sub
-    _set('sum-sub', 'ช่วงดำเนินงาน: '+_fmtTH(ov.proj_start)+' – '+_fmtTH(ov.proj_end)+' | '+N_WK+' สัปดาห์ | Cabling '+TOTAL+' จุด + Coring '+TOTAL+' จุด');
+    _set('sum-sub', 'ช่วงดำเนินงาน: '+_fmtTH(_projStart2)+' – '+_fmtTH(_projEnd)+' | '+N_WK+' สัปดาห์ | Cabling '+TOTAL+' จุด + Coring '+TOTAL+' จุด');
     // cabling summaries
     _set('pc-cab-summary', ov.cab_done+'/'+TOTAL+' จุด ✓');
     _set('pc-cab-large',   ov.cab_done+'/'+TOTAL+' จุด ✓');
