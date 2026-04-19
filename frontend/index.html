@@ -732,7 +732,7 @@ function buildWeekly(){
   new Chart(document.getElementById('weekly-bar-c'),{type:'bar',plugins:[wkBarLbl],
     data:{labels:WK_LABEL,datasets:[
       {label:'Cabling จริง',data:WK_CAB_A,backgroundColor:'rgba(14,165,233,.75)',borderRadius:3,stack:'s',order:2},
-      {label:'Coring จริง', data:WK_COR_A,backgroundColor:'rgba(124,58,237,0.04)',borderRadius:3,stack:'s',order:2},
+      {label:'Coring จริง', data:WK_COR_A,backgroundColor:'rgba(124,58,237,0.75)',borderRadius:3,stack:'s',order:2},
       {label:'แผนรวม',type:'line',data:WK_CAB_P.map((v,i)=>v+WK_COR_P[i]),borderColor:'#94a3c4',borderDash:[4,3],borderWidth:1.5,pointRadius:0,fill:false,order:1,stack:undefined},
     ]},
     options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:16}},
@@ -823,7 +823,7 @@ function buildLocation(){
   new Chart(document.getElementById('loc-bar-c'),{type:'bar',plugins:[locLbl],
     data:{labels:LOC_DATA.map(d=>d.n),datasets:[
       {label:'Cabling จริง',data:LOC_DATA.map(d=>d.cab_d),backgroundColor:'rgba(14,165,233,.75)',borderRadius:3,order:2},
-      {label:'Coring จริง', data:LOC_DATA.map(d=>d.cor_d),backgroundColor:'rgba(124,58,237,0.04)',borderRadius:3,order:2},
+      {label:'Coring จริง', data:LOC_DATA.map(d=>d.cor_d),backgroundColor:'rgba(124,58,237,0.75)',borderRadius:3,order:2},
       {label:'เป้า Cabling',type:'line',data:LOC_DATA.map(d=>d.cab_p),borderColor:'#0ea5e9',borderDash:[4,3],borderWidth:1.5,pointRadius:5,pointStyle:'circle',fill:false,order:1},
       {label:'เป้า Coring', type:'line',data:LOC_DATA.map(d=>d.cor_p),borderColor:'#7c3aed',borderDash:[4,3],borderWidth:1.5,pointRadius:5,pointStyle:'circle',fill:false,order:1},
     ]},
