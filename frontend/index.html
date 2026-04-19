@@ -444,9 +444,10 @@ let LOC_DATA=[], GATE_DATA=[];
 let _projStart=new Date(2025,10,8);
 let TODAY_WK=0, TODAY_FRAC=0;
 
+let _today=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Bangkok'}));
 function _recomputeToday(){
-  const _t=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Bangkok'}));
-  const _d=Math.floor((_t-_projStart)/86400000);
+  _today=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Bangkok'}));
+  const _d=Math.floor((_today-_projStart)/86400000);
   TODAY_WK=Math.max(0,Math.min(N_WK-1,Math.floor(_d/7)));
   TODAY_FRAC=(_d%7)/7;
 }
