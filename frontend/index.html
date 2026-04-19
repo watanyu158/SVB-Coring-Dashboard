@@ -781,13 +781,13 @@ function buildWeekly(){
       });
     });
   }};
-  // อัพเดท label แผน/จริง มุมขวา
-  const _planLast=COM_PLAN.reduce((a,v,i)=>v!=null?{v,i}:a,{v:null,i:-1});
-  const _actLast=COM_ACT_RAW.reduce((a,v,i)=>v!=null?{v,i}:a,{v:null,i:-1});
+  // อัพเดท label แผน/จริง ณ วันนี้
+  const _planNowV=COM_PLAN[Math.min(TODAY_WK,COM_PLAN.length-1)];
+  const _actNowV=COM_ACT_RAW.reduce((a,v,i)=>i<=TODAY_WK&&v!=null?v:a,null);
   const _elPlan=document.getElementById('cum-plan-lbl');
   const _elAct=document.getElementById('cum-act-lbl');
-  if(_elPlan&&_planLast.v!=null) _elPlan.textContent='แผน: '+_planLast.v.toFixed(1)+'%';
-  if(_elAct&&_actLast.v!=null)   _elAct.textContent='จริง: '+_actLast.v.toFixed(1)+'%';
+  if(_elPlan&&_planNowV!=null) _elPlan.textContent='แผน: '+_planNowV.toFixed(1)+'%';
+  if(_elAct&&_actNowV!=null)   _elAct.textContent='จริง: '+_actNowV.toFixed(1)+'%';
   const e2=Chart.getChart(document.getElementById('cum-wk-c'));if(e2)e2.destroy();
   new Chart(document.getElementById('cum-wk-c'),{type:'line',plugins:[todayPlugin('cw'),cumLbl],
     data:{labels:WK_LABEL,datasets:[
