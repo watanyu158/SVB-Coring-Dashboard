@@ -831,7 +831,7 @@ function showTab(n,btn){
 }
 
 async function manualRefresh(){
-  document.getElementById('sync-ts').textContent=new Date().toLocaleTimeString('th-TH');
+  await loadData();
 }
 
 async function exportPDF(){
@@ -878,9 +878,10 @@ ${mn.outerHTML}
 }
 
 window.addEventListener('DOMContentLoaded',()=>{
+  // render charts ด้วย default data ก่อน แล้ว loadData จะ rebuild
   buildGauge();buildBurndown();buildDonut();buildProgAll();buildProgSmall();
   buildHeatmap();
-  manualRefresh();
+  loadData();
 });
 </script>
 </body>
