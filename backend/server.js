@@ -125,10 +125,16 @@ function parseExcel() {
     cor_pct: v.cor_p>0?Math.round(v.cor_d/v.cor_p*100):0,
   }));
 
+  // หา cor_start และ cor_last จาก actual dates
+  const corActDates = gates.filter(g=>g.cor_a).map(g=>g.cor_a).sort();
+  const corStart = corActDates.length ? corActDates[0] : null;
+  const corLast  = corActDates.length ? corActDates[corActDates.length-1] : null;
+
   return {
     overall: {
       total, cab_done, cor_done, cab_pct, cor_pct, combined_pct:combined,
       proj_start:projStart, proj_end:projEnd,
+      cor_start:corStart, cor_last:corLast,
     },
     weekly: {
       labels:wkLabels, dates:wkDates, n_wk:nWk,

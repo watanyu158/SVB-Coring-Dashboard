@@ -501,10 +501,15 @@ async function loadData(){
     const _projStart2 = new Date(ov.proj_start+'T00:00:00');
     const _now = new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Bangkok'}));
     const _daysLeft = Math.max(0, Math.ceil((_projEnd-_now)/86400000));
-    const _weeksElapsed = Math.max(1, Math.ceil((_now-_projStart2)/604800000));
+    // rate คำนวณจากวันเริ่ม coring จริง (cor_start) ไม่ใช่ proj_start
+    const _corStart = ov.cor_start ? new Date(ov.cor_start+'T00:00:00') : _projStart2;
+    const _corLast  = ov.cor_last  ? new Date(ov.cor_last+'T00:00:00')  : _now;
+    const _weeksElapsed = Math.max(1, Math.ceil((_corLast-_corStart)/604800000)+1);
     const _actualRate = Math.round(ov.cor_done/_weeksElapsed*10)/10;
-    const _totalWeeks = Math.ceil((_projEnd-_projStart2)/604800000);
-    const _targetRate = _totalWeeks>0 ? Math.round(TOTAL/_totalWeeks*10)/10 : 0;
+    // target rate คำนวณจาก coring remaining / weeks left
+    const _weeksLeft = Math.max(1, Math.ceil((_projEnd-_now)/604800000));
+    const _corRemaining = TOTAL - ov.cor_done;
+    const _targetRate = _weeksLeft>0 ? Math.round(_corRemaining/_weeksLeft*10)/10 : 0;
     const _pctMore = _targetRate>0 ? Math.round((_actualRate/_targetRate-1)*100) : 0;
     const _remaining = TOTAL - ov.cor_done;
     const _weeksToFinish = _actualRate>0 ? Math.ceil(_remaining/_actualRate) : 999;
