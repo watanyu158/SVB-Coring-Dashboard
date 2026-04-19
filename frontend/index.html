@@ -770,20 +770,21 @@ function buildWeekly(){
     const ctx2=chart.ctx;
     chart.data.datasets.forEach((ds,di)=>{
       const meta=chart.getDatasetMeta(di);if(meta.hidden)return;
-      // raw data (ไม่ carry-forward) สำหรับ actual
-      const rawData=di===1?COM_ACT_RAW:ds.data;
-      const lastIdx=rawData.reduce((a,v,j)=>v!=null?j:a,-1);
-      // แสดงเฉพาะ: จุดสุดท้าย + ทุก 5 จุด
-      meta.data.forEach((pt,i)=>{
-        const v=ds.data[i];if(v==null)return;
-        // actual: แสดงเฉพาะ point ที่มีค่าจริง (rawData!=null)
-        if(di===1&&rawData[i]==null)return;
-        if(i!==lastIdx&&i%5!==0)return;
-        ctx2.save();ctx2.font=di===0?'9px Segoe UI':'bold 9px Segoe UI';
-        ctx2.fillStyle=di===0?'#94a3b8':'#7c3aed';ctx2.textAlign='center';
-        ctx2.textBaseline=di===0?'bottom':'top';
-        ctx2.fillText(v.toFixed(1)+'%',pt.x,di===0?pt.y-4:pt.y+4);ctx2.restore();
-      });
+      // actual ใช้ COM_ACT_RAW หา lastIdx จริง (ไม่ carry-forward)
+      const rawRef=di===1?COM_ACT_RAW:ds.data;
+      const lastIdx=rawRef.reduce((a,v,j)=>v!=null?j:a,-1);
+      if(lastIdx<0)return;
+      // แสดงแค่จุดสุดท้าย (มุมขวา) เท่านั้น
+      const pt=meta.data[lastIdx];
+      const v=ds.data[lastIdx];
+      if(!pt||v==null)return;
+      ctx2.save();
+      ctx2.font=di===0?'bold 10px Segoe UI':'bold 10px Segoe UI';
+      ctx2.fillStyle=di===0?'#94a3b8':'#7c3aed';
+      ctx2.textAlign='left';
+      ctx2.textBaseline='middle';
+      ctx2.fillText(v.toFixed(1)+'%',pt.x+5,di===0?pt.y-6:pt.y+6);
+      ctx2.restore();
     });
   }};
   const e2=Chart.getChart(document.getElementById('cum-wk-c'));if(e2)e2.destroy();
@@ -792,7 +793,7 @@ function buildWeekly(){
       {label:'แผน %',data:COM_PLAN,borderColor:'#94a3c4',borderDash:[5,3],borderWidth:1.5,pointRadius:2,tension:.3,fill:false},
       {label:'จริง %',data:actFull,borderColor:'#7c3aed',borderWidth:2,pointRadius:(c)=>c.parsed&&c.parsed.y!=null?2:0,pointBackgroundColor:'#7c3aed',tension:.3,fill:false,spanGaps:false},
     ]},
-    options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:26,bottom:10}},
+    options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:26,right:48,bottom:10}},
       interaction:{mode:'index',intersect:false},
       plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(30,27,75,.92)',bodyColor:'rgba(255,255,255,.8)',callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y!=null?c.parsed.y.toFixed(1)+'%':'–'}`}}},
       scales:{x:{ticks:{font:{size:9},maxRotation:45,color:'#94a3c4'},grid:{display:false}},y:{min:0,max:100,ticks:{font:{size:10},callback:v=>v+'%'},grid:{color:'#f0f4ff'}}}}
