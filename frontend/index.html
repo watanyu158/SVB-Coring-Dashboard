@@ -753,7 +753,7 @@ function buildWeekly(){
     });
   }};
   const e1=Chart.getChart(document.getElementById('weekly-bar-c'));if(e1)e1.destroy();
-  new Chart(document.getElementById('weekly-bar-c'),{type:'bar',plugins:[todayPlugin('wb')],plugins:[wkBarLbl],
+  new Chart(document.getElementById('weekly-bar-c'),{type:'bar',plugins:[todayPlugin('wb'),wkBarLbl],
     data:{labels:WK_LABEL,datasets:[
       {label:'Cabling จริง',data:WK_CAB_A,backgroundColor:'rgba(14,165,233,.75)',borderRadius:3,stack:'s',order:2},
       {label:'Coring จริง', data:WK_COR_A,backgroundColor:'rgba(124,58,237,0.75)',borderRadius:3,stack:'s',order:2},
