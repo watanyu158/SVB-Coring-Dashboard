@@ -553,7 +553,7 @@ function lineChart(id,planData,actData,color,planId,actId,plugins=[]){
     type:'line',plugins:[todayPlugin(id),lblPlugin(id,color),...plugins],
     data:{labels:WK_LABEL,datasets:[
       {label:'แผน',data:planData,borderColor:'#94a3c4',borderDash:[5,3],borderWidth:1.5,pointRadius:2,tension:.3,fill:false},
-      {label:'จริง',data:actFull,borderColor:color,borderWidth:1.5,pointRadius:(c)=>c.parsed.y!=null?3:0,pointBackgroundColor:color,tension:.3,fill:true,backgroundColor:color==='#0ea5e9'?'rgba(14,165,233,0.05)':'rgba(124,58,237,0.05)',spanGaps:false},
+      {label:'จริง',data:actFull,borderColor:color,borderWidth:1.5,pointRadius:(c)=>c.parsed&&c.parsed.y!=null?3:0,pointBackgroundColor:color,tension:.3,fill:true,backgroundColor:color==='#0ea5e9'?'rgba(14,165,233,0.05)':'rgba(124,58,237,0.05)',spanGaps:false},
     ]},
     options:commonOpts(color)
   });
@@ -579,7 +579,7 @@ function buildBurndown(){
     type:'line',plugins:[todayPlugin('bd')],
     data:{labels:WK_LABEL,datasets:[
       {label:'แผน',data:BD_PLAN,borderColor:'#94a3c4',borderDash:[5,3],borderWidth:1.5,pointRadius:0,tension:.3,fill:false},
-      {label:'จริง',data:bdFull,borderColor:'#10b981',borderWidth:2.5,pointRadius:(c)=>c.parsed.y!=null?3:0,pointBackgroundColor:'#10b981',tension:.3,fill:false,spanGaps:false},
+      {label:'จริง',data:bdFull,borderColor:'#10b981',borderWidth:2.5,pointRadius:(c)=>c.parsed&&c.parsed.y!=null?3:0,pointBackgroundColor:'#10b981',tension:.3,fill:false,spanGaps:false},
     ]},
     options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
       plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(30,27,75,.92)',bodyColor:'rgba(255,255,255,.8)',padding:8,cornerRadius:8,callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y!=null?c.parsed.y+' จุด':'–'}`}}},
@@ -672,7 +672,7 @@ function buildWeekly(){
   new Chart(document.getElementById('cum-wk-c'),{type:'line',plugins:[todayPlugin('cw'),cumLbl],
     data:{labels:WK_LABEL,datasets:[
       {label:'แผน %',data:COM_PLAN,borderColor:'#94a3c4',borderDash:[5,3],borderWidth:1.5,pointRadius:2,tension:.3,fill:false},
-      {label:'จริง %',data:actFull,borderColor:'#7c3aed',borderWidth:2,pointRadius:(c)=>c.parsed.y!=null?2:0,pointBackgroundColor:'#7c3aed',tension:.3,fill:false,spanGaps:false},
+      {label:'จริง %',data:actFull,borderColor:'#7c3aed',borderWidth:2,pointRadius:(c)=>c.parsed&&c.parsed.y!=null?2:0,pointBackgroundColor:'#7c3aed',tension:.3,fill:false,spanGaps:false},
     ]},
     options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:18,bottom:10}},
       interaction:{mode:'index',intersect:false},
@@ -873,9 +873,6 @@ ${mn.outerHTML}
 }
 
 window.addEventListener('DOMContentLoaded',()=>{
-  // render charts ด้วย default data ก่อน แล้ว loadData จะ rebuild
-  buildGauge();buildBurndown();buildDonut();buildProgAll();buildProgSmall();
-  buildHeatmap();
   loadData();
 });
 </script>
