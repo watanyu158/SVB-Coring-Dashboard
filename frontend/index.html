@@ -438,7 +438,7 @@ const API=window.location.hostname==='localhost'?'http://localhost:3002':'https:
 let N_WK=38, TOTAL=39;
 let WK_SHORT=[], WK_DATES=[], WK_LABEL=[];
 let WK_CAB_P=[], WK_CAB_A=[], WK_COR_P=[], WK_COR_A=[];
-let COM_PLAN=[], COM_ACT_RAW=[], CAB_CUM=[], COR_CUM=[];
+let COM_PLAN=[], COM_ACT_RAW=[], CAB_CUM=[], COR_CUM=[], CAB_ACT=[], COR_ACT=[];
 let BD_PLAN=[], BD_ACT=[];
 let LOC_DATA=[], GATE_DATA=[];
 let _projStart=new Date(2025,10,8);
@@ -469,6 +469,8 @@ async function loadData(){
     COM_ACT_RAW.length=0; wk.cum_comb_act.forEach(v=>COM_ACT_RAW.push(v));
     CAB_CUM.length=0; wk.cum_cab_plan.forEach(v=>CAB_CUM.push(v));
     COR_CUM.length=0; wk.cum_cor_plan.forEach(v=>COR_CUM.push(v));
+    CAB_ACT.length=0; wk.cum_cab_act.forEach(v=>CAB_ACT.push(v));
+    COR_ACT.length=0; wk.cum_cor_act.forEach(v=>COR_ACT.push(v));
     BD_PLAN.length=0; d.burndown.plan.forEach(v=>BD_PLAN.push(v));
     BD_ACT.length=0;  d.burndown.act.forEach(v=>BD_ACT.push(v));
     LOC_DATA.length=0; d.locations.forEach(l=>LOC_DATA.push({n:l.n,cab_p:l.cab_p,cab_d:l.cab_d,cor_p:l.cor_p,cor_d:l.cor_d}));
@@ -705,8 +707,8 @@ function buildProgAll(){
 }
 
 function buildProgSmall(){
-  lineChart('prog-cab-c',CAB_CUM,CAB_CUM,'#0ea5e9','cab-plan-lbl','cab-act-lbl');
-  lineChart('prog-cor-c',COR_CUM,COR_CUM,'#7c3aed','cor-plan-lbl','cor-act-lbl');
+  lineChart('prog-cab-c',CAB_CUM,CAB_ACT,'#0ea5e9','cab-plan-lbl','cab-act-lbl');
+  lineChart('prog-cor-c',COR_CUM,COR_ACT,'#7c3aed','cor-plan-lbl','cor-act-lbl');
 }
 
 let _wk=false;
