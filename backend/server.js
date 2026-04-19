@@ -119,10 +119,23 @@ function parseExcel() {
   const bdAct  = cumCombAct.map(p => p!==null ? Math.round((100-p)*total/100*2) : null);
 
   // Locations
+  // หา cor start/end per location จาก gates
+  const locCorDates = {};
+  gates.forEach(g => {
+    if (!g.cor_s && !g.cor_a) return;
+    if (!locCorDates[g.loc]) locCorDates[g.loc] = {starts:[], ends:[], act_starts:[], act_ends:[]};
+    if (g.cor_s) { locCorDates[g.loc].starts.push(g.cor_s); locCorDates[g.loc].ends.push(g.cor_s); }
+    if (g.cor_a) { locCorDates[g.loc].act_starts.push(g.cor_a); locCorDates[g.loc].act_ends.push(g.cor_a); }
+  });
+
   const locations = Object.entries(locMap).map(([n,v])=>({
     n, cab_p:v.cab_p, cab_d:v.cab_d, cor_p:v.cor_p, cor_d:v.cor_d,
     cab_pct: v.cab_p>0?Math.round(v.cab_d/v.cab_p*100):0,
     cor_pct: v.cor_p>0?Math.round(v.cor_d/v.cor_p*100):0,
+    cor_plan_start: locCorDates[n]?.starts.length ? locCorDates[n].starts.sort()[0] : null,
+    cor_plan_end:   locCorDates[n]?.ends.length   ? locCorDates[n].ends.sort().slice(-1)[0] : null,
+    cor_act_start:  locCorDates[n]?.act_starts.length ? locCorDates[n].act_starts.sort()[0] : null,
+    cor_act_end:    locCorDates[n]?.act_ends.length   ? locCorDates[n].act_ends.sort().slice(-1)[0] : null,
   }));
 
   // หา cor_start และ cor_last จาก actual dates

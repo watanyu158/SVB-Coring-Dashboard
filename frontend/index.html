@@ -473,7 +473,7 @@ async function loadData(){
     COR_ACT.length=0; wk.cum_cor_act.forEach(v=>COR_ACT.push(v));
     BD_PLAN.length=0; d.burndown.plan.forEach(v=>BD_PLAN.push(v));
     BD_ACT.length=0;  d.burndown.act.forEach(v=>BD_ACT.push(v));
-    LOC_DATA.length=0; d.locations.forEach(l=>LOC_DATA.push({n:l.n,cab_p:l.cab_p,cab_d:l.cab_d,cor_p:l.cor_p,cor_d:l.cor_d}));
+    LOC_DATA.length=0; d.locations.forEach(l=>LOC_DATA.push({n:l.n,cab_p:l.cab_p,cab_d:l.cab_d,cor_p:l.cor_p,cor_d:l.cor_d,cor_plan_start:l.cor_plan_start,cor_plan_end:l.cor_plan_end,cor_act_start:l.cor_act_start,cor_act_end:l.cor_act_end}));
     GATE_DATA.length=0; d.gates.forEach(g=>GATE_DATA.push({gate:g.gate,loc:g.loc,cab:g.cab,cor:g.cor}));
     _projStart=new Date(ov.proj_start+'T00:00:00');
     _recomputeToday();
@@ -568,8 +568,16 @@ async function loadData(){
     _set('pc-plan-wk-pct', _planNow.toFixed(1)+'%');
     if(_e('pc-progress-bar')) _e('pc-progress-bar').style.width=ov.combined_pct+'%';
     const _gap = ov.combined_pct - _planNow;
-    _set('pc-status', _gap>=0 ? '✓ เกินแผน '+_gap.toFixed(1)+'%' : '⚠ ต่ำกว่าแผน '+Math.abs(_gap).toFixed(1)+'%');
-    _set('pc-finish-large', _fmtTH(_finishDate)+(_daysEarly>0?' (ก่อน '+_daysEarly+' วัน)':' (ช้า '+Math.abs(_daysEarly)+' วัน)'));
+    const _pcStatus = _e('pc-status');
+    if(_pcStatus){
+      _pcStatus.textContent = _gap>=0 ? '✓ เกินแผน '+_gap.toFixed(1)+'%' : '⚠ ต่ำกว่าแผน '+Math.abs(_gap).toFixed(1)+'%';
+      _pcStatus.style.color = _gap>=0 ? 'var(--success)' : 'var(--warning,#f59e0b)';
+    }
+    const _pcFinish = _e('pc-finish-large');
+    if(_pcFinish){
+      _pcFinish.textContent = _fmtTH(_finishDate)+(_daysEarly>0?' (ก่อน '+_daysEarly+' วัน)':' (ช้า '+Math.abs(_daysEarly)+' วัน)');
+      _pcFinish.style.color = _daysEarly>0 ? 'var(--success)' : '#ef4444';
+    }
     // rebuild charts
     buildGauge();buildBurndown();buildDonut(ov.cab_done,ov.cor_done,TOTAL);buildProgAll();buildProgSmall();buildHeatmap();
   }catch(e){console.error('loadData error:',e);}
@@ -882,13 +890,16 @@ function buildHeatmap(){
 
 function buildPlanLoc(){
   const w=document.getElementById('plan-loc');
-  if(!w||w.innerHTML)return;
-  const sch=window._SCH_DATA||LOC_DATA.map(l=>({n:l.n,cs:'–',ce:'–'}));
+  if(!w)return;
+  w.innerHTML='';
+  // sch ไม่ใช้แล้ว ใช้ cor dates จาก LOC_DATA โดยตรง
   const colors=['#0284c7','#7c3aed','#b45309','#059669','#be185d'];
   const pairs=[];for(let i=0;i<LOC_DATA.length;i+=2)pairs.push(LOC_DATA.slice(i,i+2));
   w.innerHTML=pairs.map(pair=>`<div class="g2" style="margin-bottom:9px">${pair.map(d=>{
     const ci=LOC_DATA.indexOf(d);
-    const s=sch.find(x=>x.n===d.n)||{cs:'-',ce:'-'};
+    const _fmtD=dt=>dt?new Date(dt+'T00:00:00').toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'2-digit'}):'–';
+    const corS=_fmtD(d.cor_plan_start), corE=_fmtD(d.cor_plan_end);
+    const corAS=_fmtD(d.cor_act_start), corAE=_fmtD(d.cor_act_end);
     const cor_pct=Math.round(d.cor_d/Math.max(d.cor_p,1)*100);
     return `<div class="pcard">
       <div style="display:flex;justify-content:space-between;margin-bottom:8px">
@@ -898,7 +909,7 @@ function buildPlanLoc(){
       <div style="font-size:12px;margin-bottom:3px">Cabling: <strong style="color:var(--cab)">${d.cab_d}/${d.cab_p} ✓</strong> | Coring: <strong style="color:var(--cor)">${d.cor_d}/${d.cor_p}</strong></div>
       <div style="height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin-bottom:8px"><div style="height:100%;width:${cor_pct}%;background:var(--cor);border-radius:3px"></div></div>
       <div style="font-size:10px;color:var(--text2);display:flex;gap:10px">
-        <span>Coring เริ่ม: <strong>${s.cs}</strong></span><span>สิ้นสุด: <strong>${s.ce}</strong></span>
+        <span>แผน: <strong>${corS}</strong> – <strong>${corE}</strong></span><span>จริง: <strong>${corAS}</strong> – <strong>${corAE}</strong></span>
       </div>
     </div>`;
   }).join('')}</div>`).join('');
