@@ -455,7 +455,7 @@ _recomputeToday();
 
 async function loadData(){
   try{
-    const d=await fetch(API+'/api/summary').then(r=>r.json());
+    const d=await fetch(API+'/api/summary?t='+Date.now(),{cache:'no-store'}).then(r=>r.json());
     const ov=d.overall, wk=d.weekly;
     TOTAL=ov.total; N_WK=wk.n_wk;
     WK_SHORT.length=0; wk.labels.forEach(v=>WK_SHORT.push(v));
@@ -949,6 +949,28 @@ function showTab(n,btn){
 }
 
 async function manualRefresh(){
+  const MAKE_WEBHOOK = 'https://hook.eu1.make.com/6mangbq9f8j4evhdv8252x1pjvnhlwsj';
+  const btns = document.querySelectorAll('[onclick*="manualRefresh"]');
+  btns.forEach(b=>{ b._orig=b.textContent; b.textContent='☁️ กำลังดึง Excel...'; b.disabled=true; });
+  try{
+    const before = await fetch(API+'/api/ready',{cache:'no-store'}).then(r=>r.json()).catch(()=>null);
+    const beforeUpdated = before?.updated || 0;
+    await fetch(MAKE_WEBHOOK, {method:'POST', mode:'no-cors'});
+    let waited = 0;
+    while(waited < 60){
+      await new Promise(r=>setTimeout(r,2000));
+      waited += 2;
+      btns.forEach(b=>b.textContent=`☁️ กำลังดึง Excel... (${waited}s)`);
+      const after = await fetch(API+'/api/ready',{cache:'no-store'}).then(r=>r.json()).catch(()=>null);
+      if(after?.updated && after.updated !== beforeUpdated) break;
+    }
+    btns.forEach(b=>b.textContent='🔄 กำลังโหลด...');
+    await fetch(API+'/api/cache/refresh',{method:'POST'}).catch(()=>{});
+  }catch(e){}
+  await loadData();
+  btns.forEach(b=>{ b.textContent=b._orig||'↺ รีเฟรช'; b.disabled=false; });
+}
+async function _manualRefresh_unused(){
   await loadData();
 }
 
@@ -995,8 +1017,35 @@ ${mn.outerHTML}
   }
 }
 
-window.addEventListener('DOMContentLoaded',()=>{
-  loadData();
+window.addEventListener('DOMContentLoaded', async ()=>{
+  const MAKE_WEBHOOK = 'https://hook.eu1.make.com/6mangbq9f8j4evhdv8252x1pjvnhlwsj';
+  const syncLbl = document.getElementById('last-sync-lbl');
+  const _setStatus = (msg) => { if(syncLbl) syncLbl.textContent = msg; };
+  await loadData();
+  if(syncLbl) syncLbl.textContent = new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  try {
+    const readyRes = await fetch(API+'/api/ready',{cache:'no-store'}).then(r=>r.json()).catch(()=>null);
+    if (readyRes) {
+      const updatedAfterBoot = readyRes.updated && (readyRes.updated > (Date.now() - readyRes.uptime*1000 - 5000));
+      if (!updatedAfterBoot) {
+        _setStatus('☁️ กำลังดึง Excel ล่าสุด...');
+        try { await fetch(MAKE_WEBHOOK, {method:'POST', mode:'no-cors'}); } catch(e){}
+        let waited = 0;
+        const pollInterval = setInterval(async ()=>{
+          waited += 3;
+          _setStatus(`☁️ กำลังดึง Excel ล่าสุด... (${waited}s)`);
+          const r2 = await fetch(API+'/api/ready',{cache:'no-store'}).then(r=>r.json()).catch(()=>null);
+          if (r2?.updated && r2.updated !== readyRes.updated) {
+            clearInterval(pollInterval);
+            _setStatus('✅ ได้ข้อมูลใหม่แล้ว กำลัง reload...');
+            setTimeout(()=>window.location.reload(), 500);
+          }
+          if (waited >= 120) clearInterval(pollInterval);
+        }, 3000);
+      }
+    }
+  } catch(e) {}
+  {
 });
 </script>
 </body>

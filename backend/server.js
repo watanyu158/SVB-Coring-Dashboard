@@ -4,13 +4,18 @@ const cors    = require('cors');
 const path    = require('path');
 const fs      = require('fs');
 
+const multer = require('multer');
 const app = express();
 app.use(cors());
-app.use(express.json());
+app.use(express.json({limit:'50mb'}));
 
 const EXCEL_PATH = path.join(__dirname, 'SAT Progress.xlsx');
 const CACHE_TTL  = 5 * 60 * 1000;
 let cacheTime = 0, cachedData = null;
+let excelUpdatedAt = null;
+let serverStartedAt = Date.now();
+
+const uploadMem = multer({storage: multer.memoryStorage(), limits:{fileSize:50*1024*1024}});
 
 function toDate(v) {
   if (typeof v !== 'number' || v < 40000) return null;
@@ -188,8 +193,39 @@ app.post('/api/cache/refresh', (req, res) => {
   catch(e) { res.json({ success:false, error:e.message }); }
 });
 
+// ── Make.com Webhook ──
+app.post('/api/webhook/excel', uploadMem.single('file'), (req,res)=>{
+  try {
+    let buf;
+    if (req.file) {
+      buf = req.file.buffer;
+    } else if (req.body?.content) {
+      buf = Buffer.from(req.body.content, 'base64');
+    } else {
+      return res.status(400).json({error:'No file content'});
+    }
+    if (buf.length < 1000) return res.status(400).json({error:'File too small: '+buf.length});
+    fs.writeFileSync(EXCEL_PATH, buf);
+    cacheTime = 0; cachedData = null; excelUpdatedAt = Date.now();
+    console.log('Webhook: Excel updated, size='+buf.length);
+    res.json({success:true, size:buf.length, updated: new Date().toISOString()});
+  } catch(e) { res.status(500).json({error:String(e)}); }
+});
+
+// ── Ready endpoint ──
+app.get('/api/ready', (req,res)=>{
+  const uptime = Math.round((Date.now()-serverStartedAt)/1000);
+  res.json({ready: excelUpdatedAt!==null || uptime>30, updated: excelUpdatedAt, uptime});
+});
+
 app.use(express.static(path.join(__dirname, '../frontend')));
 app.get('*', (req, res) => res.sendFile(path.join(__dirname,'../frontend/index.html')));
 
 const PORT = process.env.PORT || 3002;
-app.listen(PORT, () => console.log(`Coring Dashboard on port ${PORT}`));
+const MAKE_WEBHOOK_CORING = 'https://hook.eu1.make.com/6mangbq9f8j4evhdv8252x1pjvnhlwsj';
+app.listen(PORT, ()=>{
+  console.log(`Coring Dashboard on port ${PORT}`);
+  require('https').request(MAKE_WEBHOOK_CORING,{method:'POST'},r=>{
+    console.log('Make.com startup trigger:', r.statusCode);
+  }).on('error',e=>console.log('Make.com trigger err:',e.message)).end();
+});
