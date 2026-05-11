@@ -970,9 +970,6 @@ async function manualRefresh(){
   await loadData();
   btns.forEach(b=>{ b.textContent=b._orig||'↺ รีเฟรช'; b.disabled=false; });
 }
-async function _manualRefresh_unused(){
-  await loadData();
-}
 
 async function exportPDF(){
   const pw=window.open('','_blank','width=1280,height=900');
@@ -1045,7 +1042,6 @@ window.addEventListener('DOMContentLoaded', async ()=>{
       }
     }
   } catch(e) {}
-  {
 });
 </script>
 </body>
