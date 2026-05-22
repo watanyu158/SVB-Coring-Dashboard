@@ -222,7 +222,7 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 app.get('*', (req, res) => res.sendFile(path.join(__dirname,'../frontend/index.html')));
 
 const PORT = process.env.PORT || 3002;
-const MAKE_WEBHOOK_CORING = 'https://hook.eu1.make.com/6mangbq9f8j4evhdv8252x1pjvnhlwsj';
+const MAKE_WEBHOOK_CORING = 'https://hook.eu1.make.com/fwr1ffpffovuyevo1shfba6lcogeb1sq';
 app.listen(PORT, ()=>{
   console.log(`Coring Dashboard on port ${PORT}`);
   require('https').request(MAKE_WEBHOOK_CORING,{method:'POST'},r=>{
