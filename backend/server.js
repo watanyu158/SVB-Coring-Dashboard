@@ -3,14 +3,18 @@ const XLSX    = require('xlsx');
 const cors    = require('cors');
 const path    = require('path');
 const fs      = require('fs');
+const multer  = require('multer');
 
 const app = express();
 app.use(cors());
-app.use(express.json());
+app.use(express.json({limit:'50mb'}));
+app.use(express.raw({limit:'50mb', type:'application/octet-stream'}));
 
 const EXCEL_PATH = path.join(__dirname, 'SAT Progress.xlsx');
 const CACHE_TTL  = 5 * 60 * 1000;
 let cacheTime = 0, cachedData = null;
+let excelUpdatedAt = null;
+const serverStartedAt = Date.now();
 
 function toDate(v) {
   if (typeof v !== 'number' || v < 40000) return null;
@@ -181,6 +185,42 @@ app.get('/api/summary', async (req, res) => {
 });
 
 app.get('/api/health', (req, res) => res.json({ status:'ok' }));
+app.get('/api/ready', (req, res) => {
+  const uptime = Date.now() - serverStartedAt;
+  res.json({ ready: excelUpdatedAt!==null || uptime>30000, updated: excelUpdatedAt, uptime: Math.round(uptime/1000) });
+});
+
+// ── Webhook รับ Excel จาก Make.com ──
+const upload = multer({ storage: multer.memoryStorage(), limits:{ fileSize:50*1024*1024 } });
+
+app.post('/api/webhook/excel', upload.single('file'), (req, res) => {
+  try {
+    let buf;
+    if (req.file) {
+      // multipart/form-data
+      buf = req.file.buffer;
+    } else {
+      const body = req.body;
+      const keys = Object.keys(body || {});
+      console.log('Webhook received keys:', keys);
+      if (body && body.content) {
+        buf = Buffer.from(body.content, 'base64');
+      } else if (body && body.data) {
+        buf = Buffer.isBuffer(body.data) ? body.data : Buffer.from(body.data, 'base64');
+      } else {
+        return res.status(400).json({ error:'Unknown format', keys });
+      }
+    }
+    if (!buf || buf.length < 1000) return res.status(400).json({ error:'File too small: '+(buf?buf.length:0) });
+    fs.writeFileSync(EXCEL_PATH, buf);
+    cachedData = null; cacheTime = 0; excelUpdatedAt = Date.now();
+    console.log('Webhook: Excel updated, size='+buf.length);
+    res.json({ success:true, size:buf.length, updated: new Date().toISOString() });
+  } catch(e) {
+    console.error('Webhook error:', e);
+    res.status(500).json({ error:String(e) });
+  }
+});
 
 app.post('/api/cache/refresh', (req, res) => {
   cacheTime = 0; cachedData = null;
