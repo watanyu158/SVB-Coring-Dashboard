@@ -952,7 +952,26 @@ function showTab(n,btn){
 }
 
 async function manualRefresh(){
+  const MAKE_WEBHOOK = 'https://hook.eu1.make.com/fwr1ffpffovuyevo1shfba6lcogeb1sq';
+  const btns = document.querySelectorAll('[onclick*="manualRefresh"]');
+  btns.forEach(b=>{ b._orig=b.textContent; b.textContent='⏳ กำลังดึงข้อมูล...'; b.disabled=true; });
+
+  try{
+    // 1. trigger Make.com ให้ดึง Excel ใหม่จาก OneDrive
+    btns.forEach(b=>b.textContent='☁️ กำลังดึง Excel...');
+    await fetch(MAKE_WEBHOOK, {method:'POST', mode:'no-cors'});
+    // รอให้ Make.com ดึงและส่งไป Render (ประมาณ 5 วินาที)
+    await new Promise(r=>setTimeout(r,5000));
+  }catch(e){}
+
+  try{
+    // 2. clear cache แล้วโหลดข้อมูลใหม่
+    btns.forEach(b=>b.textContent='🔄 กำลังโหลด...');
+    await fetch(API+'/api/cache/refresh',{method:'POST'});
+  }catch(e){}
+
   await loadData();
+  btns.forEach(b=>{ b.textContent=b._orig||'↺ รีเฟรช'; b.disabled=false; });
 }
 
 async function exportPDF(){

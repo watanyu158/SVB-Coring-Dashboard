@@ -232,4 +232,11 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 app.get('*', (req, res) => res.sendFile(path.join(__dirname,'../frontend/index.html')));
 
 const PORT = process.env.PORT || 3002;
-app.listen(PORT, () => console.log(`Coring Dashboard on port ${PORT}`));
+const MAKE_WEBHOOK = 'https://hook.eu1.make.com/fwr1ffpffovuyevo1shfba6lcogeb1sq';
+app.listen(PORT, () => {
+  console.log(`Coring Dashboard on port ${PORT}`);
+  // trigger Make.com ให้ส่ง Excel ใหม่ตอน server start
+  require('https').request(MAKE_WEBHOOK, {method:'POST'}, r=>{
+    console.log('Make.com startup trigger:', r.statusCode);
+  }).on('error', e=>console.log('Make.com trigger err:', e.message)).end();
+});
