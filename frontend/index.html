@@ -377,7 +377,7 @@ main{max-width:1280px;margin:0 auto;padding:14px 20px}
 <!-- ══ Heatmap ══ -->
 <div class="tab-body" id="tab-heatmap">
   <div class="card">
-    <div class="ch"><div class="chi" style="background:var(--cor-l);color:var(--cor)">🗺</div>Gate Heatmap — สถานะ Coring แต่ละจุด</div>
+    <div class="ch"><div class="chi" style="background:var(--cor-l);color:var(--cor)">🗺</div>Gate Heatmap - สถานะ Coring แต่ละจุด</div>
     <div class="hm-legend">
       <div class="hm-leg"><div class="hm-dot" style="background:#d1fae5;border:2px solid #6ee7b7"></div>Coring เสร็จ ✓</div>
       <div class="hm-leg"><div class="hm-dot" style="background:#e0f2fe;border:2px solid #7dd3fc"></div>Cabling เสร็จ / Coring รอ</div>
@@ -895,7 +895,7 @@ function buildHeatmap(){
     if(!gates.length) return '';
     const done=gates.filter(g=>g.cor>=g.qty && g.qty>0).length;
     return `<div class="hm-concourse">
-      <div class="hm-title">${loc} — Coring ${done}/${gates.length}
+      <div class="hm-title">${loc} - Coring ${done}/${gates.length}
         <span style="margin-left:8px;font-size:11px;font-weight:400;color:var(--text2)">(${Math.round(done/gates.length*100)}%)</span>
         <div style="display:inline-block;height:4px;width:${Math.round(done/gates.length*100)}%;background:${colors[loc]};border-radius:2px;margin-left:8px;vertical-align:middle"></div>
       </div>
