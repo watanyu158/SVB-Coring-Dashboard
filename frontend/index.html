@@ -894,10 +894,14 @@ function buildHeatmap(){
     const gates=GATE_DATA.filter(g=>g.loc===loc && g.qty>0);
     if(!gates.length) return '';
     const done=gates.filter(g=>g.cor>=g.qty && g.qty>0).length;
+    const pct=Math.round(done/gates.length*100);
+    const maxW=`calc(${gates.length} * 52px + ${gates.length-1} * 6px)`;
     return `<div class="hm-concourse">
       <div class="hm-title">${loc} - Coring ${done}/${gates.length}
-        <span style="margin-left:8px;font-size:11px;font-weight:400;color:var(--text2)">(${Math.round(done/gates.length*100)}%)</span>
-        <div style="display:inline-block;height:4px;width:${Math.round(done/gates.length*100)}%;background:${colors[loc]};border-radius:2px;margin-left:8px;vertical-align:middle"></div>
+        <span style="margin-left:8px;font-size:11px;font-weight:400;color:var(--text2)">(${pct}%)</span>
+      </div>
+      <div style="max-width:${maxW};height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin-bottom:8px">
+        <div style="height:100%;width:${pct}%;background:${colors[loc]};border-radius:2px;transition:width .4s"></div>
       </div>
       <div class="hm-gates">
         ${gates.map(g=>{
